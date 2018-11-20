@@ -1,44 +1,12 @@
-//
-// function tieneSoporteUserMedia(){
-// 	return !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
-// }
-// function _getUserMedia(){
-// 	return (navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments);
-// }
-//
-// function soportePermisos(){
-//
-// if(tieneSoporteUserMedia()) {
-// 		alert("si tiene soporte para camara");
-// 	    _getUserMedia(
-// 	        {video: true},
-// 	        function (stream) {
-// 	            console.log("Permiso concedido");
-// 							var $video = document.getElementById("video");
-//               $video.srcObject = stream;
-// 							$video.play();
-// 	        }, function (error) {
-// 	            console.log("Permiso denegado o error: ", error);
-// 	        });
-// 	} else {
-// 	    alert("Lo siento. Tu navegador no soporta esta característica");
-// 	}
-// }
-//
-// $( document ).ready(function() {
-// 	soportePermisos();
-//
-// });
+mostrarListadoMovimientos("");
 
-mostrarListadoCorrespondencia("");
-
-function mostrarListadoCorrespondencia(texto_buscar){
+function mostrarListadoMovimientos(texto_buscar){
 
 		$.ajax({
 			url:"./metodos_ajax/correspondencia/mostrar_listado_correspondencia.php?texto_buscar="+texto_buscar,
 			method:"POST",
 			success:function(respuesta){
-				 $("#contenedor_listado_correspondencia").html(respuesta);
+				 $("#contenedor_registro_movimientos").html(respuesta);
 			}
 		});
 }
@@ -56,7 +24,7 @@ function registrarModificarDocumento(){
            if(respuesta==1){
              swal("Guardado","Los datos se han guardado correctamente.","success");
              $("#modal_correspondencia").modal('hide');
-             mostrarListadoCorrespondencia("");
+             mostrarListadoMovimientos("");
            }else if(respuesta==2){
              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
            }
@@ -70,8 +38,8 @@ function limpiarModal(){
 	 // $("#formulario_modal_correspondencia").attr("action","javascript:registrarDocumento()");
 }
 
-function cargarInformacionModificarCorrespondencia(id){
-	// $("#formulario_modal_correspondencia").attr("action","javascript:modificarCorrespondencia()");
+function cargarInformacionModificarMovimientos(id){
+	// $("#formulario_modal_correspondencia").attr("action","javascript:modificarMovimientos()");
 
 
    var fecha_ingreso = $("#columna_fecha_ingreso_"+id).html();
@@ -91,7 +59,7 @@ function cargarInformacionModificarCorrespondencia(id){
 
 }
 
-// function modificarCorrespondencia(){
+// function modificarMovimientos(){
 //
 // 		$.ajax({
 // 			url:"./metodos_ajax/correspondencia/ingresar_modificar_correspondencia.php",
@@ -103,7 +71,7 @@ function cargarInformacionModificarCorrespondencia(id){
 //            if(respuesta==1){
 //              swal("Guardado","Los datos se han guardado correctamente.","success");
 //              $("#modal_correspondencia").modal('hide');
-//              mostrarListadoCorrespondencia("");
+//              mostrarListadoMovimientos("");
 //            }else if(respuesta==2){
 //              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
 //            }
@@ -111,7 +79,7 @@ function cargarInformacionModificarCorrespondencia(id){
 // 		});
 // }
 
-function eliminarCorrespondencia(id){
+function eliminarMovimientos(id){
 
 	swal({
     title: "Desea eliminar registro?",
@@ -133,7 +101,7 @@ function eliminarCorrespondencia(id){
 
 						 if(respuesta==1){
 							 swal("Guardado","Los datos se han guardado correctamente.","success");
-							 mostrarListadoCorrespondencia("");
+							 mostrarListadoMovimientos("");
 						 }else if(respuesta==2){
 							 swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
 						 }

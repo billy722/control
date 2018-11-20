@@ -232,10 +232,10 @@ function cargarMenuPrincipal(){
 
             //UN LINK
             echo '<li class="nav-item">';
-                  if($url=="correspondencia.php"){
-                    echo '<a class="nav-link active" href="./correspondencia.php">Correspondencia</span></a>';
+                  if($url=="registro_movimientos.php"){
+                    echo '<a class="nav-link active" href="./registro_movimientos.php">Registro Movimientos</span></a>';
                   }else{
-                    echo '<a class="nav-link" href="./correspondencia.php">Correspondencia</span></a>';
+                    echo '<a class="nav-link" href="./registro_movimientos.php">Registro Movimientos</span></a>';
                   }
             echo '</li>';
 
@@ -257,7 +257,7 @@ function cargarMenuPrincipal(){
 
     </ul>
 
-     <label class="text-white"><?php echo $usuario['nombre'].', área de &nbsp;'.$usuario['nombre_departamento'].' &nbsp;'; ?></label>
+     <label class="text-white"><?php echo $usuario['nombre'].' &nbsp;'; ?></label>
      <a href="./cerrarSesion.php" class="btn btn-danger my-2 my-sm-0" >Salir</a>
   </div>
 </nav>

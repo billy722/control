@@ -8,7 +8,7 @@
        $usuario= $usuario->obtenerUsuarioActual();
 
 
-         header("location: correspondencia.php");
+         header("location: registro_movimientos.php");
 
 ?>
 

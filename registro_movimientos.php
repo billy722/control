@@ -18,10 +18,10 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 </style>
-   <title>Correspondencia</title>
+   <title>Registro Movimientos</title>
    <?php cargarHead(); ?>
 
-  <script src="./js/script_correspondencia.js"></script>
+  <script src="./js/script_movimientos.js"></script>
 
   <script>
       $(document).ready(function(){
@@ -71,7 +71,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                   <center>OPCIONES</center>
               </div>
               <div class="card-body">
-                   <button onclick="limpiarModal()" data-toggle="modal" data-target="#modal_correspondencia" class="active btn btn-info col-12">Recepción</button>
+                   <button onclick="limpiarModal()" data-toggle="modal" data-target="#modal_correspondencia" class="active btn btn-info col-12">Agregar</button>
                      <!-- <hr> -->
                    <!-- <button  class="active btn btn-info col-12">Seguimiento</button> -->
               </div>
@@ -83,7 +83,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
              <div id='' style="" class=" card col-12 ">
 
-                 <div class="card-header  text-info">Buscar correspondencia</div>
+                 <div class="card-header  text-info">Buscar </div>
                  <div class="card-body">
                    <input type="text" onkeyup="mostrarListadoCorrespondencia(this.value)" class="border-info form-control" name="txt_buscar_correspondencia" value="" placeholder="Ingrese Numero de oficio, descripcion, fecha, etc.">
                  </div>
@@ -101,11 +101,11 @@ $usuario= $usuario->obtenerUsuarioActual();
 
            <div id='' style="" class="  col-12 ">
 
-               <div class="card-header  text-info">Registro de correspondencia</div>
+               <div class="card-header  text-info">Registro de movimientos</div>
                <div class="card-body">
                  <!-- <h5 class="card-title">Titulo</h5>
                  <p class="card-text">texto prueba</p> -->
-                 <div class="row" id="contenedor_listado_correspondencia">
+                 <div class="row" id="contenedor_registro_movimientos">
 
                  </div>
 
