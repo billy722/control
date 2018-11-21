@@ -3,7 +3,7 @@ mostrarListadoMovimientos("");
 function mostrarListadoMovimientos(texto_buscar){
 
 		$.ajax({
-			url:"./metodos_ajax/correspondencia/mostrar_listado_correspondencia.php?texto_buscar="+texto_buscar,
+			url:"./metodos_ajax/movimientos/mostrar_listado_movimientos.php?texto_buscar="+texto_buscar,
 			method:"POST",
 			success:function(respuesta){
 				 $("#contenedor_registro_movimientos").html(respuesta);
