@@ -7,10 +7,8 @@ class Usuario{
   private $dv;
   private $nombre;
   private $correo;
-  private $correo2;
   private $estado;
   private $privilegio;
-  private $departamento;
   private $clave;
 
   public function __construct(){
@@ -29,17 +27,11 @@ class Usuario{
   public function setCorreo($parametro){
       $this->correo= $parametro;
   }
-  public function setCorreo2($parametro){
-      $this->correo2= $parametro;
-  }
   public function setEstado($parametro){
     $this->estado= $parametro;
   }
   public function setPrivilegio($parametro){
      $this->privilegio= $parametro;
-  }
-  public function setDepartamento($parametro){
-    $this->departamento= $parametro;
   }
   public function setClave($parametro){
     $this->clave= $parametro;
@@ -52,8 +44,8 @@ class Usuario{
 
     $claveEncriptada = $this->encriptarClave($this->clave);
 
-    $consulta="insert INTO tb_usuarios(rut,digito_verificador,nombre,clave,estado,tipo_usuario,departamento,correo,correo2)
-     VALUES ('".$this->run."','".$this->dv."','".$this->nombre."','".$claveEncriptada."','".$this->estado."','".$this->privilegio."','".$this->departamento."','".$this->correo."','".$this->correo2."');";
+    $consulta="insert INTO tb_usuarios(rut,digito_verificador,nombre,clave,estado,tipo_usuario,correo)
+     VALUES ('".$this->run."','".$this->dv."','".$this->nombre."','".$claveEncriptada."','".$this->estado."','".$this->privilegio."','".$this->correo."');";
 
     $resultado= $conexion->query($consulta);
     return $resultado;
@@ -67,9 +59,7 @@ class Usuario{
                 nombre = '".$this->nombre."',
                 estado = ".$this->estado.",
                 tipo_usuario=".$this->privilegio.",
-                departamento=".$this->departamento.",
-                correo= '".$this->correo."',
-                correo2= '".$this->correo2."'
+                correo= '".$this->correo."'
                 where rut=".$this->run;
 
       $resultado= $conexion->query($consulta);
@@ -96,7 +86,7 @@ class Usuario{
 
     $consulta;
 
-    $resultado= $conexion->query("select * from tb_actividad where usuario_crea=".$this->run);
+    $resultado= $conexion->query("select * from tb_actividad where rut_usuario=".$this->run);
     //consulta si el usuario tiene actividades registradas
 
       if($resultado->num_rows>0){

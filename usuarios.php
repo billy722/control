@@ -1,7 +1,6 @@
 <?php
 @session_start();
 require_once 'comun.php';
-require_once './clases/Departamento.php';
 require_once './clases/Usuario.php';
 require_once './clases/Estado.php';
 require_once './clases/Privilegio.php';
@@ -111,12 +110,6 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                 </div>
 
-                <div class="form-group col-12" >
-
-                        <label for="title" class="col-12 control-label">Correo opcion 2</label>
-                        <input type="text"  class="form-control" name="txt_correo2_usuario" id="txt_correo2_usuario" value="">
-
-                </div>
           </div>
 
           <div class="form-group card border-info" >
@@ -156,22 +149,6 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                 </div>
 
-                <div class="form-group col-12" >
-
-                    <label for="title" class="col-12 control-label">Area o departamento</label>
-                    <select required class="form-control" name="txt_departamento_usuario" id="txt_departamento_usuario">
-                      <?php
-                          $departamento = new Departamento();
-                          $listaDepartamentos = $departamento->obtenerDepartamentos();
-
-                          while($filas = $listaDepartamentos->fetch_array()){
-                             echo '<option value="'.$filas['id_departamento'].'">'.$filas['nombre_departamento'].'</option>';
-                          }
-
-                       ?>
-                    </select>
-
-                </div>
             </div>
 
             <div id="formulario_claves" class="form-group card border-info" >

@@ -165,10 +165,26 @@ function cargarMenuConfiguraciones(){
 
      echo'<hr>';
 
-  if($url=="departamentos.php"){
-      echo '<a href="./departamentos.php" class="active btn btn-info col-12">Departamentos </a>';
+  if($url=="colegios.php"){
+      echo '<a href="./colegios.php" class="active btn btn-info col-12">Colegios </a>';
   }else{
-      echo '<a href="./departamentos.php" class="btn btn-info col-12">Departamentos </a>';
+      echo '<a href="./colegios.php" class="btn btn-info col-12">Colegios </a>';
+  }
+
+     echo'<hr>';
+
+  if($url=="cuenta_presupuesto.php"){
+      echo '<a href="./cuenta_presupuesto.php" class="active btn btn-info col-12">Cuentas </a>';
+  }else{
+      echo '<a href="./cuenta_presupuesto.php" class="btn btn-info col-12">Cuentas </a>';
+  }
+
+     echo'<hr>';
+
+  if($url=="subvenciones.php"){
+      echo '<a href="./subvenciones.php" class="active btn btn-info col-12">Subvenciones </a>';
+  }else{
+      echo '<a href="./subvenciones.php" class="btn btn-info col-12">Subvenciones </a>';
   }
 
   ?>

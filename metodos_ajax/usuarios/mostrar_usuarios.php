@@ -13,10 +13,8 @@ $listado_usuarios = $Usuario->listarUsuariosActivosInactivos();
            <!-- <th>Run</th> -->
            <th>Nombre</th>
            <th>Estado</th>
-           <th>Tipo Usurio</th>
-           <th>Colegio/Red</th>
+           <th>Tipo Usuario</th>
            <th>Correo</th>
-           <th>Correo 2</th>
            <th>Opciones</th>
        </thead>
        <tbody>';
@@ -37,13 +35,10 @@ $listado_usuarios = $Usuario->listarUsuariosActivosInactivos();
                    <td class=""><span id="txt_nombre_'.$contador.'" >'.$filas['nombre'].'</span></td>
                    <td class=""><span                               >'.$filas['descripcion_estado'].'</span></td>
                    <td class=""><span                               >'.$filas['descripcion_tipo_usuario'].'</span></td>
-                   <td class=""><span                               >'.$filas['nombre_departamento'].'</span></td>
                    <td class=""><span id="txt_correo_'.$contador.'" >'.$filas['correo'].'</span></td>
-                   <td class=""><span id="txt_correo2_'.$contador.'" >'.$filas['correo2'].'</span></td>
 
                    <span class="d-none" id="txt_estado_'.$contador.'" >'.$filas['estado'].'</span>
                    <span class="d-none" id="txt_privilegio_'.$contador.'" >'.$filas['tipo_usuario'].'</span>
-                   <span class="d-none" id="txt_departamento_'.$contador.'" >'.$filas['departamento'].'</span>
                    <td class="">
                       <button onclick="cargarDatosModificar('.$contador.');" data-toggle="modal" data-target="#modal_usuario" type="button" class="btn btn-block btn-warning" name="button">Editar</button>
                       <button onclick="eliminarUsuario('.$filas['rut'].')" type="button" class="btn btn-block btn-danger" name="button">Eliminar</button>

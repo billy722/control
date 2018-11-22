@@ -1,7 +1,6 @@
 <?php
 @session_start();
 require_once 'comun.php';
-require_once './clases/Departamento.php';
 require_once './clases/Usuario.php';
 comprobarSession();
 $usuario= new Usuario();
