@@ -3,6 +3,7 @@
 @session_start();
 require_once 'comun.php';
 require_once './clases/Usuario.php';
+require_once './clases/TipoMovimiento.php';
 comprobarSession();
 $usuario= new Usuario();
 $usuario= $usuario->obtenerUsuarioActual();
@@ -120,11 +121,11 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 <!-- MODAL INGRESAR CORRESPONDENCIA-->
 <div class="modal fade" id="modal_correspondencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
 
     <div class="modal-header">
-      <h5 class="modal-title" id="myModalLabel">Recepción de correspondencia</h5>
+      <h5 class="modal-title" id="myModalLabel">Ingreso Movimiento</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
@@ -134,7 +135,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
              <div class="form-group  border-info" >
 
-                  <input type="hidden" name="txt_id_correspondencia" id="txt_id_correspondencia">
+                  <input type="hidden" name="txt_id_movimiento" id="txt_id_movimiento">
 
                   <div class="row">
 
@@ -142,37 +143,26 @@ $usuario= $usuario->obtenerUsuarioActual();
                              <label for="title" class="col-12 control-label">Fecha de ingreso</label>
                              <input value="<?php echo date('d-m-Y'); ?>" class="form-control" type="text" id="txt_fecha_ingreso" name="txt_fecha_ingreso" min="2018-01-01"  readonly placeholder="Dia/Mes/Año" >
                       </div>
-                      <div class="form-group col-6" >
-                          <label for="title" class="col-12 control-label">Fecha de creación</label>
-                          <input required value="<?php echo date('d-m-Y'); ?>" class="form-control" type="text" id="txt_fecha_creacion" name="txt_fecha_creacion" min="2018-01-01"  readonly placeholder="Dia/Mes/Año" >
-                      </div>
-                  </div>
-
-                  <div class="row">
 
                       <div class="form-group col-6" >
 
-                          <label for="title" class="col-12 control-label">Tipo de documento</label>
-                          <select required class="form-control" name="select_tipo_documento" id="select_tipo_documento">
+                          <label for="title" class="col-12 control-label">Tipo movimiento</label>
+                          <select required class="form-control" name="select_tipo_movimiento" id="select_tipo_movimiento">
                             <?php
-                                $TipoDocumento = new TipoDocumento();
-                                $listaTipos = $TipoDocumento->obtenerTiposDocumento();
+                                $TipoMovimiento = new TipoMovimiento();
+                                $listaTiposMovimientos = $TipoMovimiento->obtenerTiposMovimientos();
 
-                                while($filas = $listaTipos->fetch_array()){
-                                   echo '<option value="'.$filas['id_tipo_correspondencia'].'">'.$filas['descripcion_tipo'].'</option>';
+                                while($filas = $listaTiposMovimientos->fetch_array()){
+                                   echo '<option value="'.$filas['id_tipo_movimiento'].'">'.$filas['descripcion_tipo_movimiento'].'</option>';
                                 }
-
                              ?>
                           </select>
 
                       </div>
-
-                      <div class="form-group col-6" >
-                          <label for="title" class="col-12 control-label">Número documento</label>
-                          <input type="text" class="form-control" name="txt_numero_documento" id="txt_numero_documento">
-                      </div>
-
                   </div>
+
+
+
 
 
                   <div class="form-group col-12" >
