@@ -4,6 +4,9 @@
 require_once 'comun.php';
 require_once './clases/Usuario.php';
 require_once './clases/TipoMovimiento.php';
+require_once './clases/Subvencion.php';
+require_once './clases/Colegio.php';
+require_once './clases/Cuenta.php';
 comprobarSession();
 $usuario= new Usuario();
 $usuario= $usuario->obtenerUsuarioActual();
@@ -139,12 +142,12 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                   <div class="row">
 
-                      <div class="form-group col-6" >
+                      <div class="form-group col-4" >
                              <label for="title" class="col-12 control-label">Fecha de ingreso</label>
                              <input value="<?php echo date('d-m-Y'); ?>" class="form-control" type="text" id="txt_fecha_ingreso" name="txt_fecha_ingreso" min="2018-01-01"  readonly placeholder="Dia/Mes/Año" >
                       </div>
 
-                      <div class="form-group col-6" >
+                      <div class="form-group col-md-4" >
 
                           <label for="title" class="col-12 control-label">Tipo movimiento</label>
                           <select required class="form-control" name="select_tipo_movimiento" id="select_tipo_movimiento">
@@ -159,54 +162,74 @@ $usuario= $usuario->obtenerUsuarioActual();
                           </select>
 
                       </div>
+
+                      <div class="form-group col-md-4" >
+
+                          <label for="title" class="col-12 control-label">Colegio</label>
+                          <select required class="form-control" name="select_colegio" id="select_colegio">
+                            <?php
+                                $Colegio = new Colegio();
+                                $listaColegios = $Colegio->obtenerColegios();
+
+                                while($filas = $listaColegios->fetch_array()){
+                                    echo '<option value="'.$filas['rbd_colegio'].'">'.$filas['rbd_colegio'].': '.$filas['nombre_colegio'].'</option>';
+                                }
+                              ?>
+                          </select>
+
+                      </div>
+
                   </div>
 
+                  <div class="row">
 
+                      <div class="form-group col-md-4" >
 
+                          <label for="title" class="col-12 control-label">Subvencion</label>
+                          <select required class="form-control" name="select_subvencion" id="select_subvencion">
+                            <?php
+                                $Subvencion = new Subvencion();
+                                $listaSubvenciones = $Subvencion->obtenerSubvencion();
 
+                                while($filas = $listaSubvenciones->fetch_array()){
+                                    echo '<option value="'.$filas['id_subvencion'].'">'.$filas['subvencion'].'</option>';
+                                }
+                              ?>
+                          </select>
 
-                  <div class="form-group col-12" >
-                         <label for="title" class="col-12 control-label">Establecimiento o lugar de origen</label>
-                         <input type="text" onkeypress="return soloLetras(event);" required class="form-control" name="txt_lugar_origen" id="txt_lugar_origen" value="">
+                      </div>
+
+                      <div class="form-group col-md-4" >
+                          <label for="title" class="col-12 control-label">Cuenta Presupuesto</label>
+                          <select required class="form-control" name="select_cuenta" id="select_cuenta">
+                            <?php
+                                $Cuenta = new Cuenta();
+                                $listaCuentas = $Cuenta->obtenerCuentas();
+
+                                while($filas = $listaCuentas->fetch_array()){
+                                   echo '<option value="'.$filas['numero_cuenta'].'">'.$filas['numero_cuenta'].': '.$filas['nombre_cuenta'].'</option>';
+                                }
+                             ?>
+                          </select>
+                      </div>
+
+                      <div class="form-group col-md-4" >
+                          <label for="title" class="col-12 control-label">Orden de compra</label>
+                          <input type="text" class="form-control" name="txt_orden_compra" placeholder="Orde de compra">
+                      </div>
+
                   </div>
 
-                  <div class="form-group col-12" >
-                      <label for="title" class="col-12 control-label">Descripción general</label>
-                      <textarea required class="form-control" name="txt_descripcion_documento" id="txt_descripcion_documento" rows="6" ></textarea>
+                  <!-- CONTENEDOR DE CAMPOS A MOSTRAR CUANDO LA SUBVENCION ES SEP -->
+                  <div id="contenedor_campos_sep" class="row">
+                    
+                    <div class="form-group col-md-4" >
+                        <label for="title" class="col-12 control-label">Orden de compra</label>
+                        <input type="text" class="form-control" name="txt_orden_compra" placeholder="Orde de compra">
+                    </div>
+
                   </div>
-                  <!-- <div class="form-group col-12" >
-                      <label for="title" class="col-12 control-label">Imagen</label>
-                      <input type="file" capture="camera" name="" value="">
-                  </div>
-                  <div class="form-group col-12" >
 
-                      <video style="width:300px;" id="video"></video>
-
-                  </div> -->
-
-            </div>
-
-
-
-            <div class="form-group card border-info" >
-                <div class="form-group col-12" >
-                        <center><label for="title" class="col-12 control-label">DERIVACIÓN</label></center>
-
-                        <div class="">
-                           <?php
-                              $Departamentos = new Departamento();
-                              $listaDepartamentos = $Departamentos->obtenerDepartamentos();
-
-                              while($filas = $listaDepartamentos->fetch_array()){
-                                  echo '<input type="checkbox" id="chb_departamento_'.$filas['id_departamento'].'" name="chb_selector_derivaciones[]" value="'.$filas['id_departamento'].'">
-                                        <label for="chb_departamento_'.$filas['id_departamento'].'">'.$filas['nombre_departamento'].'</label>
-                                        <br/>';
-                              }
-
-                            ?>
-
-                        </div>
-                </div>
             </div>
 
 
