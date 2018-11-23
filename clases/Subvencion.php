@@ -46,8 +46,12 @@ class Subvencion{
                  subvencion = '".$this->subvencion."'
                  where id_subvencion=".$this->id_subvencion;
 
-       $resultado= $conexion->query($consulta);
-       return $resultado;
+       if($conexion->query($consulta)){
+           return true;
+       }else{
+           echo $consulta;
+           return false;
+       }
    }
 
    public function eliminarSubvencion(){

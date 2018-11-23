@@ -54,7 +54,7 @@ class Cuenta{
      $Conexion = new Conexion();
      $Conexion = $Conexion->conectar();
 
-     $consulta = "DELETE FROM tb_cuentas_presupuesto WHERE (numero_cuenta = ".$this->numero_cuenta.") ";
+     $consulta = "delete FROM tb_cuentas_presupuesto WHERE (numero_cuenta = '".$this->numero_cuenta."') ";
 
      if($Conexion->query($consulta)){
          return true;

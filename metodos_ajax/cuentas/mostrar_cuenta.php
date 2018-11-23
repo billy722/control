@@ -11,7 +11,7 @@ $listado_cuenta = $Cuenta->obtenerCuentas();
     echo '
     <table class="table table-responsive table-sm table-striped table-bordered table-hover">
        <thead>
-           <th>RBD</th>
+           <th>Numero</th>
            <th>Nombre</th>
            <th></th>
            <th></th>
@@ -30,7 +30,7 @@ $listado_cuenta = $Cuenta->obtenerCuentas();
                       <button onclick="cargarDatosModificar('.$contador.');" data-toggle="modal" data-target="#modal_cuenta" type="button" class="btn btn-block btn-warning" name="button">Editar</button>
                    </td>
                    <td class="">
-                      <button onclick="eliminarCuenta('.$filas['numero_cuenta'].')" type="button" class="btn btn-block btn-danger" name="button">Eliminar</button>
+                      <button onclick="eliminarCuenta(\''.$filas['numero_cuenta'].'\')" type="button" class="btn btn-block btn-danger" name="button">Eliminar</button>
                    </td>
                  </tr>';
 

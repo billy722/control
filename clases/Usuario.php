@@ -88,7 +88,6 @@ class Usuario{
 
     $resultado= $conexion->query("select * from tb_actividad where rut_usuario=".$this->run);
     //consulta si el usuario tiene actividades registradas
-
       if($resultado->num_rows>0){
           //si entra aqui, se cambia el estado a eliminado
           $consulta = "update tb_usuarios set estado=3 where rut=".$this->run;

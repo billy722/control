@@ -91,12 +91,12 @@ $usuario= $usuario->obtenerUsuarioActual();
                               <label for="title" class=" control-label">Numero Cuenta</label>
                               <input required onkeypress="return soloLetrasNumeros(event);" maxlength="50" type="text" class=" form-control" name="txt_numero_cuenta" id="txt_numero_cuenta" value="">
                     </div>
-                </div>
+                </div>  
 
                 <div class="form-group col-12" >
 
                        <label for="title" class="col-12 control-label">Nombre Cuenta</label>
-                       <input type="text" onkeypress="return soloLetras(event);" required class="form-control" name="txt_nombre_cuenta" id="txt_nombre_cuenta" value="">
+                       <input type="text" onkeypress="return soloLetrasNumeros(event);" required class="form-control" name="txt_nombre_cuenta" id="txt_nombre_cuenta" value="">
 
                 </div>
 

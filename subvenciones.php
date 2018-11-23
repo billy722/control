@@ -83,6 +83,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
         <form id="formulario_modal_subvencion" class="" action="javascript:guardarSubvencion()" method="post">
 
+           <input type="hidden" name="txt_id_subvencion" id="txt_id_subvencion" value="">
 
            <div class="form-group card border-info" >
 

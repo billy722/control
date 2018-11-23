@@ -6,7 +6,7 @@ require_once '../../clases/Cuenta.php';
 
 $Funciones = new Funciones();
 
-$numero_cuenta = $Funciones->limpiarNumeroEntero($_REQUEST['txt_numero_cuenta']);
+$numero_cuenta = $Funciones->limpiarTexto($_REQUEST['txt_numero_cuenta']);
 $nombre_cuenta = $Funciones->limpiarTexto($_REQUEST['txt_nombre_cuenta']);
 
 $Cuenta = new Cuenta();

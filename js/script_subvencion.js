@@ -33,16 +33,12 @@ function guardarSubvencion(){
 	}
 
 
-// function limpiarFormularioColegio(){
-//    $("#formulario_modal_colegio")[0].reset();
-// 	 $('#txt_rbd_colegio').attr("readonly",false);
-//    $('#txt_nombre_colegio').attr("readonly",false);
-//
-//    cargarFormularioClaves("nuevo");
-//
-// 	 $("#formulario_modal_colegio").attr("action","javascript:guardarColegio()");
-//
-// }
+function limpiarFormularioSubvencion(){
+   $("#formulario_modal_colegio")[0].reset();
+	 $('#txt_id_subvencion').attr("readonly",false);
+	 $("#formulario_modal_colegio").attr("action","javascript:guardarSubvencion()");
+
+}
 
 function cargarDatosModificar(id){
 
@@ -54,8 +50,6 @@ function cargarDatosModificar(id){
 	$('#txt_id_subvencion').val(txt_id_subvencion);
 	$('#txt_subvencion').val(txt_subvencion);
 
-  //pone el campo como no editable
-	$('#txt_id_subvencion').attr("readonly",true);
 
   //cambia la funcion que se ejecuta al enviar el formulario
 	$("#formulario_modal_subvencion").attr("action","javascript:modificarSubvencion()");
@@ -70,7 +64,7 @@ function modificarSubvencion(){
 				method:"POST",
 				data: $("#formulario_modal_subvencion").serialize(),
 				success:function(respuesta){
-					 alert(respuesta);
+					 // alert(respuesta);
 
 					 if(respuesta==1){
 						 swal("Guardado","Los datos se han guardado correctamente.","success");
@@ -90,7 +84,7 @@ function eliminarSubvencion(id){
 				url:"./metodos_ajax/subvencion/eliminar_subvencion.php?id="+id,
 				method:"POST",
 				success:function(respuesta){
-					 alert(respuesta);
+					 // alert(respuesta);
 					 if(respuesta==1){
 						 swal("Eliminado correctamente","Los datos se han guardado correctamente.","success");
 						 listarSubvencion();

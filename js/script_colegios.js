@@ -19,7 +19,7 @@ function guardarColegio(){
 				method:"POST",
 				data: $("#formulario_modal_colegio").serialize(),
 				success:function(respuesta){
-					  alert(respuesta);
+					  // alert(respuesta);
 
 					 if(respuesta==1){
 						 swal("Guardado","Los datos se han guardado correctamente.","success");
@@ -33,16 +33,13 @@ function guardarColegio(){
 	}
 
 
-// function limpiarFormularioColegio(){
-//    $("#formulario_modal_colegio")[0].reset();
-// 	 $('#txt_rbd_colegio').attr("readonly",false);
-//    $('#txt_nombre_colegio').attr("readonly",false);
-//
-//    cargarFormularioClaves("nuevo");
-//
-// 	 $("#formulario_modal_colegio").attr("action","javascript:guardarColegio()");
-//
-// }
+function limpiarFormularioColegio(){
+   $("#formulario_modal_colegio")[0].reset();
+	 $('#txt_rbd_colegio').attr("readonly",false);
+
+	 $("#formulario_modal_colegio").attr("action","javascript:guardarColegio()");
+
+}
 
 function cargarDatosModificar(id){
 
@@ -85,12 +82,11 @@ function modificarColegio(){
 }
 
 function eliminarColegio(id){
-
 			$.ajax({
 				url:"./metodos_ajax/colegio/eliminar_colegio.php?id="+id,
 				method:"POST",
 				success:function(respuesta){
-					 alert(respuesta);
+					 // alert(respuesta);
 					 if(respuesta==1){
 						 swal("Eliminado correctamente","Los datos se han guardado correctamente.","success");
 						 listarColegio();

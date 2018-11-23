@@ -33,16 +33,13 @@ function guardarCuenta(){
 	}
 
 
-// function limpiarFormularioColegio(){
-//    $("#formulario_modal_colegio")[0].reset();
-// 	 $('#txt_rbd_colegio').attr("readonly",false);
-//    $('#txt_nombre_colegio').attr("readonly",false);
-//
-//    cargarFormularioClaves("nuevo");
-//
-// 	 $("#formulario_modal_colegio").attr("action","javascript:guardarColegio()");
-//
-// }
+function limpiarFormularioCuenta(){
+   $("#formulario_modal_cuenta")[0].reset();
+	 $('#txt_numero_cuenta').attr("readonly",false);
+
+	 $("#formulario_modal_cuenta").attr("action","javascript:guardarCuenta()");
+
+}
 
 function cargarDatosModificar(id){
 

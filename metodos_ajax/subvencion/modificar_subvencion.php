@@ -6,12 +6,12 @@ require_once '../../clases/Subvencion.php';
 
 $Funciones = new Funciones();
 
-// $numero_cuenta = $Funciones->limpiarNumeroEntero($_REQUEST['txt_numero_cuenta']);
+$id_subvencion = $Funciones->limpiarNumeroEntero($_REQUEST['txt_id_subvencion']);
 $subvencion = $Funciones->limpiarTexto($_REQUEST['txt_subvencion']);
 
 $Subvencion = new Subvencion();
+$Subvencion->setIdSubvencion($id_subvencion);
 $Subvencion->setSubvencion($subvencion);
-// $Subvencion->setIdSubvencion($numero_cuenta);
 
 if($Subvencion->modificarSubvencion()){
    echo "1";

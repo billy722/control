@@ -30,7 +30,8 @@ $listado_colegio = $Colegio->obtenerColegios();
                       <button onclick="cargarDatosModificar('.$contador.');" data-toggle="modal" data-target="#modal_colegio" type="button" class="btn btn-block btn-warning" name="button">Editar</button>
                    </td>
                    <td class="">
-                      <button onclick="eliminarColegio('.$filas['rbd_colegio'].')" type="button" class="btn btn-block btn-danger" name="button">Eliminar</button>
+                      <button onclick="eliminarColegio(\''.$filas['rbd_colegio'].'\')" type="button" class="btn btn-block btn-danger" name="button">Eliminar</button>
+
                    </td>
                  </tr>';
 
