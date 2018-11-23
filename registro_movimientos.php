@@ -7,6 +7,8 @@ require_once './clases/TipoMovimiento.php';
 require_once './clases/Subvencion.php';
 require_once './clases/Colegio.php';
 require_once './clases/Cuenta.php';
+require_once './clases/Estado.php';
+
 comprobarSession();
 $usuario= new Usuario();
 $usuario= $usuario->obtenerUsuarioActual();
@@ -73,7 +75,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                   <center>OPCIONES</center>
               </div>
               <div class="card-body">
-                   <button onclick="limpiarModal()" data-toggle="modal" data-target="#modal_correspondencia" class="active btn btn-info col-12">Agregar</button>
+                   <button onclick="limpiarModal()" data-toggle="modal" data-target="#modal_movimientos" class="active btn btn-info col-12">Agregar</button>
                      <!-- <hr> -->
                    <!-- <button  class="active btn btn-info col-12">Seguimiento</button> -->
               </div>
@@ -123,17 +125,17 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 <!-- MODAL INGRESAR CORRESPONDENCIA-->
-<div class="modal fade" id="modal_correspondencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modal_movimientos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
 
-    <div class="modal-header">
-      <h5 class="modal-title" id="myModalLabel">Ingreso Movimiento</h5>
+    <div class="modal-header bg-info">
+      <h5 class="modal-title text-white"  id="myModalLabel">Ingreso Movimiento</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
 
-      <form id="formulario_modal_correspondencia" class="" action="javascript:registrarModificarDocumento()" method="post">
+      <form id="formulario_modal_movimientos" class="" action="javascript:registrarModificarMovimiento()" method="post">
 
 
              <div class="form-group  border-info" >
@@ -186,7 +188,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                       <div class="form-group col-md-4" >
 
                           <label for="title" class="col-12 control-label">Subvencion</label>
-                          <select required class="form-control" name="select_subvencion" id="select_subvencion">
+                          <select required onChange="cambiaSubvencion(this.value)" class="form-control" name="select_subvencion" id="select_subvencion">
                             <?php
                                 $Subvencion = new Subvencion();
                                 $listaSubvenciones = $Subvencion->obtenerSubvencion();
@@ -215,17 +217,78 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                       <div class="form-group col-md-4" >
                           <label for="title" class="col-12 control-label">Orden de compra</label>
-                          <input type="text" class="form-control" name="txt_orden_compra" placeholder="Orde de compra">
+                          <input type="text" class="form-control" name="txt_orden_compra" placeholder="Orden de compra">
                       </div>
 
                   </div>
 
-                  <!-- CONTENEDOR DE CAMPOS A MOSTRAR CUANDO LA SUBVENCION ES SEP -->
-                  <div id="contenedor_campos_sep" class="row">
-                    
+                  <div class="row">
+
                     <div class="form-group col-md-4" >
-                        <label for="title" class="col-12 control-label">Orden de compra</label>
-                        <input type="text" class="form-control" name="txt_orden_compra" placeholder="Orde de compra">
+                        <label for="title" class="col-12 control-label">Monto</label>
+                        <input type="text" class="form-control-lg" name="txt_monto" placeholder="Ingrese Monto">
+                    </div>
+                    <div class="form-group col-md-8" >
+                        <label for="title" class="col-12 control-label">Descripción</label>
+                        <textarea name="txt_descripcion" id="txt_descripcion" class="form-control " rows="2"></textarea>
+                    </div>
+
+                  </div>
+
+
+                  <!-- CONTENEDOR DE CAMPOS A MOSTRAR CUANDO LA SUBVENCION ES SEP -->
+                  <div id="contenedor_campos_sep" class="card bg-light mb-12 d-none" >
+                    <div class="card-header">
+                       <h5 class="card-title">Campos SEP</h5>
+                    </div>
+                    <div class="card-body bg-white">
+
+                       <div class="row" >
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Preferente</label>
+                              <input type="text" class="form-control" name="sep_preferente" placeholder="$">
+                          </div>
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Preferencia</label>
+                              <input type="text" class="form-control" name="sep_preferencia" placeholder="$">
+                          </div>
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Concentracion</label>
+                              <input type="text" class="form-control" name="sep_concentracion" placeholder="$">
+                          </div>
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Articulo 19</label>
+                              <input type="text" class="form-control" name="sep_articulo_19" placeholder="$">
+                          </div>
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Ajustes</label>
+                              <input type="text" class="form-control" name="sep_ajustes" placeholder="$">
+                          </div>
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Total</label>
+                              <input type="text" class="form-control" name="sep_total" placeholder="$">
+                          </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+
+                    <div class="form-group col-md-12" >
+                        <label for="title" class="col-12 control-label">Estado</label>
+                        <select class="form-control" name="select_estado" id="select_estado">
+                            <?php
+                                $Estado = new Estado();
+                                $Estado->setTabla("tb_estado_movimiento");
+                                $listaEstados = $Estado->obtenerEstados();
+
+                                while($filas = $listaEstados->fetch_array()){
+                                   echo '<option value="'.$filas['id_estado'].'">'.$filas['descripcion_estado'].'</option>';
+                                }
+                             ?>
+                        </select>
                     </div>
 
                   </div>
@@ -235,7 +298,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
               <div class="form-group" >
                 <div class="col-12">
-                  <button class="btn btn-success btn-block" type="submit" name="button">Guardar</button>
+                  <button class="btn btn-info btn-block" type="submit" name="button">Guardar</button>
                 </div>
               </div>
 
@@ -261,7 +324,7 @@ $usuario= $usuario->obtenerUsuarioActual();
     </div>
     <div class="modal-body">
 
-      <form id="formulario_modal_correspondencia" class="" action="javascript:registrarModificarDocumento()" method="post">
+      <form id="formulario_modal_movimientos" class="" action="javascript:registrarModificarDocumento()" method="post">
 
 
 
@@ -341,7 +404,7 @@ $usuario= $usuario->obtenerUsuarioActual();
     </div>
     <div class="modal-body">
 
-      <form id="formulario_modal_correspondencia" class="" action="javascript:registrarModificarDocumento()" method="post">
+      <form id="formulario_modal_movimientos" class="" action="javascript:registrarModificarDocumento()" method="post">
 
             <div class="form-group card border-info" >
                 <div class="form-group col-12" >

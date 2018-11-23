@@ -11,19 +11,20 @@ function mostrarListadoMovimientos(texto_buscar){
 		});
 }
 
-function registrarModificarDocumento(){
+function registrarModificarMovimiento(){
 
 
 		$.ajax({
-			url:"./metodos_ajax/correspondencia/ingresar_modificar_correspondencia.php",
+			url:"./metodos_ajax/movimientos/ingresar_modificar_movimiento.php",
 			method:"POST",
-      data: $("#formulario_modal_correspondencia").serialize(),
+      data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
 				 alert(respuesta);
+				 console.log(respuesta);
 
            if(respuesta==1){
              swal("Guardado","Los datos se han guardado correctamente.","success");
-             $("#modal_correspondencia").modal('hide');
+             $("#modal_movimientos").modal('hide');
              mostrarListadoMovimientos("");
            }else if(respuesta==2){
              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
@@ -32,52 +33,60 @@ function registrarModificarDocumento(){
 		});
 }
 
+function cambiaSubvencion(id){
+
+ if(id==3){
+	  $("#contenedor_campos_sep").removeClass("d-none");
+ }else{
+	  $("#contenedor_campos_sep").addClass("d-none");
+ }
+}
+
 function limpiarModal(){
-	 $("#formulario_modal_correspondencia")[0].reset();
-	 $("#txt_id_correspondencia").val("");
-	 // $("#formulario_modal_correspondencia").attr("action","javascript:registrarDocumento()");
+	 $("#formulario_modal_movimientos")[0].reset();
+	 $("#txt_id_movimiento").val("");
 }
 
 function cargarInformacionModificarMovimientos(id){
-	// $("#formulario_modal_correspondencia").attr("action","javascript:modificarMovimientos()");
+
+	 var txt_fecha_ingreso = $("#columna_fecha_ingreso_").html();
+	 var select_tipo_movimiento = $("#columna_tipo_movimiento_").html();
+	 var select_colegio = $("#columna_colegio_").html();
+	 var select_subvencion = $("#columna_subvencion_").html();
+	 var select_cuenta = $("#columna_numero_cuenta_").html();
+	 var select_estado = $("#columna_estado_").html();
+	 var txt_descripcion = $("#columna_descripcion_").html();
+	 var txt_orden_compra = $("#columna_orden_compra_").html();
+	 var txt_monto = $("#txt_monto").html();
+	 var sep_preferente = $("#sep_preferente").html();
+	 var sep_preferencia = $("#sep_preferencia").html();
+	 var sep_concentracion = $("#sep_concentracion").html();
+	 var sep_articulo_19 = $("#sep_articulo_19").html();
+	 var sep_ajustes = $("#sep_ajustes").html();
+	 var sep_total = $("#sep_total").html();
 
 
-   var fecha_ingreso = $("#columna_fecha_ingreso_"+id).html();
-   var lugar_origen = $("#columna_lugar_origen_"+id).html();
-   var tipo_documento = $("#columna_id_tipo_documento_"+id).html();
-   var numero_documento = $("#columna_numero_documento_"+id).html();
-   var fecha_creacion = $("#columna_fecha_creacion_"+id).html();
-   var descripcion = $("#columna_descripcion_"+id).html();
+	 $("#txt_id_movimiento").val(id);
 
-   $("#txt_id_correspondencia").val(id);
-   $("#txt_fecha_ingreso").val(fecha_ingreso);
-   $("#txt_lugar_origen").val(lugar_origen);
-   $("#select_tipo_documento").val(tipo_documento);
-   $("#txt_numero_documento").val(numero_documento);
-   $("#txt_fecha_creacion").val(fecha_creacion);
-   $("#txt_descripcion_documento").val(descripcion);
+	 $("#txt_fecha_ingreso").val(txt_fecha_ingreso);
+	 $("#select_tipo_movimiento").val(select_tipo_movimiento);
+	 $("#select_colegio").val(select_colegio);
+	 $("#select_subvencion").val(select_subvencion);
+	 $("#select_cuenta").val(select_cuenta);
+	 $("#select_estado").val(select_estado);
+	 $("#txt_descripcion").val(txt_descripcion);
+	 $("#txt_orden_compra").val(txt_orden_compra);
+	 $("#txt_monto").val(txt_monto);
+	 $("#sep_preferente").val(sep_preferente);
+	 $("#sep_preferencia").val(sep_preferencia);
+	 $("#sep_concentracion").val(sep_concentracion);
+	 $("#sep_articulo_19").val(sep_articulo_19);
+	 $("#sep_ajustes").val(sep_ajustes);
+	 $("#sep_total").val(sep_total);
+
 
 }
 
-// function modificarMovimientos(){
-//
-// 		$.ajax({
-// 			url:"./metodos_ajax/correspondencia/ingresar_modificar_correspondencia.php",
-// 			method:"POST",
-//       data: $("#formulario_modal_correspondencia").serialize(),
-// 			success:function(respuesta){
-// 				 // alert(respuesta);
-//
-//            if(respuesta==1){
-//              swal("Guardado","Los datos se han guardado correctamente.","success");
-//              $("#modal_correspondencia").modal('hide');
-//              mostrarListadoMovimientos("");
-//            }else if(respuesta==2){
-//              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
-//            }
-// 			}
-// 		});
-// }
 
 function eliminarMovimientos(id){
 
@@ -94,7 +103,7 @@ function eliminarMovimientos(id){
   function(){
 
 			$.ajax({
-				url:"./metodos_ajax/correspondencia/eliminar_correspondencia.php?id="+id,
+				url:"./metodos_ajax/movimientos/eliminar_movimiento.php?id="+id,
 				method:"POST",
 				success:function(respuesta){
 					 alert(respuesta);
