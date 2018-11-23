@@ -46,36 +46,36 @@ function guardarCuenta(){
 
 function cargarDatosModificar(id){
 
-  var rbd_colegio = $("#txt_rbd_"+id).html();
-  var nombre_colegio = $("#txt_nombre_"+id).html();
+  var numero_cuenta = $("#txt_numero_"+id).html();
+  var nombre_cuenta = $("#txt_nombre_"+id).html();
 
 
 	//carga la informacion recibida en el modal
-	$('#txt_rbd_colegio').val(rbd_colegio);
-	$('#txt_nombre_colegio').val(nombre_colegio);
+	$('#txt_numero_cuenta').val(numero_cuenta);
+	$('#txt_nombre_cuenta').val(nombre_cuenta);
 
   //pone el campo como no editable
-	$('#txt_rbd_colegio').attr("readonly",true);
+	$('#txt_numero_cuenta').attr("readonly",true);
 
   //cambia la funcion que se ejecuta al enviar el formulario
-	$("#formulario_modal_colegio").attr("action","javascript:modificarColegio()");
+	$("#formulario_modal_cuenta").attr("action","javascript:modificarCuenta()");
 
 }
 
 
-function modificarColegio(){
+function modificarCuenta(){
 
 			$.ajax({
-				url:"./metodos_ajax/colegio/modificar_colegio.php",
+				url:"./metodos_ajax/cuentas/modificar_cuenta.php",
 				method:"POST",
-				data: $("#formulario_modal_colegio").serialize(),
+				data: $("#formulario_modal_cuenta").serialize(),
 				success:function(respuesta){
 					 // alert(respuesta);
 
 					 if(respuesta==1){
 						 swal("Guardado","Los datos se han guardado correctamente.","success");
-						 $("#modal_colegio").modal('hide');
-						 listarColegio();
+						 $("#modal_cuenta").modal('hide');
+						 listarCuenta();
 					 }else if(respuesta==2){
 						 swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
 				   }
@@ -84,16 +84,16 @@ function modificarColegio(){
 
 }
 
-function eliminarColegio(id){
+function eliminarCuenta(id){
 
 			$.ajax({
-				url:"./metodos_ajax/colegio/eliminar_colegio.php?id="+id,
+				url:"./metodos_ajax/cuentas/eliminar_cuenta.php?id="+id,
 				method:"POST",
 				success:function(respuesta){
 					 alert(respuesta);
 					 if(respuesta==1){
 						 swal("Eliminado correctamente","Los datos se han guardado correctamente.","success");
-						 listarColegio();
+						 listarCuenta();
 					 }else if(respuesta==2){
 						 swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
 					 }

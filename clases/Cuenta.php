@@ -24,7 +24,7 @@ class Cuenta{
  public function crearCuenta(){
    $conexion = new Conexion();
    $conexion = $conexion->conectar();
-   
+
    $consulta = "insert INTO tb_cuentas_presupuesto (`numero_cuenta`, `nombre_cuenta`) VALUES ('".$this->numero_cuenta."', '".$this->nombre_cuenta."')";
    $resultado= $conexion->query($consulta);
    return $resultado;
@@ -38,23 +38,23 @@ class Cuenta{
    // }
  }
 
-   public function modificarColegio(){
+   public function modificarCuenta(){
        $conexion = new Conexion();
        $conexion = $conexion->conectar();
 
-       $consulta="update tb_colegios set
-                 nombre_colegio = '".$this->nombre_colegio."'
-                 where rbd_colegio=".$this->rbd_colegio;
+       $consulta="update tb_cuentas_presupuesto SET
+       nombre_cuenta = '".$this->nombre_cuenta."'
+        WHERE (numero_cuenta = '".$this->numero_cuenta."');";
 
        $resultado= $conexion->query($consulta);
        return $resultado;
    }
 
-   public function eliminarColegio(){
+   public function eliminarCuenta(){
      $Conexion = new Conexion();
      $Conexion = $Conexion->conectar();
 
-     $consulta = "DELETE FROM tb_colegios WHERE (rbd_colegio = ".$this->rbd_colegio.") ";
+     $consulta = "DELETE FROM tb_cuentas_presupuesto WHERE (numero_cuenta = ".$this->numero_cuenta.") ";
 
      if($Conexion->query($consulta)){
          return true;
