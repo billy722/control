@@ -40,6 +40,11 @@ function cambiaSubvencion(id){
  }else{
 	  $("#contenedor_campos_sep").addClass("d-none");
  }
+ if(id==5){
+	 $("#contenedor_campos_Sc-vtf").removeClass("d-none");
+ }else{
+	 $("#contenedor_campos_Sc-vtf").addClass("d-none");
+ }
 }
 
 function limpiarModal(){

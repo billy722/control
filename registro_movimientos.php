@@ -273,7 +273,29 @@ $usuario= $usuario->obtenerUsuarioActual();
                     </div>
                   </div>
 
-                  
+                  <!-- CONTENEDOR DE CAMPOS A MOSTRAR CUANDO LA SUBVENCION ES Sc-vtf -->
+                  <div id="contenedor_campos_Sc-vtf" class="card bg-light mb-12 d-none" >
+                    <div class="card-header">
+                       <h5 class="card-title">Campos Sc-vtf</h5>
+                    </div>
+                    <div class="card-body bg-white">
+
+                       <div class="row" >
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Subvencion Normal:</label>
+                              <input type="text" class="form-control" name="sep_normal" placeholder="$">
+                          </div>
+                          <div class="form-group col-md-4" >
+                              <label for="title" class="col-12 control-label">Subvencion de Nivelacion:</label>
+                              <input type="text" class="form-control" name="sep_nivelacion" placeholder="$">
+                          </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+
 
 
                   <div class="row">
