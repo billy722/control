@@ -153,6 +153,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                           <label for="title" class="col-12 control-label">Tipo movimiento</label>
                           <select required class="form-control" name="select_tipo_movimiento" id="select_tipo_movimiento">
+                            <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $TipoMovimiento = new TipoMovimiento();
                                 $listaTiposMovimientos = $TipoMovimiento->obtenerTiposMovimientos();
@@ -169,6 +170,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                           <label for="title" class="col-12 control-label">Colegio</label>
                           <select required class="form-control" name="select_colegio" id="select_colegio">
+                            <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $Colegio = new Colegio();
                                 $listaColegios = $Colegio->obtenerColegios();
@@ -189,6 +191,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                           <label for="title" class="col-12 control-label">Subvencion</label>
                           <select required onChange="cambiaSubvencion(this.value)" class="form-control" name="select_subvencion" id="select_subvencion">
+                            <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $Subvencion = new Subvencion();
                                 $listaSubvenciones = $Subvencion->obtenerSubvencion();
@@ -204,6 +207,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                       <div class="form-group col-md-4" >
                           <label for="title" class="col-12 control-label">Cuenta Presupuesto</label>
                           <select required class="form-control" name="select_cuenta" id="select_cuenta">
+                            <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $Cuenta = new Cuenta();
                                 $listaCuentas = $Cuenta->obtenerCuentas();
@@ -281,13 +285,13 @@ $usuario= $usuario->obtenerUsuarioActual();
                     <div class="card-body bg-white">
 
                        <div class="row" >
-                          <div class="form-group col-md-4" >
+                          <div class="form-group col-md-6" >
                               <label for="title" class="col-12 control-label">Subvencion Normal:</label>
-                              <input type="text" class="form-control" name="sep_normal" placeholder="$">
+                              <input type="text" class="form-control" name="scvtf_normal" placeholder="$">
                           </div>
-                          <div class="form-group col-md-4" >
+                          <div class="form-group col-md-6" >
                               <label for="title" class="col-12 control-label">Subvencion de Nivelacion:</label>
-                              <input type="text" class="form-control" name="sep_nivelacion" placeholder="$">
+                              <input type="text" class="form-control" name="scvtf_nivelacion" placeholder="$">
                           </div>
 
                       </div>
@@ -296,13 +300,12 @@ $usuario= $usuario->obtenerUsuarioActual();
                   </div>
 
 
-
-
                   <div class="row">
 
                     <div class="form-group col-md-12" >
                         <label for="title" class="col-12 control-label">Estado</label>
                         <select class="form-control" name="select_estado" id="select_estado">
+                          <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $Estado = new Estado();
                                 $Estado->setTabla("tb_estado_movimiento");

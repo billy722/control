@@ -20,6 +20,8 @@ class Movimiento{
   private $sep_articulo_19;
   private $sep_ajustes;
   private $sep_total;
+  private $scvtf_normal;
+  private $scvtf_nivelacion;
 
 
   function setIdMovimiento($parametro){
@@ -71,6 +73,12 @@ class Movimiento{
   function setSepTotal($parametro){
     $this->sep_total = $parametro;
   }
+  function setScvtfNormal($parametro){
+    $this->scvtf_normal = $parametro;
+  }
+  function setScvtfNivelacion($parametro){
+    $this->scvtf_nivelacion = $parametro;
+  }
 
 
   function eliminarMovimiento(){
@@ -117,7 +125,9 @@ class Movimiento{
               `sep_concentracion`,
               `sep_articulo_19`,
               `sep_ajustes`,
-              `sep_total`)
+              `sep_total`,
+              `scvtf_normal`,
+              `scvtf_nivelacion`)
               VALUES
               ('".$this->tipo_movimiento."',
                '".$this->colegio."',
@@ -133,7 +143,9 @@ class Movimiento{
                '".$this->sep_concentracion."',
                '".$this->sep_articulo_19."',
                '".$this->sep_ajustes."',
-               '".$this->sep_total."');";
+               '".$this->sep_total."'
+               '".$this->sub_normal."'
+               '".$this->sub_nivelacion."');";
 
     if($conexion->query($consulta)){
        return true;

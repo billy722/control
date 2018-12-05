@@ -24,6 +24,9 @@ $sep_concentracion = $Funciones->limpiarNumeroEntero($_REQUEST['sep_concentracio
 $sep_articulo_19 = $Funciones->limpiarNumeroEntero($_REQUEST['sep_articulo_19']);
 $sep_ajustes = $Funciones->limpiarNumeroEntero($_REQUEST['sep_ajustes']);
 $sep_total = $Funciones->limpiarNumeroEntero($_REQUEST['sep_total']);
+//campos scvtf
+$scvtf_normal = $Funciones->limpiarNumeroEntero($_REQUEST['scvtf_normal']);
+$scvtf_nivelacion = $Funciones->limpiarNumeroEntero($_REQUEST['scvtf_nivelacion']);
 
 
 $Movimiento = new Movimiento();
@@ -42,7 +45,8 @@ $Movimiento->setSepConcentracion($sep_concentracion);
 $Movimiento->setSepArticulo19($sep_articulo_19);
 $Movimiento->setSepAjustes($sep_ajustes);
 $Movimiento->setSepTotal($sep_total);
-
+$Movimiento->setScvtfNormal($scvtf_normal);
+$Movimiento->setScvtfNivelacion($scvtf_nivelacion);
 
 //recibe el id de correspondencia, en caso que se desea modificar
 $_id_movimiento;
