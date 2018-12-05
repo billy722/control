@@ -193,6 +193,45 @@ function cargarMenuConfiguraciones(){
   <?php
 }
 
+function cargarMenuInformes(){
+  $url= basename($_SERVER['PHP_SELF']);
+
+  if($url=="usuarios.php"){
+      echo '<a href="./usuarios.php" class="active btn btn-info col-12">Por subvencion </a>';
+  }else{
+      echo '<a href="./usuarios.php" class="btn btn-info col-12">Por subvencion </a>';
+  }
+
+     echo'<hr>';
+
+  if($url=="colegios.php"){
+      echo '<a href="./colegios.php" class="active btn btn-info col-12">Colegios </a>';
+  }else{
+      echo '<a href="./colegios.php" class="btn btn-info col-12">Colegios </a>';
+  }
+
+     echo'<hr>';
+
+  if($url=="cuenta_presupuesto.php"){
+      echo '<a href="./cuenta_presupuesto.php" class="active btn btn-info col-12">Cuentas </a>';
+  }else{
+      echo '<a href="./cuenta_presupuesto.php" class="btn btn-info col-12">Cuentas </a>';
+  }
+
+     echo'<hr>';
+
+  if($url=="subvenciones.php"){
+      echo '<a href="./subvenciones.php" class="active btn btn-info col-12">Subvenciones </a>';
+  }else{
+      echo '<a href="./subvenciones.php" class="btn btn-info col-12">Subvenciones </a>';
+  }
+
+  ?>
+
+
+  <?php
+}
+
 function cargarMenuPrincipal(){
 ?>
 <style>
@@ -256,6 +295,17 @@ function cargarMenuPrincipal(){
             echo '</li>';
 
       }
+      if($usuario['tipo_usuario']==1){
+
+             //UN LINK
+             echo '<li class="nav-item">';
+                   if($url=="informes.php"){
+                     echo '<a class="nav-link active" href="./informes.php">Informes</span></a>';
+                   }else{
+                     echo '<a class="nav-link" href="./informes.php">Informes</span></a>';
+                   }
+             echo '</li>';
+       }
       if($usuario['tipo_usuario']==1){
 
              //UN LINK

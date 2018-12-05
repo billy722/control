@@ -143,14 +143,14 @@ class Movimiento{
                '".$this->sep_concentracion."',
                '".$this->sep_articulo_19."',
                '".$this->sep_ajustes."',
-               '".$this->sep_total."'
-               '".$this->sub_normal."'
-               '".$this->sub_nivelacion."');";
+               '".$this->sep_total."',
+               '".$this->scvtf_normal."',
+               '".$this->scvtf_nivelacion."');";
 
     if($conexion->query($consulta)){
        return true;
     }else{
-      // echo $consulta;
+      echo $consulta;
       return false;
     }
   }

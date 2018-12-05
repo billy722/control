@@ -228,11 +228,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                   <div class="row">
 
-                    <div class="form-group col-md-4" >
-                        <label for="title" class="col-12 control-label">Monto</label>
-                        <input type="text" class="form-control-lg" name="txt_monto" placeholder="Ingrese Monto">
-                    </div>
-                    <div class="form-group col-md-8" >
+                    <div class="form-group col-md-12" >
                         <label for="title" class="col-12 control-label">Descripción</label>
                         <textarea name="txt_descripcion" id="txt_descripcion" class="form-control " rows="2"></textarea>
                     </div>
@@ -302,7 +298,17 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                   <div class="row">
 
-                    <div class="form-group col-md-12" >
+                    <div class="form-group col-md-4" >
+                        <label for="title" class="col-12 control-label">Monto</label>
+                        <input type="text" class="form-control-lg" name="txt_monto" placeholder="Ingrese Monto">
+                    </div>
+
+                  </div>
+
+
+                  <div class="row">
+
+                    <div id="contenedor_selector_estado" class="form-group col-md-12" >
                         <label for="title" class="col-12 control-label">Estado</label>
                         <select class="form-control" name="select_estado" id="select_estado">
                           <option value="" selected disabled>Seleccione:</option>
