@@ -1,4 +1,4 @@
-mostrarListadoMovimientos("");
+
 
 function mostrarListadoMovimientos(texto_buscar){
 
