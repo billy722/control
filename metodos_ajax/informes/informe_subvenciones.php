@@ -135,6 +135,20 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
        }
   }
 
+ echo '
+ <script>
+ function generar_informe_excel(){
+   window.open("./metodos_ajax/informes/archivo_subvenciones_excel.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'", "Diseño Web", "width=500, height=100")
+ }
+ </script>
+
+ ';
+
+  echo '
+     <div class="container">
+         <button onclick="generar_informe_excel()" class="btn btn-danger">EXPORTAR INFORME EXCEL</button>
+     </div>
+  ';
 
   echo '
     <table class="table table-bordered table_striped">

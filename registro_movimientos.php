@@ -199,11 +199,11 @@ $usuario= $usuario->obtenerUsuarioActual();
                                     <tbody>
                                       <tr>
                                         <td><label for="">Total Ingresos: </label></td>
-                                        <td>$ plata</td>
+                                        <td>Seleccione subvencion</td>
                                       </tr>
                                       <tr>
                                         <td><label for="">Total Gastos: </label></td>
-                                        <td>$ plata</td>
+                                        <td>Seleccione subvencion</td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -275,7 +275,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                 </div>
               </div>
-              
+
 
 
                   <div class="col-8">
