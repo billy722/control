@@ -172,6 +172,22 @@ class Movimiento{
       }
   }
 
+  function mostrarTotalesColegio($anio){
+      $conexion = new Conexion();
+      $conexion = $conexion->conectar();
+
+        $consulta= "call procedimiento_totales(".$anio.",".$this->subvencion.",'".$this->colegio."');";
+
+      $resultado= $conexion->query($consulta);
+      if($resultado){
+         return $resultado;
+      }else{
+        return false;
+      }
+  }
+
+
+
 
 }
 

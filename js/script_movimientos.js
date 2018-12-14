@@ -45,6 +45,21 @@ function cambiaSubvencion(id){
  }else{
 	 $("#contenedor_campos_Sc-vtf").addClass("d-none");
  }
+
+ // Ingresos y Gastos
+
+colegio = $("#select_colegio").val();
+
+ $.ajax({
+	 	url:"./metodos_ajax/movimientos/mostrar_totales_colegios.php?colegio="+colegio+"&subvencion="+id,
+	 method:"POST",
+	 data: $("#formulario_modal_movimientos").serialize(),
+	 success:function(respuesta){
+			alert(respuesta);
+			console.log(respuesta);
+	 }
+ });
+
 }
 
 function limpiarModal(){
