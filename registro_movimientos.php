@@ -109,8 +109,8 @@ $usuario= $usuario->obtenerUsuarioActual();
                       <div class="form-group col-md-6" >
 
                           <label for="title" class="col-12 control-label">Colegio</label>
-                          <select required class="form-control" name="select_colegio" id="select_colegio">
-                            <option value="" selected disabled>Seleccione:</option>
+                          <select required onchange="muestraTotalesColegioSubvencion()" class="form-control" name="select_colegio" id="select_colegio">
+                            <option value="0"  selected disabled>Seleccione:</option>
                             <?php
                                 $Colegio = new Colegio();
                                 $listaColegios = $Colegio->obtenerColegios();
@@ -126,8 +126,8 @@ $usuario= $usuario->obtenerUsuarioActual();
                         <div class="form-group col-md-6" >
 
                             <label for="title" class="col-12 control-label">Subvencion</label>
-                            <select required onChange="cambiaSubvencion(this.value)" class="form-control" name="select_subvencion" id="select_subvencion">
-                              <option value="" selected disabled>Seleccione:</option>
+                            <select required onChange="cambiaSubvencion()" class="form-control" name="select_subvencion" id="select_subvencion">
+                              <option value="0" selected disabled>Seleccione:</option>
                               <?php
                                   $Subvencion = new Subvencion();
                                   $listaSubvenciones = $Subvencion->obtenerSubvencion();

@@ -33,32 +33,44 @@ function registrarModificarMovimiento(){
 		});
 }
 
-function cambiaSubvencion(id){
+function cambiaSubvencion(){
 
- if(id==3){
+$subvencion= $("#select_subvencion").val();
+
+ if($subvencion==3){
 	  $("#contenedor_campos_sep").removeClass("d-none");
  }else{
 	  $("#contenedor_campos_sep").addClass("d-none");
  }
- if(id==5){
+ if($subvencion==5){
 	 $("#contenedor_campos_Sc-vtf").removeClass("d-none");
  }else{
 	 $("#contenedor_campos_Sc-vtf").addClass("d-none");
  }
 
- // Ingresos y Gastos
+muestraTotalesColegioSubvencion();
 
-colegio = $("#select_colegio").val();
+}
 
- $.ajax({
-	 	url:"./metodos_ajax/movimientos/mostrar_totales_colegios.php?colegio="+colegio+"&subvencion="+id,
-	 method:"POST",
-	 data: $("#formulario_modal_movimientos").serialize(),
-	 success:function(respuesta){
-			alert(respuesta);
-			console.log(respuesta);
-	 }
- });
+function muestraTotalesColegioSubvencion(){
+	// Ingresos y Gastos
+ colegio = $("#select_colegio").val();
+ subvencion = $("#select_subvencion").val();
+
+ if(subvencion!=null){
+
+	 $.ajax({
+			url:"./metodos_ajax/movimientos/mostrar_totales_colegios.php?colegio="+colegio+"&subvencion="+subvencion,
+		 method:"POST",
+		 data: $("#formulario_modal_movimientos").serialize(),
+		 success:function(respuesta){
+         $("#contenedor_informacion_resumen").html(respuesta);
+		 }
+	 });
+
+ }
+
+
 
 }
 

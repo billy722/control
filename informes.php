@@ -161,6 +161,10 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                          </div>
 
+                         <div class="form-group">
+                              <button class="btn btn-primary btn-block">GENERAR INFORME</button>
+                         </div>
+
                        </div>
 
                    </form>
