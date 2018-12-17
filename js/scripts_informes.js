@@ -1,14 +1,16 @@
-function mostrarFormularioInforme(tipo_informe){
+function cambiarTipoInforme(tipo_informe){
 
-if(tipo_informe==1){
-  $("#contenedor_informe_subvencion").removeClass("d-none");
-  $("#contenedor_informe_resumen").addClass("d-none");
-}else if(tipo_informe==2){
-  $("#contenedor_informe_subvencion").addClass("d-none");
-  $("#contenedor_informe_resumen").removeClass("d-none");
+  if(tipo_informe==2){
+    $("#contenedor_campo_colegio").removeClass("d-none");
+    $("#select_colegio").attr("required","true");
+  }else{
+    $("#contenedor_campo_colegio").addClass("d-none");
+    $("#select_colegio").removeAttr("required");
+
+  }
+
 }
 
-}
 
 
 function generarInformeSubvencion(){

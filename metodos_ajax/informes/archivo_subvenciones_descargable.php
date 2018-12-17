@@ -13,6 +13,13 @@ header("Content-Disposition: attachment; filename=informe_subvencion.doc");
 header("Pragma: no-cache");
 header("Expires: 0");
 
+
+
+$anio = $_REQUEST['txt_anio'];
+$subvencion = $_REQUEST['select_subvencion'];
+$colegio = $_REQUEST['select_colegio'];
+
+
 echo '
 <html>
 <head>
@@ -30,10 +37,6 @@ echo '
     border-spacing: 0;
 }
 
-table{
-
-}
-
 th {
   padding-bottom: 12px;
   text-align: left;
@@ -41,10 +44,28 @@ th {
   color: white;
    border-bottom: 1px solid #ddd;
 }
+
 td {
  border-bottom: 1px solid #ddd;
 }
+';
 
+if($subvencion==5){
+  echo'
+  table{
+      background:red;
+  }
+  ';
+
+}else{
+  echo'
+  table{
+      background:blue;
+  }
+  ';
+}
+
+echo '
 
 </style>
 
@@ -53,9 +74,6 @@ td {
 
 
 
- $anio = $_REQUEST['txt_anio'];
- $subvencion = $_REQUEST['select_subvencion'];
- $colegio = $_REQUEST['select_colegio'];
 
 
  //nombres
@@ -189,7 +207,7 @@ td {
 
 
    echo '
-   
+
  		<div class="container-table100">
  			<div class="wrap-table100">
  				<div class="table100 ver1 m-b-110">
