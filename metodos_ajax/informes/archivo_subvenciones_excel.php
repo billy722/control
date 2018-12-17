@@ -2,46 +2,9 @@
 
 require_once '../../clases/Conexion.php';
 
- // $filename = "informe_subvencion_colegio.xls";
- // header("Content-Type: application/vnd.ms-excel");
- // header("Content-Disposition: attachment; filename=".$filename);
-
-
-//GENERA ARCHIVO WORD
-header('Content-type: application/vnd.ms-word');
-header("Content-Disposition: attachment; filename=informe_subvencion.doc");
-header("Pragma: no-cache");
-header("Expires: 0");
-
-echo '
-<html>
-<head>
-<style>
-
-table{
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  width: 100%;
-  padding: 12px;
-  max-width: 1200px;
-  border: 1px solid #ddd;
-}
-
-th {
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #5DADE2;
-  color: white;
-   border-bottom: 1px solid #ddd;
-}
-td {
- border-bottom: 1px solid #ddd;
-}
-
-
-</style>
-
-
-</head>';
+ $filename = "informe_subvencion_colegio.xls";
+ header("Content-Type: application/vnd.ms-excel");
+ header("Content-Disposition: attachment; filename=".$filename);
 
 
 
@@ -181,10 +144,10 @@ td {
 
 
    echo '
-   <div class="tabla">
-     <table id="tabla_ingreso" class="tabla">
+     <table class="table table-bordered table_striped">
+
      <thead>
-       <th>Mes</th>';
+       <th>MES</th>';
 
            //cuando subvencion es sc-vtf
            if($subvencion==5){
@@ -382,8 +345,7 @@ td {
    echo '
         </tr>
     </tbody>
-   </table>
-   </div>';
+   </table>';
 
  }else{
    echo "ERROR CON EL INFORME DE INGRESOS AMIGO";
@@ -444,11 +406,11 @@ td {
    }
 
  echo '
-   <table class="table ">
+   <table class="table table-bordered table_striped">
 
    <thead>
-     <th>Mes</th>
-     <th>Monto</th>
+     <th>MES</th>
+     <th>MONTO</th>
    </thead>
    <tbody>
       <tr>
@@ -501,8 +463,6 @@ td {
       </tr>
   </tbody>
  </table>';
-
- echo '</html>';
 
  }else{
    echo "ERROR CON EL INFORME DE GASTOS AMIGO";
