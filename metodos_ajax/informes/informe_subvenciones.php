@@ -1,6 +1,8 @@
 <?php
 require_once '../../clases/Conexion.php';
 
+
+
 $anio = $_REQUEST['txt_anio'];
 $subvencion = $_REQUEST['select_subvencion'];
 $colegio = $_REQUEST['select_colegio'];
@@ -137,8 +139,8 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
 
  echo '
  <script>
- function generar_informe_excel(){
-   window.open("./metodos_ajax/informes/archivo_subvenciones_excel.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'", "Diseño Web", "width=500, height=100")
+ function generar_informe_descargable(){
+   window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'", "Diseño Web", "width=500, height=100")
  }
  </script>
 
@@ -146,7 +148,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
 
   echo '
      <div class="container">
-         <button onclick="generar_informe_excel()" class="btn btn-danger">EXPORTAR INFORME EXCEL</button>
+         <button onclick="generar_informe_descargable()" class="btn btn-danger">EXPORTAR INFORME EXCEL</button>
      </div>
   ';
 

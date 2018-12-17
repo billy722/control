@@ -20,8 +20,8 @@ $usuario= $usuario->obtenerUsuarioActual();
    <title>Informes</title>
    <?php cargarHead(); ?>
 
-  <!-- <script src="./js/scripts_informes.js"></script> -->
-    <script src="./js/scripts_informes_resumen.js"></script>
+  <script src="./js/scripts_informes.js"></script>
+    <!-- <script src="./js/scripts_informes_resumen.js"></script> -->
       <script src="./js/script_movimientos.js"></script>
 </head>
 <body>

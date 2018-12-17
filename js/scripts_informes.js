@@ -23,19 +23,5 @@ function generarInformeSubvencion(){
        }
   });
 
-  $.ajax({
-       url:"./metodos_ajax/informes/archivo_subvenciones_excel.php",
-       method:"post",
-       data: $("#formulario_informe_subvencion").serialize(),
-       success: function(respuesta){
-            alert(respuesta);
-       }
-  });
-}
-
-
-function generarExcelInformeSubvencion(){
-
-  window.open("./metodos_ajax/informes/archivo_subvenciones_excel.php", "Diseño Web", "width=300, height=200")
 
 }

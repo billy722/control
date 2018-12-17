@@ -2,10 +2,30 @@
 
 require_once '../../clases/Conexion.php';
 
- $filename = "informe_subvencion_colegio.xls";
- header("Content-Type: application/vnd.ms-excel");
- header("Content-Disposition: attachment; filename=".$filename);
+ // $filename = "informe_subvencion_colegio.xls";
+ // header("Content-Type: application/vnd.ms-excel");
+ // header("Content-Disposition: attachment; filename=".$filename);
 
+
+//GENERA ARCHIVO WORD
+header('Content-type: application/vnd.ms-word');
+header("Content-Disposition: attachment; filename=informe_subvencion.doc");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+echo '
+<html>
+<head>
+<style>
+
+  table{
+     background: red;
+  }
+
+</style>
+
+
+</head>';
 
 
  $anio = $_REQUEST['txt_anio'];
@@ -144,7 +164,7 @@ require_once '../../clases/Conexion.php';
 
 
    echo '
-     <table class="table table-bordered table_striped">
+     <table id="tabla_ingreso" class="table ">
 
      <thead>
        <th>MES</th>';
@@ -406,7 +426,7 @@ require_once '../../clases/Conexion.php';
    }
 
  echo '
-   <table class="table table-bordered table_striped">
+   <table class="table ">
 
    <thead>
      <th>MES</th>
@@ -463,6 +483,8 @@ require_once '../../clases/Conexion.php';
       </tr>
   </tbody>
  </table>';
+
+ echo '</html>';
 
  }else{
    echo "ERROR CON EL INFORME DE GASTOS AMIGO";
