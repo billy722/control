@@ -5,6 +5,7 @@ class Movimiento{
 
   private $id_movimiento;
   private $tipo_movimiento;
+  private $tipo_gasto;
   private $colegio;
   private $subvencion;
   private $cuenta_presupuesto;
@@ -29,6 +30,9 @@ class Movimiento{
   }
   function setTipoMovimiento($parametro){
     $this->tipo_movimiento = $parametro;
+  }
+  function setTipoGasto($parametro){
+    $this->tipo_gasto = $parametro;
   }
   function setColegio($parametro){
     $this->colegio = $parametro;
@@ -112,6 +116,7 @@ class Movimiento{
 
     $consulta ="insert INTO tb_movimientos
               (`tipo_movimiento`,
+              `tipo_gasto`,
               `colegio`,
               `subvencion`,
               `cuenta_presupuesto`,
@@ -130,6 +135,7 @@ class Movimiento{
               `scvtf_nivelacion`)
               VALUES
               ('".$this->tipo_movimiento."',
+               ".$this->tipo_gasto.",
                '".$this->colegio."',
                '".$this->subvencion."',
                '".$this->cuenta_presupuesto."',

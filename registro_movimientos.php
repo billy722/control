@@ -4,6 +4,7 @@
 require_once 'comun.php';
 require_once './clases/Usuario.php';
 require_once './clases/TipoMovimiento.php';
+require_once './clases/TipoGasto.php';
 require_once './clases/Subvencion.php';
 require_once './clases/Colegio.php';
 require_once './clases/Cuenta.php';
@@ -89,10 +90,10 @@ $usuario= $usuario->obtenerUsuarioActual();
                              <input value="<?php echo date('d-m-Y'); ?>" class="form-control" type="text" id="txt_fecha_ingreso" name="txt_fecha_ingreso" min="2018-01-01"  readonly placeholder="Dia/Mes/Año" >
                       </div>
 
-                      <div class="form-group col-md-6" >
+                      <div class="form-group col-md-4" >
 
                           <label for="title" class="col-12 control-label">Tipo movimiento</label>
-                          <select required class="form-control" value="<?php echo $filas['tipo_movimiento'];?>" name="select_tipo_movimiento" id="select_tipo_movimiento">
+                          <select onchange="cambiarTipoMovmiento(this.value)" required class="form-control" name="select_tipo_movimiento" id="select_tipo_movimiento">
                             <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $TipoMovimiento = new TipoMovimiento();
@@ -100,6 +101,23 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                                 while($filas = $listaTiposMovimientos->fetch_array()){
                                    echo '<option value="'.$filas['id_tipo_movimiento'].'">'.$filas['descripcion_tipo_movimiento'].'</option>';
+                                }
+                             ?>
+                          </select>
+
+                      </div>
+
+                      <div id="contenedor_tipo_gasto" class="form-group col-md-2 d-none" >
+
+                          <label for="title" class="col-12 control-label">Tipo gasto</label>
+                          <select class="form-control" name="select_tipo_gasto" id="select_tipo_gasto">
+                            <option value="NULL">Seleccione</option>
+                            <?php
+                                $TipoGasto = new TipoGasto();
+                                $listaTiposGasto = $TipoGasto->obtenerTiposGasto();
+
+                                while($filas = $listaTiposGasto->fetch_array()){
+                                   echo '<option value="'.$filas['id_tipo_gasto'].'">'.$filas['descripcion_tipo_gasto'].'</option>';
                                 }
                              ?>
                           </select>

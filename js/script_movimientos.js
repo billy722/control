@@ -1,5 +1,3 @@
-
-
 function mostrarListadoMovimientos(texto_buscar){
 
 		$.ajax({
@@ -20,7 +18,7 @@ function registrarModificarMovimiento(){
 			method:"POST",
       data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
-				 alert(respuesta);
+				 // alert(respuesta);
 				 console.log(respuesta);
 
            if(respuesta==1){
@@ -50,6 +48,16 @@ $subvencion= $("#select_subvencion").val();
  }
 
 muestraTotalesColegioSubvencion();
+
+}
+
+function cambiarTipoMovmiento(tipo){
+
+ if(tipo==2){
+	  $("#contenedor_tipo_gasto").removeClass("d-none");
+ }else{
+	  $("#contenedor_tipo_gasto").addClass("d-none");
+ }
 
 }
 
