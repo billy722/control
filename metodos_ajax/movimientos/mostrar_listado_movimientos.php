@@ -35,7 +35,8 @@ require_once '../../clases/Movimiento.php';
                echo '<tr>
 
                        <td>
-                             <button data-target="#modal_movimientos" data-toggle="modal" onclick="cargarInformacionModificarMovimientos('.$filas['id_movimiento'].')" class="col-12 btn btn-warning "> <i class="fa fa-edit"></i> </button>
+
+                             <button onclick="cargarInformacionModificarMovimientos('.$filas['id_movimiento'].')" class="col-12 btn btn-warning "> <i class="fa fa-edit"></i> </button>
                        </td>
                        <td>
                              <button onclick="eliminarMovimientos('.$filas['id_movimiento'].')"  class="col-12 btn btn-danger "> <i class="fa fa-trash-alt"></i> </button>
@@ -59,6 +60,7 @@ require_once '../../clases/Movimiento.php';
      </tbody>
   </table>';
 
+  // <a href="./modificar_empresa.php?id_empresa='.$filas['id_empresa'].'" class="btn btn-outline-primary">Editar</a>
 
 
  ?>

@@ -11,6 +11,7 @@ function mostrarListadoMovimientos(texto_buscar){
 		});
 }
 
+
 function registrarModificarMovimiento(){
 
 
@@ -69,9 +70,6 @@ function muestraTotalesColegioSubvencion(){
 	 });
 
  }
-
-
-
 }
 
 function limpiarModal(){

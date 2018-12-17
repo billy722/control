@@ -7,7 +7,7 @@ require_once './clases/TipoMovimiento.php';
 require_once './clases/Subvencion.php';
 require_once './clases/Colegio.php';
 require_once './clases/Cuenta.php';
-require_once './clases/Estado_movimiento.php';
+require_once './clases/Estado.php';
 
 comprobarSession();
 $usuario= new Usuario();
@@ -92,7 +92,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                       <div class="form-group col-md-6" >
 
                           <label for="title" class="col-12 control-label">Tipo movimiento</label>
-                          <select required class="form-control" name="select_tipo_movimiento" id="select_tipo_movimiento">
+                          <select required class="form-control" value="<?php echo $filas['tipo_movimiento'];?>" name="select_tipo_movimiento" id="select_tipo_movimiento">
                             <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $TipoMovimiento = new TipoMovimiento();
@@ -157,14 +157,14 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                         <div class="form-group col-md-6" >
                             <label for="title" class="col-12 control-label">Orden de compra</label>
-                            <input type="text" class="form-control" name="txt_orden_compra" placeholder="Orden de compra">
+                            <input type="text" class="form-control" value="<?php echo $filas['orden_compra'];?>" name="txt_orden_compra" placeholder="Orden de compra">
                         </div>
 
                         <div id="contenedor_selector_estado" class="form-group col-6" >
                             <label for="title" class="col-12 control-label">Estado</label>
                             <select class="form-control" name="select_estado" id="select_estado">
                                 <?php
-                                    $Estado = new Estado_movimiento();
+                                    $Estado = new Estado();
                                     $Estado->setTabla("tb_estado_movimiento");
                                     $listaEstados = $Estado->obtenerEstados();
 
@@ -177,7 +177,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                        <div class="form-group col-md-6" >
                            <label for="title" class="col-12 control-label">Monto</label>
-                           <input type="text" class="form-control" name="txt_monto" placeholder="Ingrese Monto">
+                           <input type="text" class="form-control" value="<?php echo $filas['monto'];?>" name="txt_monto" placeholder="Ingrese Monto">
                        </div>
 
 
@@ -283,7 +283,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                           <div class="form-group col-6" >
                               <label for="title" class="col-12 control-label">Descripción</label>
-                              <textarea name="txt_descripcion" id="txt_descripcion" class="form-control " rows="2"></textarea>
+                              <textarea value="<?php echo $filas['descripcion_tipo_movimiento'];?>" name="txt_descripcion" id="txt_descripcion" class="form-control " rows="2"></textarea>
                           </div>
 
                           <div class="col-6">
