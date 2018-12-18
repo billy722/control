@@ -13,64 +13,51 @@ header("Content-Disposition: attachment; filename=informe_subvencion.doc");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-
-
 $anio = $_REQUEST['txt_anio'];
 $subvencion = $_REQUEST['select_subvencion'];
 $colegio = $_REQUEST['select_colegio'];
 
-
 echo '
-<html>
+<html lang="es">
 <head>
-<link rel=stylesheet href="informe.css" TYPE="text/css" MEDIA=screen>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+	<title>Document</title>
+
 <style>
-.estilo_tabla {
-    background: #f5f5f5;
-    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    width: 100%;
-    padding: 12px;
-    max-width: 1200px;
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-th {
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #5DADE2;
-  color: white;
-   border-bottom: 1px solid #ddd;
-}
-
-td {
- border-bottom: 1px solid #ddd;
-}
 ';
-
-if($subvencion==5){
-  echo'
-  table{
-      background:red;
-  }
-  ';
-
-}else{
-  echo'
-  table{
-      background:blue;
-  }
-  ';
-}
+require "../../css/bootstrap.min.css";
 
 echo '
+table{
+   width: 100%;
+   border: 1px solid #000;
+}
+td {
+
+width: 25%;
+text-align: center;
+vertical-align: top;
+border: 1px solid #000;
+}
+  th{
+     background: cyan;
+  }
+
+  .imagen_logo{
+    background-image: url(./img/logo_daem.png);
+    background-repeat: no-repeat;
+  }
 
 </style>
 
-
-</head>';
+</head>
+<body>
+';
 
 
 
@@ -205,25 +192,18 @@ echo '
         }
    }
 
+echo '<table>
+<thead>
+  <th>Subvencion mantenimiento de establecimientos</th>
+  </thead>
+</table>
+';
 
    echo '
+     <table class="table table-bordered table_striped">
 
- 		<div class="container-table100">
- 			<div class="wrap-table100">
- 				<div class="table100 ver1 m-b-110">
- 					<div class="table100-head">
- 						<table>
- 							<thead>
- 								<tr class="row100 head">
- 									<th class="cell100 column1">Mes</th>
- 									<th class="cell100 column2">Monto</th>
- 								</tr>
- 							</thead>
- 						</table>
- 					</div>
-
- 					<div class="table100-body js-pscroll">
- 						<table>';
+     <thead>
+       <th>MES</th>';
 
            //cuando subvencion es sc-vtf
            if($subvencion==5){
@@ -421,8 +401,7 @@ echo '
    echo '
         </tr>
     </tbody>
-   </table>
-   </div>';
+   </table>';
 
  }else{
    echo "ERROR CON EL INFORME DE INGRESOS AMIGO";
@@ -486,8 +465,8 @@ echo '
    <table class="table ">
 
    <thead>
-     <th>Mes</th>
-     <th>Monto</th>
+     <th>MES</th>
+     <th>MONTO</th>
    </thead>
    <tbody>
       <tr>
@@ -541,10 +520,12 @@ echo '
   </tbody>
  </table>';
 
- echo '</html>';
+
 
  }else{
    echo "ERROR CON EL INFORME DE GASTOS AMIGO";
  }
 
+ echo '</body>
+ </html>';
   ?>
