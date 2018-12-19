@@ -1,5 +1,6 @@
 <?php
 require_once '../../clases/Conexion.php';
+require_once '../../clases/Movimiento.php';
 
 
 
@@ -174,7 +175,28 @@ if($tipo_informe==2){
 
     echo '
        </thead>
-        <tbody>
+        <tbody>';
+
+       //CALCULA SALDO ANIO ANTERIOR
+
+       $Movimiento_totales = new Movimiento();
+       $Movimiento_totales->setColegio($colegio);
+       $Movimiento_totales->setSubvencion($subvencion);
+       $anio_anterior = ($anio-1);
+
+       $resultado = $Movimiento_totales->mostrarTotalesColegio($anio_anterior);
+       $filas = $resultado->fetch_array();
+
+       echo '
+           <tr>
+             <td><strong>Saldo año '.$anio_anterior.'</strong></td>
+             <td>'.number_format($filas['total_saldo'], "0", ",", ".").'</td>
+           </tr>
+       ';
+
+
+
+      echo '
            <tr>
               <td>Enero</td>';
 
@@ -367,116 +389,47 @@ if($tipo_informe==2){
 
 
     //GASTOS
-
-    //valores
-    $enero = 0;
-    $febrero = 0;
-    $marzo = 0;
-    $abril = 0;
-    $mayo = 0;
-    $junio = 0;
-    $julio = 0;
-    $agosto = 0;
-    $septiembre = 0;
-    $octubre = 0;
-    $noviembre = 0;
-    $diciembre = 0;
-
+    $total_gastos = 0;
 
     $Conexion = new Conexion();
     $Conexion = $Conexion->conectar();
 
     if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",2,".$subvencion.",".$colegio.")")){
 
+    echo '
+      <table class="table table-bordered ">
+       <thead>
+           <th>Descripción</th>
+           <th>Ord. compra</th>
+           <th>Fecha</th>
+           <th>Monto</th>
+       </thead>
+       <tbody>
+    ';
       while($filas= $resultado_consulta->fetch_array()){
 
-           switch ($filas['mes']) {
-             case '1': $enero=number_format($filas['monto'],0,',','.');
-               break;
-             case '2': $febrero=number_format($filas['monto'],0,',','.');
-               break;
-             case '3': $marzo=number_format($filas['monto'],0,',','.');
-               break;
-             case '4': $abril=number_format($filas['monto'],0,',','.');
-               break;
-             case '5': $mayo=number_format($filas['monto'],0,',','.');
-               break;
-             case '6': $junio=number_format($filas['monto'],0,',','.');
-               break;
-             case '7': $julio=number_format($filas['monto'],0,',','.');
-               break;
-             case '8': $agosto=number_format($filas['monto'],0,',','.');
-               break;
-             case '9': $septiembre=number_format($filas['monto'],0,',','.');
-               break;
-             case '10': $octubre=number_format($filas['monto'],0,',','.');
-               break;
-             case '11': $noviembre=number_format($filas['monto'],0,',','.');
-               break;
-             case '12': $diciembre=number_format($filas['monto'],0,',','.');
-               break;
+        $fecha=date_create($filas['fecha_ingreso']);
+        $fecha= date_format($fecha, 'd/m/Y');
 
-           }
+        $total_gastos += $filas['monto'];
+
+        echo '<tr>
+                 <td>'.$filas['descripcion'].'</td>
+                 <td>'.$filas['orden_compra'].'</td>
+                 <td>'.$fecha.'</td>
+                 <td>'.number_format($filas['monto'],0,',','.').'</td>
+             </tr>';
+
       }
 
     echo '
-      <table class="table table-bordered table_striped">
+            <tr>
+              <td colspan="3"><strong>Total de gastos</strong></td>
+              <td>'.number_format($total_gastos,0,",",".").'</td>
+            </tr>
+       </tbody>
+     </table>';
 
-      <thead>
-        <th>MES</th>
-        <th>MONTO</th>
-      </thead>
-      <tbody>
-         <tr>
-            <td>Enero</td>
-            <td>'.$enero.'</td>
-         </tr>
-         <tr>
-            <td>Febrero</td>
-            <td>'.$febrero.'</td>
-         </tr>
-         <tr>
-            <td>Marzo</td>
-            <td>'.$marzo.'</td>
-         </tr>
-         <tr>
-            <td>Abril</td>
-            <td>'.$abril.'</td>
-         </tr>
-         <tr>
-            <td>Mayo</td>
-            <td>'.$mayo.'</td>
-         </tr>
-         <tr>
-            <td>Junio</td>
-            <td>'.$junio.'</td>
-         </tr>
-         <tr>
-            <td>Julio</td>
-            <td>'.$julio.'</td>
-         </tr>
-         <tr>
-            <td>Agosto</td>
-            <td>'.$agosto.'</td>
-         </tr>
-         <tr>
-            <td>Septiembre</td>
-            <td>'.$septiembre.'</td>
-         </tr>
-         <tr>
-            <td>Octubre</td>
-            <td>'.$octubre.'</td>
-         </tr>
-         <tr>
-            <td>Noviembre</td>
-            <td>'.$noviembre.'</td>
-         </tr>
-         <tr>
-            <td>Diciembre</td>
-            <td>'.$diciembre.'</td>
-         </tr>
-     </tbody>
-    </table>';
 
     }else{
       echo "ERROR CON EL INFORME DE GASTOS AMIGO";
