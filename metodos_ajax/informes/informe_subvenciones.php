@@ -1,5 +1,6 @@
 <?php
 require_once '../../clases/Conexion.php';
+require_once '../../clases/Movimiento.php';
 
 
 
@@ -174,7 +175,28 @@ if($tipo_informe==2){
 
     echo '
        </thead>
-        <tbody>
+        <tbody>';
+
+       //CALCULA SALDO ANIO ANTERIOR
+
+       $Movimiento_totales = new Movimiento();
+       $Movimiento_totales->setColegio($colegio);
+       $Movimiento_totales->setSubvencion($subvencion);
+       $anio_anterior = ($anio-1);
+
+       $resultado = $Movimiento_totales->mostrarTotalesColegio($anio_anterior);
+       $filas = $resultado->fetch_array();
+
+       echo '
+           <tr>
+             <td><strong>Saldo año '.$anio_anterior.'</strong></td>
+             <td>'.number_format($filas['total_saldo'], "0", ",", ".").'</td>
+           </tr>
+       ';
+
+
+
+      echo '
            <tr>
               <td>Enero</td>';
 
@@ -367,6 +389,7 @@ if($tipo_informe==2){
 
 
     //GASTOS
+    $total_gastos = 0;
 
     $Conexion = new Conexion();
     $Conexion = $Conexion->conectar();
@@ -388,15 +411,23 @@ if($tipo_informe==2){
         $fecha=date_create($filas['fecha_ingreso']);
         $fecha= date_format($fecha, 'd/m/Y');
 
+        $total_gastos += $filas['monto'];
+
         echo '<tr>
                  <td>'.$filas['descripcion'].'</td>
                  <td>'.$filas['orden_compra'].'</td>
                  <td>'.$fecha.'</td>
-                 <td>'.$filas['monto'].'</td>
+                 <td>'.number_format($filas['monto'],0,',','.').'</td>
              </tr>';
+
       }
 
-    echo '</tbody>
+    echo '
+            <tr>
+              <td colspan="3"><strong>Total de gastos</strong></td>
+              <td>'.number_format($total_gastos,0,",",".").'</td>
+            </tr>
+       </tbody>
      </table>';
 
 
