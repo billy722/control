@@ -101,6 +101,22 @@ $usuario= $usuario->obtenerUsuarioActual();
                 </div>
 
           </div>
+          <div class="form-group">
+
+            <label for="estado">Estado:</label>
+            <select class="form-control" required name="cmb_estado" id="cmb_estado">
+              <option value="" selected disabled>Seleccione:</option>
+              <?php
+              require_once './clases/Estado_colegio.php';
+              $TipoE= new Estado_colegio();
+              $filasTipoE= $TipoE->obtenerEstados();
+
+              foreach($filasTipoE as $tipo){
+                echo '<option value="'.$tipo['id_estado'].'" >'.$tipo['descripcion_estado'].'</option>';
+              }
+              ?>
+            </select>
+          </div>
 
 
 

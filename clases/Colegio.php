@@ -29,7 +29,7 @@ class Colegio{
    $conexion = new Conexion();
    $conexion = $conexion->conectar();
 
-   $consulta = "insert INTO tb_colegios (`rbd_colegio`, `nombre_colegio`) VALUES ('".$this->rbd_colegio."', '".$this->nombre_colegio."', '".$this->estado."')";
+   $consulta = "insert INTO tb_colegios (`rbd_colegio`, `nombre_colegio`, `estado`) VALUES ('".$this->rbd_colegio."', '".$this->nombre_colegio."', '".$this->estado."')";
    $resultado= $conexion->query($consulta);
    return $resultado;
 
@@ -41,7 +41,7 @@ class Colegio{
 
        $consulta="update tb_colegios set
                  nombre_colegio = '".$this->nombre_colegio."',
-                 estado = ".$this->estado.",
+                 estado = ".$this->estado."
                  where rbd_colegio=".$this->rbd_colegio;
 
        $resultado= $conexion->query($consulta);
