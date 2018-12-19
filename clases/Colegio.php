@@ -5,12 +5,16 @@ class Colegio{
 
  private $rbd_colegio;
  private $nombre_colegio;
+ private $estado;
 
  public function setColegio($rbd_colegio){
    $this->rbd_colegio = $rbd_colegio;
  }
  public function setNombre($nombre_colegio){
    $this->nombre_colegio = $nombre_colegio;
+ }
+ public function setEstado($estado){
+   $this->estado = $estado;
  }
 
  public function obtenerColegios(){
@@ -25,7 +29,7 @@ class Colegio{
    $conexion = new Conexion();
    $conexion = $conexion->conectar();
 
-   $consulta = "insert INTO tb_colegios (`rbd_colegio`, `nombre_colegio`) VALUES ('".$this->rbd_colegio."', '".$this->nombre_colegio."')";
+   $consulta = "insert INTO tb_colegios (`rbd_colegio`, `nombre_colegio`) VALUES ('".$this->rbd_colegio."', '".$this->nombre_colegio."', '".$this->estado."')";
    $resultado= $conexion->query($consulta);
    return $resultado;
 
@@ -36,7 +40,8 @@ class Colegio{
        $conexion = $conexion->conectar();
 
        $consulta="update tb_colegios set
-                 nombre_colegio = '".$this->nombre_colegio."'
+                 nombre_colegio = '".$this->nombre_colegio."',
+                 estado = ".$this->estado.",
                  where rbd_colegio=".$this->rbd_colegio;
 
        $resultado= $conexion->query($consulta);
@@ -59,7 +64,7 @@ class Colegio{
      //       $consulta = "delete FROM tb_colegios WHERE (rbd_colegio = '".$this->rbd_colegio."' ) ";
      //   }
 
-       $consulta = "delete FROM tb_colegios WHERE (rbd_colegio = '".$this->rbd_colegio."' ) ";
+       $consulta = "update tb_colegios set estado=3 where rbd_colegio=".$this->rbd_colegio;
 
      if($Conexion->query($consulta)){
          return true;

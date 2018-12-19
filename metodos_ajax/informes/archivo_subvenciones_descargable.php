@@ -1,3 +1,16 @@
+<script type="text/javascript">
+var brandImg = document.querySelectorAll("#brand img");
+
+for (var i = 0; i < brandImg.length; i++) {
+  var ckEdiloop = brandImg[i];
+  ckEdiloop.addEventListener("click", function(el){
+      var thisSrc = this.src;
+      var ckEdImg = '<p><img src="'+thisSrc+'" /></p>'; // La forma como las imágenes son envueltas en ckEditor
+      alert('img src es = ' + thisSrc);
+      // CKEDITOR.instances['mi_textarea'].insertHtml(ckEdImg) // Añade img al editor
+  });
+}
+</script>
 <?php
 
 require_once '../../clases/Conexion.php';
@@ -10,6 +23,7 @@ require_once '../../clases/Conexion.php';
 //GENERA ARCHIVO WORD
 header('Content-type: application/vnd.ms-word');
 header("Content-Disposition: attachment; filename=informe_subvencion.doc");
+header('<img src="logo_daem.png" alt="thumbnail" /></a>');
 header("Pragma: no-cache");
 header("Expires: 0");
 
@@ -23,8 +37,7 @@ echo '
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
+  <meta http-equiv="Content-Type" content="text/html" charset="Windows-1252">
 
 	<title>Document</title>
 
@@ -37,21 +50,34 @@ table{
    width: 100%;
    border: 1px solid #000;
 }
-td {
+      td {
+      width: 25%;
+      text-align: center;
+      vertical-align: top;
+      border: 1px solid #000;
+      }
+      th{
+         background: cyan;
+      }
 
-width: 25%;
-text-align: center;
-vertical-align: top;
-border: 1px solid #000;
-}
-  th{
-     background: cyan;
-  }
+      .imagen_logo{
+        background-image: url(http://www.librosweb.es/website/css/images/logo.gif);
+        background-repeat: no-repeat;
+      }
+      .gastos{
+      background: #A4A4A4;
+      color: #F2F2F2;
+      }
+      .titulo {
+        text-align: center;
+      }
+      .muni {
+        text-align: left;
+      }
+      .logo {
+        text-align: right;
+      }
 
-  .imagen_logo{
-    background-image: url(./img/logo_daem.png);
-    background-repeat: no-repeat;
-  }
 
 </style>
 
@@ -60,7 +86,32 @@ border: 1px solid #000;
 ';
 
 
+if($subvencion==5){
+  echo'
+  <style>
+  .thScvtf{
+      background:yellow;
+  }
+  </style>
+  ';
 
+}if($subvencion==6){
+  echo'
+  <style>
+  .th{
+      background:blue;
+  }
+  </style>
+  ';
+}if($subvencion==7){
+  echo'
+  <style>
+  th{
+      background:green;
+  }
+  </style>
+  ';
+}
 
 
  //nombres
@@ -191,10 +242,29 @@ border: 1px solid #000;
 
         }
    }
+echo '<div class="container">
+<div class="col-6">
+<div id="brand" class="logo">
+    <img src="https://munimulchen.cl/wp-content/uploads/2015/02/534278_571168669595680_1020007856_n1.jpg"
+            width="120" height="120"
+            alt="" />
+
+</div></div>
+<div class="col-6">
+<h4 class="muni">Municipalidad de Mulchen</h4>
+<h4 class="muni">Direccion de educación</h4>
+<h4 class="muni">Depto. Adm. y Finanzas</h4>
+</div></div>
+';
+
+
+echo '<h2 class="titulo">Informe</h2>';
+echo "<br>";
+echo "<br>";
 
 echo '<table>
 <thead>
-  <th>Subvencion mantenimiento de establecimientos</th>
+  <th class="thScvtf">Subvencion mantenimiento de establecimientos</th>
   </thead>
 </table>
 ';
@@ -203,15 +273,15 @@ echo '<table>
      <table class="table table-bordered table_striped">
 
      <thead>
-       <th>MES</th>';
+       <th class="thScvtf">Mes</th>';
 
            //cuando subvencion es sc-vtf
            if($subvencion==5){
-             echo '<th>Subv. Normal</th>';
-             echo '<th>Subv. Nivelación</th>';
-             echo '<th>Total</th>';
+             echo '<th class="thScvtf">Subv. Normal</th>';
+             echo '<th class="thScvtf">Subv. Nivelación</th>';
+             echo '<th class="thScvtf">Total</th>';
            }else{
-             echo '<th>Monto</th>';
+             echo '<th class="thScvtf">Monto</th>';
            }
 
  echo '
@@ -461,12 +531,15 @@ echo '<table>
         }
    }
 
+   echo "<br>";
+   echo "<br>";
+
  echo '
    <table class="table ">
 
    <thead>
-     <th>MES</th>
-     <th>MONTO</th>
+     <th class="gastos">MES</th>
+     <th class="gastos">MONTO</th>
    </thead>
    <tbody>
       <tr>
