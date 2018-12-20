@@ -27,7 +27,7 @@ $lista_meses = array(
 
 
 //valores
-$enero = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0");
+$enero = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0", "sep_preferente" => "0");//primero
 $febrero = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0");
 $marzo = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0");
 $abril = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0");
@@ -40,7 +40,7 @@ $octubre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0");
 $noviembre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0");
 $diciembre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0");
 
-$total = array("total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nivelacion" => "0");
+$total = array("total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nivelacion" => "0", "total_sep_preferente" => "0");//segundo
 
 
 if($tipo_informe==2){
@@ -55,19 +55,30 @@ if($tipo_informe==2){
       while($filas= $resultado_consulta->fetch_array()){
 
            switch ($filas['mes']) {
-             case '1': $enero['mes']=number_format($filas['monto'],0,',','.');
-                       $total['total_mes'] += $filas['monto'];
+             case '1':
+
+                       $enero['mes']=number_format($filas['monto'],0,',','.');
+                       //PARA SCVTF
                        $enero['scvtf_normal']=number_format($filas['scvtf_normal'],0,',','.');
-                       $total['total_scvtf_normal'] += $filas['scvtf_normal'];
                        $enero['scvtf_nivelacion']=number_format($filas['scvtf_nivelacion'],0,',','.');
+                       $total['total_scvtf_normal'] += $filas['scvtf_normal'];
                        $total['total_scvtf_nivelacion']+=$filas['scvtf_nivelacion'];
+                       //PARA SEP
+                       $enero['sep_preferente'] = number_format($filas['sep_preferente'],0,',','.'); //tercero
+                       //
+                       $total['total_sep_preferente'] += $filas['sep_preferente'];
+
+
+
+                       $total['total_mes'] += $filas['monto'];
                break;
              case '2': $febrero['mes']=number_format($filas['monto'],0,',','.');
-                       $total['total_mes'] += $filas['monto'];
                        $febrero['scvtf_normal']=number_format($filas['scvtf_normal'],0,',','.');
-                       $total['total_scvtf_normal'] += $filas['scvtf_normal'];
                        $febrero['scvtf_nivelacion']=number_format($filas['scvtf_nivelacion'],0,',','.');
+                       $total['total_scvtf_normal'] += $filas['scvtf_normal'];
                        $total['total_scvtf_nivelacion']+=$filas['scvtf_nivelacion'];
+
+                       $total['total_mes'] += $filas['monto'];
                break;
              case '3': $marzo['mes']=number_format($filas['monto'],0,',','.');
                        $total['total_mes'] += $filas['monto'];
@@ -154,9 +165,19 @@ if($tipo_informe==2){
 
       echo '
          <div class="container">
-             <button onclick="generar_informe_descargable()" class="btn btn-danger">EXPORTAR INFORME EXCEL</button>
+             <button onclick="generar_informe_descargable()" class="btn btn-danger">DESCARGAR INFORME</button>
          </div>
       ';
+
+
+
+      // echo '
+      //   <table>
+      //     <tr>
+      //       <td>SUBVENCION '.$nombre_subvencion.' '.$anio.' '.$nombre_colegio.'</td>
+      //     </tr>
+      //   </table>
+      // ';
 
       echo '
         <table class="table table-bordered table_striped">
@@ -165,13 +186,19 @@ if($tipo_informe==2){
           <th>MES</th>';
 
               //cuando subvencion es sc-vtf
-              if($subvencion==5){
+              if($subvencion==3){
+                echo '<th>Preferente</th>';
+                echo '<th>Preferencial</th>';
+                echo '<th>Concentracion</th>';
+                echo '<th>Articulo 19</th>';
+                echo '<th>Ajustes</th>';
+              }else if($subvencion==5){
                 echo '<th>Subv. Normal</th>';
                 echo '<th>Subv. Nivelación</th>';
-                echo '<th>Total</th>';
-              }else{
-                echo '<th>Monto</th>';
               }
+
+        echo '<th>Monto</th>';
+
 
     echo '
        </thead>
@@ -200,7 +227,17 @@ if($tipo_informe==2){
            <tr>
               <td>Enero</td>';
 
-              if($subvencion==5){
+              if($subvencion==3){
+                //cuando subvencion es SEP
+                echo '<td>'.$enero['sep_preferente'].'</td>';
+                echo '<td>'.$enero['sep_preferencial'].'</td>';
+                echo '<td>'.$enero['sep_concentracion'].'</td>';
+                echo '<td>'.$enero['sep_articulo_19'].'</td>';
+                echo '<td>'.$enero['sep_ajustes'].'</td>';
+
+                echo '<td>'.($enero['sep_preferente']+$enero['sep_preferencial']+$enero['sep_concentracion']+$enero['sep_articulo_19']+$enero['sep_ajustes']).'</td>';
+
+              }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
                 echo '<td>'.$enero['scvtf_normal'].'</td>';
                 echo '<td>'.$enero['scvtf_nivelacion'].'</td>';
