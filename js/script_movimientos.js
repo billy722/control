@@ -87,21 +87,21 @@ function limpiarModal(){
 
 function cargarInformacionModificarMovimientos(id){
 
-	 var txt_fecha_ingreso = $("#columna_fecha_ingreso_").html();
-	 var select_tipo_movimiento = $("#columna_tipo_movimiento_").html();
-	 var select_colegio = $("#columna_colegio_").html();
-	 var select_subvencion = $("#columna_subvencion_").html();
-	 var select_cuenta = $("#columna_numero_cuenta_").html();
-	 var select_estado = $("#columna_estado_").html();
-	 var txt_descripcion = $("#columna_descripcion_").html();
-	 var txt_orden_compra = $("#columna_orden_compra_").html();
-	 var txt_monto = $("#txt_monto").html();
-	 var sep_preferente = $("#sep_preferente").html();
-	 var sep_preferencia = $("#sep_preferencia").html();
-	 var sep_concentracion = $("#sep_concentracion").html();
-	 var sep_articulo_19 = $("#sep_articulo_19").html();
-	 var sep_ajustes = $("#sep_ajustes").html();
-	 var sep_total = $("#sep_total").html();
+	 var txt_fecha_ingreso = $("#columna_fecha_ingreso_"+id).html();
+	 var select_tipo_movimiento = $("#columna_tipo_movimiento_"+id).html();
+	 var select_colegio = $("#columna_rbdcolegio_"+id).html();
+	 var select_subvencion = $("#columna_subvencion_"+id).html();
+	 var select_cuenta = $("#columna_numero_cuenta_"+id).html();
+	 var select_estado = $("#columna_estado_"+id).html();
+	 var txt_descripcion = $("#columna_descripcion_"+id).html();
+	 var txt_orden_compra = $("#columna_orden_compra_"+id).html();
+	 var txt_monto = $("#txt_monto"+id).html();
+	 var sep_preferente = $("#sep_preferente"+id).html();
+	 var sep_preferencia = $("#sep_preferencia"+id).html();
+	 var sep_concentracion = $("#sep_concentracion"+id).html();
+	 var sep_articulo_19 = $("#sep_articulo_19"+id).html();
+	 var sep_ajustes = $("#sep_ajustes"+id).html();
+	 var sep_total = $("#sep_total"+id).html();
 
 
 	 $("#txt_id_movimiento").val(id);
@@ -122,7 +122,7 @@ function cargarInformacionModificarMovimientos(id){
 	 $("#sep_ajustes").val(sep_ajustes);
 	 $("#sep_total").val(sep_total);
 
-
+  //aqui poner script para mover pantalla alprincipio de la pagina
 }
 
 

@@ -1,6 +1,8 @@
 <?php
 require_once '../../clases/Conexion.php';
 require_once '../../clases/Movimiento.php';
+require_once '../../clases/Subvencion.php';
+require_once '../../clases/Colegio.php';
 
 
 
@@ -41,6 +43,7 @@ $noviembre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0"
 $diciembre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0", "sep_preferente" => "0", "sep_preferencial" => "0", "sep_concentracion" => "0", "sep_articulo_19" => "0", "sep_ajustes" => "0" );
 
 $total = array("total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nivelacion" => "0", "total_sep_preferente" => "0", "total_sep_preferencial" => "0", "total_sep_concentracion" => "0", "total_sep_articulo_19" => "0", "total_sep_ajustes" => "0" );//segundo
+
 
 
 if($tipo_informe==2){
@@ -336,7 +339,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
      echo '
      <script>
      function generar_informe_descargable(){
-       window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'", "Diseño Web", "width=500, height=100")
+       window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'&select_tipo_informe='.$tipo_informe.'", "Diseño Web", "width=500, height=100")
      }
      </script>
 
@@ -349,14 +352,23 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
       ';
 
 
+     $Subvencion1 = new Subvencion();
+     $Subvencion1->setIdSubvencion($subvencion);
+     $Subvencion1 = $Subvencion1->consultarUnaSubvencion();
+     $Subvencion1 = $Subvencion1->fetch_array();
 
-      // echo '
-      //   <table>
-      //     <tr>
-      //       <td>SUBVENCION '.$nombre_subvencion.' '.$anio.' '.$nombre_colegio.'</td>
-      //     </tr>
-      //   </table>
-      // ';
+     $Colegio1 = new Colegio();
+     $Colegio1->setColegio($colegio);
+     $Colegio1 = $Colegio1->consultarUnColegio();
+     $Colegio1 = $Colegio1->fetch_array();
+
+      echo '
+        <table class="table table-bordered">
+          <tr>
+            <td><center><strong>SUBVENCION '.$Subvencion1['subvencion'].' '.$anio.' '.$Colegio1['nombre_colegio'].'</strong></center></td>
+          </tr>
+        </table>
+      ';
 
       echo '
         <table class="table table-bordered table_striped">
@@ -376,7 +388,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<th>Subv. Nivelación</th>';
               }
 
-        echo '<th>Monto</th>';
+        echo '<th>Total</th>';
 
 
     echo '
@@ -401,6 +413,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
        ';
 
 
+$total_ingresos= 0;
 
       echo '
            <tr>
@@ -414,7 +427,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$enero['sep_articulo_19'].'</td>';
                 echo '<td>'.$enero['sep_ajustes'].'</td>';
 
-                echo '<td>'.($enero['sep_preferente']+$enero['sep_preferencial']+$enero['sep_concentracion']+$enero['sep_articulo_19']+$enero['sep_ajustes']).'</td>';
+                echo '<td>'.$enero['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -437,7 +450,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$febrero['sep_articulo_19'].'</td>';
                 echo '<td>'.$febrero['sep_ajustes'].'</td>';
 
-                echo '<td>'.($febrero['sep_preferente']+$febrero['sep_preferencial']+$febrero['sep_concentracion']+$febrero['sep_articulo_19']+$febrero['sep_ajustes']).'</td>';
+                echo '<td>'.$febrero['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -460,7 +473,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$marzo['sep_articulo_19'].'</td>';
                 echo '<td>'.$marzo['sep_ajustes'].'</td>';
 
-                echo '<td>'.($marzo['sep_preferente']+$marzo['sep_preferencial']+$marzo['sep_concentracion']+$marzo['sep_articulo_19']+$marzo['sep_ajustes']).'</td>';
+                echo '<td>'.$marzo['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -483,7 +496,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$abril['sep_articulo_19'].'</td>';
                 echo '<td>'.$abril['sep_ajustes'].'</td>';
 
-                echo '<td>'.($abril['sep_preferente']+$abril['sep_preferencial']+$abril['sep_concentracion']+$abril['sep_articulo_19']+$abril['sep_ajustes']).'</td>';
+                echo '<td>'.$abril['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -507,7 +520,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$mayo['sep_articulo_19'].'</td>';
                 echo '<td>'.$mayo['sep_ajustes'].'</td>';
 
-                echo '<td>'.($mayo['sep_preferente']+$mayo['sep_preferencial']+$mayo['sep_concentracion']+$mayo['sep_articulo_19']+$mayo['sep_ajustes']).'</td>';
+                echo '<td>'.$mayo['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -531,7 +544,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$junio['sep_articulo_19'].'</td>';
                 echo '<td>'.$junio['sep_ajustes'].'</td>';
 
-                echo '<td>'.($junio['sep_preferente']+$junio['sep_preferencial']+$junio['sep_concentracion']+$junio['sep_articulo_19']+$junio['sep_ajustes']).'</td>';
+                echo '<td>'.$junio['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -555,7 +568,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$julio['sep_articulo_19'].'</td>';
                 echo '<td>'.$julio['sep_ajustes'].'</td>';
 
-                echo '<td>'.($julio['sep_preferente']+$julio['sep_preferencial']+$julio['sep_concentracion']+$julio['sep_articulo_19']+$julio['sep_ajustes']).'</td>';
+                echo '<td>'.$julio['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -579,7 +592,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$agosto['sep_articulo_19'].'</td>';
                 echo '<td>'.$agosto['sep_ajustes'].'</td>';
 
-                echo '<td>'.($agosto['sep_preferente']+$agosto['sep_preferencial']+$agosto['sep_concentracion']+$agosto['sep_articulo_19']+$agosto['sep_ajustes']).'</td>';
+                echo '<td>'.$agosto['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -603,7 +616,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$septiembre['sep_articulo_19'].'</td>';
                 echo '<td>'.$septiembre['sep_ajustes'].'</td>';
 
-                echo '<td>'.($septiembre['sep_preferente']+$septiembre['sep_preferencial']+$septiembre['sep_concentracion']+$septiembre['sep_articulo_19']+$septiembre['sep_ajustes']).'</td>';
+                echo '<td>'.$septiembre['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -627,7 +640,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$octubre['sep_articulo_19'].'</td>';
                 echo '<td>'.$octubre['sep_ajustes'].'</td>';
 
-                echo '<td>'.($octubre['sep_preferente']+$octubre['sep_preferencial']+$octubre['sep_concentracion']+$octubre['sep_articulo_19']+$octubre['sep_ajustes']).'</td>';
+                echo '<td>'.$octubre['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -651,7 +664,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$noviembre['sep_articulo_19'].'</td>';
                 echo '<td>'.$noviembre['sep_ajustes'].'</td>';
 
-                echo '<td>'.($noviembre['sep_preferente']+$noviembre['sep_preferencial']+$noviembre['sep_concentracion']+$noviembre['sep_articulo_19']+$noviembre['sep_ajustes']).'</td>';
+                echo '<td>'.$noviembre['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -675,7 +688,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.$diciembre['sep_articulo_19'].'</td>';
                 echo '<td>'.$diciembre['sep_ajustes'].'</td>';
 
-                echo '<td>'.($diciembre['sep_preferente']+$diciembre['sep_preferencial']+$diciembre['sep_concentracion']+$diciembre['sep_articulo_19']+$diciembre['sep_ajustes']).'</td>';
+                echo '<td>'.$diciembre['mes'].'</td>';
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
@@ -689,7 +702,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
            </tr>
 
            <tr>
-              <td><strong>Total</strong></td>';
+              <td><strong>Total Ingresos</strong></td>';
 
               if($subvencion==3){
                 echo '<td>'.number_format($total['total_sep_preferente'], "0", ",","." ).'</td>';
@@ -697,14 +710,21 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
                 echo '<td>'.number_format($total['total_sep_concentracion'], "0", ",","." ).'</td>';
                 echo '<td>'.number_format($total['total_sep_articulo_19'], "0", ",","." ).'</td>';
                 echo '<td>'.number_format($total['total_sep_ajustes'], "0", ",","." ).'</td>';
+
+                $total_ingresos = ($total['total_sep_preferente']+$total['total_sep_preferencial']+$total['total_sep_concentracion']+$total['total_sep_articulo_19']+$total['total_sep_ajustes']);
+                echo '<td>'.number_format($total_ingresos, "0", ",","." ).'</td>';
+
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
                 // echo '<td>'.number_format($total['total_mes'], "0", ",","." ).'</td>';
                 echo '<td>'.number_format($total['total_scvtf_normal'], "0", ",","." ).'</td>';
                 echo '<td>'.number_format($total['total_scvtf_nivelacion'], "0", ",","." ).'</td>';
-                echo '<td>'.number_format(($total['total_scvtf_normal']+$total['total_scvtf_nivelacion']), "0", ",","." ).'</td>';
+
+                $total_ingresos = ($total['total_scvtf_normal']+$total['total_scvtf_nivelacion']);
+                echo '<td>'.number_format($total_ingresos, "0", ",","." ).'</td>';
               }else{
-                echo '<td>'.number_format($total['total_mes'], "0", ",","." ).'</td>';
+                $total_ingresos = $total['total_mes'];
+                echo '<td>'.number_format($total_ingresos, "0", ",","." ).'</td>';
               }
 
       echo '
@@ -753,7 +773,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
 
     echo '
             <tr>
-              <td colspan="3"><strong>Total de gastos</strong></td>
+              <td colspan="3"><strong>Total Gastos</strong></td>
               <td>'.number_format($total_gastos,0,",",".").'</td>
             </tr>
        </tbody>
@@ -763,6 +783,16 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
     }else{
       echo "ERROR CON EL INFORME DE GASTOS AMIGO";
     }
+
+//TABLA DE SALDO
+    echo '
+      <table class="table table-bordered">
+        <tr>
+          <td colspan="4"><center><strong>SALDO</strong></center></td>
+          <td colspan="1"><center><strong>'.number_format(($total_ingresos-$total_gastos),0,",",".").'</strong></center></td>
+        </tr>
+      </table>
+    ';
 
 
 

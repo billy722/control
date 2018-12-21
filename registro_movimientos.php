@@ -184,7 +184,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                                 <?php
                                     $Estado = new Estado();
                                     $Estado->setTabla("tb_estado_movimiento");
-                                    $listaEstados = $Estado->obtenerEstados();
+                                    $listaEstados = $Estado->obtenerEstados(" where id_estado=1 or id_estado=2");
 
                                     while($filas = $listaEstados->fetch_array()){
                                        echo '<option value="'.$filas['id_estado'].'">'.$filas['descripcion_estado'].'</option>';
@@ -248,7 +248,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                           <input type="text" class="form-control" name="sep_preferente" placeholder="$">
                       </div>
                       <div class="form-group col-md-6" >
-                          <label for="title" class="col-12 control-label">Preferencia</label>
+                          <label for="title" class="col-12 control-label">Preferencial</label>
                           <input type="text" class="form-control" name="sep_preferencia" placeholder="$">
                       </div>
                       <div class="form-group col-md-6" >
@@ -263,10 +263,10 @@ $usuario= $usuario->obtenerUsuarioActual();
                           <label for="title" class="col-12 control-label">Ajustes</label>
                           <input type="text" class="form-control" name="sep_ajustes" placeholder="$">
                       </div>
-                      <div class="form-group col-md-6" >
+                      <!-- <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Total</label>
                           <input type="text" class="form-control" name="sep_total" placeholder="$">
-                      </div>
+                      </div> -->
                   </div>
 
                 </div>

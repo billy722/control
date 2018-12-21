@@ -46,6 +46,7 @@ require_once '../../clases/Movimiento.php';
                        <td><span id="columna_tipo_movimiento_'.$filas['id_movimiento'].'" >'.$filas['descripcion_tipo_movimiento'].'</span></td>
                        <td><span id="columna_descripcion_'.$filas['id_movimiento'].'" >'.$filas['descripcion'].'</span></td>
                        <td><span id="columna_colegio_'.$filas['id_movimiento'].'" >'.$filas['rbd_colegio'].': '.$filas['nombre_colegio'].'</span></td>
+                           <span class="d-none" id="columna_rbdcolegio_'.$filas['id_movimiento'].'" >'.$filas['rbd_colegio'].'</span>
                        <td><span id="columna_subvencion_'.$filas['id_movimiento'].'" >'.$filas['subvencion'].'</span></td>
                        <td><span id="columna_numero_cuenta_'.$filas['id_movimiento'].'" >'.$filas['numero_cuenta'].': '.$filas['nombre_cuenta'].'</span></td>
                        <td><span id="columna_orden_compra_'.$filas['id_movimiento'].'" >'.$filas['orden_compra'].'</span></td>

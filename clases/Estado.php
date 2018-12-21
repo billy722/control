@@ -17,31 +17,31 @@ class Estado{
    $this->descripcion = $parametro;
  }
 
- // public function obtenerEstados($condiciones){
- //
- //    $conexion = new Conexion();
- //    $conexion = $conexion->conectar();
- //
- //    $consulta= "select * from ".$this->tabla." ".$condiciones;
- //    echo $consulta;
- //
- //    $resultado= $conexion->query($consulta);
- //    if($resultado){
- //       return $resultado;
- //    }else{
- //      return false;
- //    }
- //
- // }
+ public function obtenerEstados($condiciones){
 
- public function obtenerEstados(){
-    $Conexion = new Conexion();
-    $Conexion = $Conexion->conectar();
+    $conexion = new Conexion();
+    $conexion = $conexion->conectar();
 
-    $resultado_consulta = $Conexion->query("select * from tb_estado_movimiento");
-    return $resultado_consulta;
+    $consulta= "select * from ".$this->tabla." ".$condiciones;
+    echo $consulta;
+
+    $resultado= $conexion->query($consulta);
+    if($resultado){
+       return $resultado;
+    }else{
+      return false;
+    }
 
  }
+
+ // public function obtenerEstados(){
+ //    $Conexion = new Conexion();
+ //    $Conexion = $Conexion->conectar();
+ //
+ //    $resultado_consulta = $Conexion->query("select * from tb_estado_movimiento");
+ //    return $resultado_consulta;
+ //
+ // }
 
 
 
