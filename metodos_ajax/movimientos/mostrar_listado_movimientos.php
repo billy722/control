@@ -43,16 +43,35 @@ require_once '../../clases/Movimiento.php';
                        </td>
                        <td><span id="columna_id_movimiento_'.$filas['id_movimiento'].'" >'.$filas['id_movimiento'].'</span></td>
                        <td><span id="columna_fecha_ingreso_'.$filas['id_movimiento'].'" >'.$fecha_ingreso.'</span></td>
+
                        <td><span id="columna_tipo_movimiento_'.$filas['id_movimiento'].'" >'.$filas['descripcion_tipo_movimiento'].'</span></td>
+                          <span class="d-none" id="columna_id_tipo_movimiento_'.$filas['id_movimiento'].'" >'.$filas['id_tipo_movimiento'].'</span>
+
                        <td><span id="columna_descripcion_'.$filas['id_movimiento'].'" >'.$filas['descripcion'].'</span></td>
+
                        <td><span id="columna_colegio_'.$filas['id_movimiento'].'" >'.$filas['rbd_colegio'].': '.$filas['nombre_colegio'].'</span></td>
                            <span class="d-none" id="columna_rbdcolegio_'.$filas['id_movimiento'].'" >'.$filas['rbd_colegio'].'</span>
-                       <td><span id="columna_subvencion_'.$filas['id_movimiento'].'" >'.$filas['subvencion'].'</span></td>
-                       <td><span id="columna_numero_cuenta_'.$filas['id_movimiento'].'" >'.$filas['numero_cuenta'].': '.$filas['nombre_cuenta'].'</span></td>
-                       <td><span id="columna_orden_compra_'.$filas['id_movimiento'].'" >'.$filas['orden_compra'].'</span></td>
-                       <td><span id="columna_estado_'.$filas['id_movimiento'].'" >'.$filas['descripcion_estado'].'</span></td>
 
-                           <span class="d-none" id="columna_monto_'.$filas['id_movimiento'].'" >'.$filas['monto'].'</span>
+                       <td><span id="columna_subvencion_'.$filas['id_movimiento'].'" >'.$filas['subvencion'].'</span></td>
+                           <span class="d-none" id="columna_id_subvencion_'.$filas['id_movimiento'].'" >'.$filas['id_subvencion'].'</span>
+
+
+                       <td><span id="columna_numero_cuenta_'.$filas['id_movimiento'].'" >'.$filas['numero_cuenta'].': '.$filas['nombre_cuenta'].'</span></td>
+                            <span class="d-none" id="columna_id_numero_cuenta_'.$filas['id_movimiento'].'" >'.$filas['numero_cuenta'].'</span>
+
+                       <td><span id="columna_orden_compra_'.$filas['id_movimiento'].'" >'.$filas['orden_compra'].'</span></td>
+                            <span class="d-none" id="columna_id_orden_compra_'.$filas['id_movimiento'].'" >'.$filas['orden_compra'].'</span>
+
+                       <td><span id="columna_estado_'.$filas['id_movimiento'].'" >'.$filas['descripcion_estado'].'</span></td>
+                            <span class="d-none" id="columna_estado_mov_'.$filas['id_movimiento'].'" >'.$filas['id_estado'].'</span>
+
+                            <span class="d-none" id="columna_sep_preferente_'.$filas['id_movimiento'].'" >'.$filas['sep_preferente'].'</span>
+                            <span class="d-none" id="columna_sep_preferencial_'.$filas['id_movimiento'].'" >'.$filas['sep_preferencial'].'</span>
+                            <span class="d-none" id="columna_sep_concentracion_'.$filas['id_movimiento'].'" >'.$filas['sep_concentracion'].'</span>
+                            <span class="d-none" id="columna_sep_articulo_19_'.$filas['id_movimiento'].'" >'.$filas['sep_articulo_19'].'</span>
+                            <span class="d-none" id="columna_sep_ajustes_'.$filas['id_movimiento'].'" >'.$filas['sep_ajustes'].'</span>
+
+                            <span class="d-none" id="columna_monto_'.$filas['id_movimiento'].'" >'.$filas['monto'].'</span>
 
                     </tr>';
          }

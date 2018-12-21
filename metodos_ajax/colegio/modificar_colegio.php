@@ -3,13 +3,14 @@ require_once '../../clases/Conexion.php';
 require_once '../../clases/Funciones.php';
 require_once '../../clases/Usuario.php';
 require_once '../../clases/Colegio.php';
+require_once '../../clases/Tipo_establecimiento.php';
 
 $Funciones = new Funciones();
 
 $rbd_colegio = $Funciones->limpiarTexto($_REQUEST['txt_rbd_colegio']);
 $nombre_colegio = $Funciones->limpiarTexto($_REQUEST['txt_nombre_colegio']);
-$estado = $Funciones->limpiarTexto($_REQUEST['cmb_estado']);
-$tipo_establecimiento = $Funciones->limpiarTexto($_REQUEST['tipo_establecimiento']);
+$estado = $Funciones->limpiarTexto($_REQUEST['select_estado']);
+$tipo_establecimiento = $Funciones->limpiarTexto($_REQUEST['cmb_tipo_establecimiento']);
 
 
 $Colegio = new Colegio();

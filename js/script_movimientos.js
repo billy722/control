@@ -87,24 +87,38 @@ function limpiarModal(){
 
 function cargarInformacionModificarMovimientos(id){
 
+
 	 var txt_fecha_ingreso = $("#columna_fecha_ingreso_"+id).html();
-	 var select_tipo_movimiento = $("#columna_tipo_movimiento_"+id).html();
+	 var select_tipo_movimiento = $("#columna_id_tipo_movimiento_"+id).html();
 	 var select_colegio = $("#columna_rbdcolegio_"+id).html();
-	 var select_subvencion = $("#columna_subvencion_"+id).html();
-	 var select_cuenta = $("#columna_numero_cuenta_"+id).html();
-	 var select_estado = $("#columna_estado_"+id).html();
+	 var select_subvencion = $("#columna_id_subvencion_"+id).html();
+	 var select_cuenta = $("#columna_id_numero_cuenta_"+id).html();
+	 var select_estado = $("#columna_estado_mov_"+id).html();
 	 var txt_descripcion = $("#columna_descripcion_"+id).html();
-	 var txt_orden_compra = $("#columna_orden_compra_"+id).html();
-	 var txt_monto = $("#txt_monto"+id).html();
-	 var sep_preferente = $("#sep_preferente"+id).html();
-	 var sep_preferencia = $("#sep_preferencia"+id).html();
-	 var sep_concentracion = $("#sep_concentracion"+id).html();
-	 var sep_articulo_19 = $("#sep_articulo_19"+id).html();
-	 var sep_ajustes = $("#sep_ajustes"+id).html();
+	 var txt_orden_compra = $("#columna_id_orden_compra_"+id).html();
+	 var txt_monto = $("#columna_monto_"+id).html();
+	 var sep_preferente = $("#columna_sep_preferente_"+id).html();
+	 var sep_preferencia = $("#columna_sep_preferencial_"+id).html();
+	 var sep_concentracion = $("#columna_sep_concentracion_"+id).html();
+	 var sep_articulo_19 = $("#columna_sep_articulo_19_"+id).html();
+	 var sep_ajustes = $("#columna_sep_ajustes_"+id).html();
 	 var sep_total = $("#sep_total"+id).html();
 
 
+	 $subvencion= $("#txt_id_movimiento").val();
+	 if($subvencion==3){
+		 $("#contenedor_campos_sep").removeClass("d-none");
+	 }else{
+		 $("#contenedor_campos_sep").addClass("d-none");
+	 }
+	 if($subvencion==5){
+		$("#contenedor_campos_Sc-vtf").removeClass("d-none");
+	 }else{
+		$("#contenedor_campos_Sc-vtf").addClass("d-none");
+	 }
+
 	 $("#txt_id_movimiento").val(id);
+
 
 	 $("#txt_fecha_ingreso").val(txt_fecha_ingreso);
 	 $("#select_tipo_movimiento").val(select_tipo_movimiento);
@@ -121,9 +135,21 @@ function cargarInformacionModificarMovimientos(id){
 	 $("#sep_articulo_19").val(sep_articulo_19);
 	 $("#sep_ajustes").val(sep_ajustes);
 	 $("#sep_total").val(sep_total);
+	 if($subvencion==3){
+		 $("#contenedor_campos_sep").removeClass("d-none");
+	 }else{
+		 $("#contenedor_campos_sep").addClass("d-none");
+	 }
+	 if($subvencion==5){
+		$("#contenedor_campos_Sc-vtf").removeClass("d-none");
+	 }else{
+		$("#contenedor_campos_Sc-vtf").addClass("d-none");
+	 }
+	 // alert(txt_monto);
 
   //aqui poner script para mover pantalla alprincipio de la pagina
 }
+
 
 
 function eliminarMovimientos(id){

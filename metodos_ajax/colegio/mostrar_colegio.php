@@ -2,6 +2,7 @@
 require_once '../../clases/Conexion.php';
 require_once '../../clases/Funciones.php';
 require_once '../../clases/Colegio.php';
+require_once '../../clases/Estado_colegio.php';
 
 
 $Colegio = new Colegio();
@@ -14,6 +15,7 @@ $listado_colegio = $Colegio->obtenerColegios();
            <th>RBD</th>
            <th>Nombre</th>
            <th>Estado</th>
+           <th>Tipo establecimiento</th>
        </thead>
        <tbody>';
 

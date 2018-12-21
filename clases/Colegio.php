@@ -29,6 +29,23 @@ class Colegio{
     return $resultado_consulta;
  }
 
+ public function obtenerEstados($condiciones){
+
+    $conexion = new Conexion();
+    $conexion = $conexion->conectar();
+
+    $consulta= "select * from ".$this->tabla." ".$condiciones;
+    echo $consulta;
+
+    $resultado= $conexion->query($consulta);
+    if($resultado){
+       return $resultado;
+    }else{
+      return false;
+    }
+
+ }
+
  public function consultarUnColegio(){
     $Conexion = new Conexion();
     $Conexion = $Conexion->conectar();

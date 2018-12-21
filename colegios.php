@@ -2,9 +2,10 @@
 @session_start();
 require_once 'comun.php';
 require_once './clases/Usuario.php';
-require_once './clases/Estado.php';
+require_once './clases/Estado_colegio.php';
 require_once './clases/Privilegio.php';
 require_once './clases/Colegio.php';
+require_once './clases/Tipo_establecimiento.php';
 comprobarSession();
 $usuario= new Usuario();
 $usuario= $usuario->obtenerUsuarioActual();
@@ -100,31 +101,46 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                 </div>
 
-          </div>
-          <div class="form-group">
+                <div id="contenedor_selector_estado" class="form-group col-6" >
+                    <label for="title" class="col-12 control-label">Estado</label>
+                    <select class="form-control" name="select_estado" id="select_estado">
+                        <?php
+                            $Estado = new Estado_colegio();
+                            $Estado->setTabla("tb_estado_colegio");
+                            $listaEstados = $Estado->obtenerEstados(" where id_estado=1 or id_estado=2 or id_estado=3");
 
-            <label for="estado">Estado:</label>
-            <select class="form-control" required name="cmb_estado" id="cmb_estado">
-              <option value="" selected disabled>Seleccione:</option>
-              <?php
-              require_once './clases/Estado_colegio.php';
-              $TipoE= new Estado_colegio();
-              $filasTipoE= $TipoE->obtenerEstados();
+                            while($filas = $listaEstados->fetch_array()){
+                               echo '<option value="'.$filas['id_estado'].'">'.$filas['descripcion_estado'].'</option>';
+                            }
+                          ?>
+                    </select>
+                </div>
 
-              foreach($filasTipoE as $tipo){
-                echo '<option value="'.$tipo['id_estado'].'" >'.$tipo['descripcion_estado'].'</option>';
-              }
-              ?>
-            </select>
-          </div>
+                <div class="form-group col-md-6" >
+                    <label for="title" class="col-12 control-label">Tipo establecimiento</label>
+                    <select required class="form-control" name="cmb_tipo_establecimiento" id="cmb_tipo_establecimiento">
+                      <option value="" selected disabled>Seleccione:</option>
+                      <?php
+                          $Tipo_Establecimiento = new Tipo_establecimiento();
+                          $listaEstablecimiento = $Tipo_Establecimiento->obtenerTipoEstablecimiento();
 
-
+                          while($filas = $listaEstablecimiento->fetch_array()){
+                             echo '<option value="'.$filas['id_tipo_establecimiento'].'">'.$filas['descripcion_tipo_establecimiento'].'</option>';
+                          }
+                       ?>
+                    </select>
+                </div>
 
                 <div class="form-group" >
                   <div class="col-12">
                     <button class="btn btn-success btn-block" type="submit" name="button">Guardar</button>
                   </div>
                 </div>
+          </div>
+
+
+
+
 
 
         </form>

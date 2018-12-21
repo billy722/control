@@ -8,7 +8,7 @@ $Funciones = new Funciones();
 
 $rbd_colegio = $Funciones->limpiarTexto($_REQUEST['txt_rbd_colegio']);
 $nombre_colegio = $Funciones->limpiarTexto($_REQUEST['txt_nombre_colegio']);
-$estado = $Funciones->limpiarTexto($_REQUEST['cmb_estado']);
+$estado = $Funciones->limpiarTexto($_REQUEST['select_estado']);
 $tipo_establecimiento = $Funciones->limpiarTexto($_REQUEST['cmb_tipo_establecimiento']);
 
 

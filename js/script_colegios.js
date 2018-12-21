@@ -67,7 +67,7 @@ function modificarColegio(){
 				method:"POST",
 				data: $("#formulario_modal_colegio").serialize(),
 				success:function(respuesta){
-					  alert(respuesta);
+					  // alert(respuesta);
 
 					 if(respuesta==1){
 						 swal("Guardado","Los datos se han guardado correctamente.","success");
