@@ -25,6 +25,14 @@ class Colegio{
     return $resultado_consulta;
  }
 
+ public function consultarUnColegio(){
+    $Conexion = new Conexion();
+    $Conexion = $Conexion->conectar();
+
+    $resultado_consulta = $Conexion->query("select * from tb_colegios where rbd_colegio=".$this->rbd_colegio);
+    return $resultado_consulta;
+ }
+
  public function crearColegio(){
    $conexion = new Conexion();
    $conexion = $conexion->conectar();

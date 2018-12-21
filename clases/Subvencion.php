@@ -21,6 +21,14 @@ class Subvencion{
     return $resultado_consulta;
  }
 
+ public function consultarUnaSubvencion(){
+    $Conexion = new Conexion();
+    $Conexion = $Conexion->conectar();
+
+    $resultado_consulta = $Conexion->query("select * from tb_subvenciones where id_subvencion=".$this->id_subvencion);
+    return $resultado_consulta;
+ }
+
  public function crearSubvencion(){
    $conexion = new Conexion();
    $conexion = $conexion->conectar();
