@@ -106,7 +106,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                     <option value="" selected disabled>Seleccione:</option>
                     <?php
                     require_once './clases/Estado_cuenta.php';
-                    $TipoE= new Estado_presupuesto();
+                    $TipoE= new Estado_cuenta();
                     $filasTipoE= $TipoE->obtenerEstados();
 
                     foreach($filasTipoE as $tipo){

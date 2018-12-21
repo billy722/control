@@ -1,11 +1,12 @@
 <?php
 require_once 'Conexion.php';
 
-class Estado_presupuesto{
+class Estado_cuenta{
 
  private $tabla;
  private $descripcion;
  private $estado;
+
 
  public function setTabla($parametro){
    $this->tabla = $parametro;
@@ -16,6 +17,7 @@ class Estado_presupuesto{
  public function setDescripcion($parametro){
    $this->descripcion = $parametro;
  }
+
 
  // public function obtenerEstados($condiciones){
  //

@@ -6,6 +6,7 @@ class Colegio{
  private $rbd_colegio;
  private $nombre_colegio;
  private $estado;
+ private $tipo_establecimiento;
 
  public function setColegio($rbd_colegio){
    $this->rbd_colegio = $rbd_colegio;
@@ -15,6 +16,9 @@ class Colegio{
  }
  public function setEstado($estado){
    $this->estado = $estado;
+ }
+ public function setTipoEstablecimiento($parametro){
+   $this->tipo_establecimiento = $parametro;
  }
 
  public function obtenerColegios(){
@@ -29,7 +33,7 @@ class Colegio{
    $conexion = new Conexion();
    $conexion = $conexion->conectar();
 
-   $consulta = "insert INTO tb_colegios (`rbd_colegio`, `nombre_colegio`, `estado`) VALUES ('".$this->rbd_colegio."', '".$this->nombre_colegio."', '".$this->estado."')";
+   $consulta = "insert INTO tb_colegios (`rbd_colegio`, `nombre_colegio`, `estado`, `tipo_establecimiento`) VALUES ('".$this->rbd_colegio."', '".$this->nombre_colegio."', '".$this->estado."', '".$this->tipo_establecimiento."')";
    $resultado= $conexion->query($consulta);
    return $resultado;
 
@@ -41,7 +45,8 @@ class Colegio{
 
        $consulta="update tb_colegios set
                  nombre_colegio = '".$this->nombre_colegio."',
-                 estado = ".$this->estado."
+                 estado = ".$this->estado.",
+                 tipo_establecimiento = ".$this->tipo_establecimiento."
                  where rbd_colegio=".$this->rbd_colegio;
 
        $resultado= $conexion->query($consulta);
