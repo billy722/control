@@ -67,7 +67,7 @@ function modificarCuenta(){
 				method:"POST",
 				data: $("#formulario_modal_cuenta").serialize(),
 				success:function(respuesta){
-					 // alert(respuesta);
+					 //alert(respuesta);
 
 					 if(respuesta==1){
 						 swal("Guardado","Los datos se han guardado correctamente.","success");
@@ -87,7 +87,7 @@ function eliminarCuenta(id){
 				url:"./metodos_ajax/cuentas/eliminar_cuenta.php?id="+id,
 				method:"POST",
 				success:function(respuesta){
-					 // alert(respuesta);
+					 alert(respuesta);
 					 if(respuesta==1){
 						 swal("Eliminado correctamente","Los datos se han guardado correctamente.","success");
 						 listarCuenta();
