@@ -100,13 +100,36 @@ class Movimiento{
     $conexion = new Conexion();
     $conexion = $conexion->conectar();
 
-    echo "modifica";
+    $consulta = "UPDATE tb_movimientos
+                  SET
+                  tipo_movimiento = ".$this->id_movimiento.",
+                  tipo_gasto = ".$this->tipo_gasto.",
+                  colegio = ".$this->colegio."
+                  subvencion = ".$this->subvencion."
+                  cuenta_presupuesto = ".$this->cuenta_presupuesto."
+                  estado = ".$this->estado.",
+                  descripcion = ".$this->descripcion."
+                  fecha_ingreso = ".$this->fecha_ingreso.",
+                  orden_compra = ".$this->orden_compra."
+                  numero_certificado = ".$this->numero_certificado."
+                  monto = ".$this->monto."
+                  sep_preferente = ".$this->sep_preferente."
+                  sep_preferencial = ".$this->sep_preferencial."
+                  sep_concentracion = ".$this->sep_concentracion."
+                  sep_articulo_19 = ".$this->sep_articulo_19."
+                  sep_ajustes = ".$this->sep_ajustes."
+                  sep_total = ".$this->sep_total."
+                  scvtf_normal = ".$this->scvtf_normal."
+                  scvtf_nivelacion = ".$this->scvtf_nivelacion."
+                  WHERE id_movimiento = ".$this->id_movimiento." ";
 
-    // if($conexion->query($consulta)){
-    //    return $resultado;
-    // }else{
-    //   return false;
-    // }
+    if($conexion->query($consulta)){
+      return true;
+    }else{
+      echo $consulta;
+      return false;
+    }
+
   }
 
   function ingresarMovimiento(){
@@ -166,9 +189,18 @@ class Movimiento{
       $conexion = $conexion->conectar();
 
       if($texto_buscar=="" || $texto_buscar==" "){
-        $consulta= "select * from vista_movimientos ".$condiciones;
+        $consulta= "select * from vista_movimientos ".$condiciones." order by id_movimiento asc";
       }else{
-        // $consulta= "consulta para buscar";
+        $consulta= "select * from vista_movimientos
+                    where id_movimiento like '%".$texto_buscar."%'
+                    or descripcion like '%".$texto_buscar."%'
+                    or orden_compra like '%".$texto_buscar."%'
+                    or rbd_colegio like '%".$texto_buscar."%'
+                    or subvencion like '%".$texto_buscar."%'
+                    or numero_cuenta like '%".$texto_buscar."%'
+                    or nombre_cuenta like '%".$texto_buscar."%'
+                    or descripcion_estado like '%".$texto_buscar."%'
+                    or descripcion_tipo_movimiento like '%".$texto_buscar."%'";
       }
       $resultado= $conexion->query($consulta);
       if($resultado){

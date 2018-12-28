@@ -5,7 +5,6 @@ require_once '../../clases/Subvencion.php';
 require_once '../../clases/Colegio.php';
 
 
-
 $anio = $_REQUEST['txt_anio'];
 $subvencion = $_REQUEST['select_subvencion'];
 $tipo_informe = $_REQUEST['select_tipo_informe'];
@@ -339,7 +338,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
      echo '
      <script>
      function generar_informe_descargable(){
-       window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'&select_tipo_informe='.$tipo_informe.'", "Diseño Web", "width=500, height=100")
+       window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'&select_tipo_informe='.$tipo_informe.'", "Diseño Web", "width=1500, height=1500")
      }
      </script>
 
@@ -801,5 +800,8 @@ $total_ingresos= 0;
   echo "el tipo de informe es RESUMEN";
 
 }
+
+
+
 
  ?>

@@ -68,7 +68,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 <!-- MODAL INGRESAR CORRESPONDENCIA-->
 <div class="container-fluid">
-<div class="card">
+<div id="contenedor_formulario_movimientos" class="card">
   <h5 class="card-header">Nuevo Movimientos</h5>
   <div class="card-body">
 
@@ -346,7 +346,20 @@ $usuario= $usuario->obtenerUsuarioActual();
         <div class="card-header  text-info">Registro de movimientos</div>
         <div class="card-body">
 
-               <div class="row" id="contenedor_registro_movimientos">
+          <div class="col-12 col-md-10">
+
+              <div id='' style="" class=" card col-12 ">
+
+                      <div class="card-header  text-info">Buscar </div>
+                      <div class="card-body">
+                        <input type="text" onkeyup="mostrarListadoMovimientos(this.value)" class="border-info form-control" name="txt_buscar_correspondencia" value="" placeholder="Ingrese Numero Certificado, subvencion, rbd, estado, etc.">
+                      </div>
+
+                  </div>
+
+              </div>
+
+              <div class="row" id="contenedor_registro_movimientos">
 
           </div>
 

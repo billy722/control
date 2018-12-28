@@ -414,20 +414,20 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
            }
       }
 
-     echo '
-     <script>
-     function generar_informe_descargable(){
-       window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'", "Diseño Web", "width=500, height=100")
-     }
-     </script>
-
-     ';
-
-      echo '
-         <div class="container">
-             <button onclick="generar_informe_descargable()" class="btn btn-danger">DESCARGAR INFORME</button>
-         </div>
-      ';
+     // echo '
+     // <script>
+     // function generar_informe_descargable(){
+     //   window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'", "Diseño Web", "width=500, height=100")
+     // }
+     // </script>
+		 //
+     // ';
+		 //
+     //  echo '
+     //     <div class="container">
+     //         <button onclick="generar_informe_descargable()" class="btn btn-danger">DESCARGAR INFORME</button>
+     //     </div>
+     //  ';
 
 
 

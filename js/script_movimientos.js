@@ -18,12 +18,11 @@ function registrarModificarMovimiento(){
 			method:"POST",
       data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
-				 // alert(respuesta);
+				 alert(respuesta);
 				 console.log(respuesta);
 
            if(respuesta==1){
              swal("Guardado","Los datos se han guardado correctamente.","success");
-             $("#modal_movimientos").modal('hide');
              mostrarListadoMovimientos("");
            }else if(respuesta==2){
              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
@@ -104,14 +103,12 @@ function cargarInformacionModificarMovimientos(id){
 	 var sep_ajustes = $("#columna_sep_ajustes_"+id).html();
 	 var sep_total = $("#sep_total"+id).html();
 
-
-	 $subvencion= $("#txt_id_movimiento").val();
-	 if($subvencion==3){
+	 if(select_subvencion==3){
 		 $("#contenedor_campos_sep").removeClass("d-none");
 	 }else{
 		 $("#contenedor_campos_sep").addClass("d-none");
 	 }
-	 if($subvencion==5){
+	 if(select_subvencion==5){
 		$("#contenedor_campos_Sc-vtf").removeClass("d-none");
 	 }else{
 		$("#contenedor_campos_Sc-vtf").addClass("d-none");
@@ -135,19 +132,12 @@ function cargarInformacionModificarMovimientos(id){
 	 $("#sep_articulo_19").val(sep_articulo_19);
 	 $("#sep_ajustes").val(sep_ajustes);
 	 $("#sep_total").val(sep_total);
-	 if($subvencion==3){
-		 $("#contenedor_campos_sep").removeClass("d-none");
-	 }else{
-		 $("#contenedor_campos_sep").addClass("d-none");
-	 }
-	 if($subvencion==5){
-		$("#contenedor_campos_Sc-vtf").removeClass("d-none");
-	 }else{
-		$("#contenedor_campos_Sc-vtf").addClass("d-none");
-	 }
-	 // alert(txt_monto);
 
-  //aqui poner script para mover pantalla alprincipio de la pagina
+	 $('html,body').animate({
+     scrollTop: $("#contenedor_formulario_movimientos").offset().top
+	 }, 1200);
+
+   muestraTotalesColegioSubvencion();
 }
 
 
