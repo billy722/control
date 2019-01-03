@@ -195,15 +195,12 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                        <div class="form-group col-md-6" >
                            <label for="title" class="col-12 control-label">Monto</label>
-                           <input type="text" class="form-control" value="<?php echo $filas['monto'];?>" id="txt_monto" name="txt_monto" placeholder="Ingrese Monto">
+                           <input type="text" class="form-control" readonly value="<?php echo $filas['monto'];?>" id="txt_monto" name="txt_monto" placeholder="Ingrese Monto">
                        </div>
-
-
                     </div>
                   </div>
 
                   <div class="col-4">
-
                       <!-- CONTENEDOR DE CAMPOS A MOSTRAR CUANDO LA SUBVENCION ES SEP -->
                       <div class="card bg-light mb-12 " >
                         <div class="card-header">
@@ -245,23 +242,23 @@ $usuario= $usuario->obtenerUsuarioActual();
                    <div class="row" >
                       <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Preferente</label>
-                          <input type="text" class="form-control" id="sep_preferente" name="sep_preferente" placeholder="$">
+                          <input type="text" onkeyup="sumarCamposSep()" class="form-control" id="sep_preferente" name="sep_preferente" placeholder="$">
                       </div>
                       <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Preferencial</label>
-                          <input type="text" class="form-control" id="sep_preferencia" name="sep_preferencia" placeholder="$">
+                          <input type="text" onkeyup="sumarCamposSep()" class="form-control" id="sep_preferencia" name="sep_preferencia" placeholder="$">
                       </div>
                       <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Concentracion</label>
-                          <input type="text" class="form-control" id="sep_concentracion" name="sep_concentracion" placeholder="$">
+                          <input type="text" onkeyup="sumarCamposSep()" class="form-control" id="sep_concentracion" name="sep_concentracion" placeholder="$">
                       </div>
                       <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Articulo 19</label>
-                          <input type="text" class="form-control" id="sep_articulo_19" name="sep_articulo_19" placeholder="$">
+                          <input type="text" onkeyup="sumarCamposSep()" class="form-control" id="sep_articulo_19" name="sep_articulo_19" placeholder="$">
                       </div>
                       <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Ajustes</label>
-                          <input type="text" class="form-control" id="sep_ajustes" name="sep_ajustes" placeholder="$">
+                          <input type="text" onkeyup="sumarCamposSep()" class="form-control" id="sep_ajustes" name="sep_ajustes" placeholder="$">
                       </div>
                       <!-- <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Total</label>
@@ -282,11 +279,11 @@ $usuario= $usuario->obtenerUsuarioActual();
                    <div class="row" >
                       <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Subvencion Normal:</label>
-                          <input type="text" class="form-control" id="scvtf_normal" name="scvtf_normal" placeholder="$">
+                          <input type="text" onkeyup="sumarCamposScvtf()" class="form-control" id="scvtf_normal" name="scvtf_normal" placeholder="$">
                       </div>
                       <div class="form-group col-md-6" >
                           <label for="title" class="col-12 control-label">Subvencion de Nivelacion:</label>
-                          <input type="text" class="form-control" id="scvtf_nivelacion" name="scvtf_nivelacion" placeholder="$">
+                          <input type="text" onkeyup="sumarCamposScvtf()" class="form-control" id="scvtf_nivelacion" name="scvtf_nivelacion" placeholder="$">
                       </div>
 
                   </div>

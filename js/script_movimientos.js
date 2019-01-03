@@ -36,18 +36,40 @@ function cambiaSubvencion(){
 $subvencion= $("#select_subvencion").val();
 
  if($subvencion==3){
-	  $("#contenedor_campos_sep").removeClass("d-none");
+		//sep
+    sumarCamposSep();
+		$("#contenedor_campos_sep").removeClass("d-none");
  }else{
 	  $("#contenedor_campos_sep").addClass("d-none");
  }
  if($subvencion==5){
+	 //scvtf
 	 $("#contenedor_campos_Sc-vtf").removeClass("d-none");
+   sumarCamposScvtf();
  }else{
 	 $("#contenedor_campos_Sc-vtf").addClass("d-none");
  }
 
 muestraTotalesColegioSubvencion();
 
+}
+
+function sumarCamposSep(){
+	var sep_preferente=Number(document.getElementById('sep_preferente').value);
+	var sep_preferencia=Number(document.getElementById('sep_preferencia').value);
+	var sep_concentracion=Number(document.getElementById('sep_concentracion').value);
+	var sep_articulo_19=Number(document.getElementById('sep_articulo_19').value);
+	var sep_ajustes=Number(document.getElementById('sep_ajustes').value);
+	var txt_monto= sep_preferente+sep_preferencia+sep_concentracion+sep_articulo_19+sep_ajustes;
+
+	document.getElementById('txt_monto').value=txt_monto;
+}
+function sumarCamposScvtf(){
+	var scvtf_normal=Number(document.getElementById('scvtf_normal').value);
+	var scvtf_nivelacion=Number(document.getElementById('scvtf_nivelacion').value);
+	var txt_monto= scvtf_normal+scvtf_nivelacion;
+
+	document.getElementById('txt_monto').value=txt_monto;
 }
 
 function cambiarTipoMovmiento(tipo){
