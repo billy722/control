@@ -69,7 +69,8 @@ $usuario= $usuario->obtenerUsuarioActual();
 <!-- MODAL INGRESAR CORRESPONDENCIA-->
 <div class="container-fluid">
 <div id="contenedor_formulario_movimientos" class="card">
-  <h5 class="card-header">Nuevo Movimientos</h5>
+  <h5 class="card-header">Formulario Movimientos</h5>
+  <input onclick="limpiarFormulario()" class="btn btn-warning btn-block" type="button" value="Limpiar Formulario" >
   <div class="card-body">
 
       <form id="formulario_modal_movimientos" class="" action="javascript:registrarModificarMovimiento()" method="post">
@@ -77,7 +78,6 @@ $usuario= $usuario->obtenerUsuarioActual();
 
              <div class="form-group  border-info" >
 
-                  <input type="hidden" name="txt_id_movimiento" id="txt_id_movimiento">
 
 
                  <div class="row">
@@ -85,7 +85,12 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                     <div class="row">
 
-                      <div class="form-group col-6" >
+                      <div class="form-group col-2" >
+                             <label for="title" class="col-12 control-label">N° Registro</label>
+                             <input class="form-control" type="text" readonly name="txt_id_movimiento" id="txt_id_movimiento">
+                      </div>
+
+                      <div class="form-group col-4" >
                              <label for="title" class="col-12 control-label">Fecha de ingreso</label>
                              <input value="<?php echo date('d-m-Y'); ?>" class="form-control" type="text" id="txt_fecha_ingreso" name="txt_fecha_ingreso" min="2018-01-01"  readonly placeholder="Dia/Mes/Año" >
                       </div>
@@ -195,7 +200,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                        <div class="form-group col-md-6" >
                            <label for="title" class="col-12 control-label">Monto</label>
-                           <input type="text" class="form-control" readonly value="<?php echo $filas['monto'];?>" id="txt_monto" name="txt_monto" placeholder="Ingrese Monto">
+                           <input type="text" class="form-control"  value="<?php echo $filas['monto'];?>" id="txt_monto" name="txt_monto" placeholder="Ingrese Monto">
                        </div>
                     </div>
                   </div>
@@ -260,7 +265,7 @@ $usuario= $usuario->obtenerUsuarioActual();
                           <label for="title" class="col-12 control-label">Ajustes</label>
                           <input type="text" onkeyup="sumarCamposSep()" class="form-control" id="sep_ajustes" name="sep_ajustes" placeholder="$">
                       </div>
-                      <!-- <div class="form-group col-md-6" >
+                      <!-- <div class="form-group col-md-6 d-none" >
                           <label for="title" class="col-12 control-label">Total</label>
                           <input type="text" class="form-control" name="sep_total" placeholder="$">
                       </div> -->
