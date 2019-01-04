@@ -53,6 +53,19 @@ $subvencion= $("#select_subvencion").val();
 muestraTotalesColegioSubvencion();
 
 }
+const number = document.querySelector('txt_monto');
+
+function formateaValores(n){
+ n = String(n).replace(/\D/g, "");
+ return n === '' ? n : Number(n).toLocaleString();
+
+number.addEventListener('keyup', (e) => {
+ const element = e.target;
+ const value = element.value;
+ element.value = formatNumber(value);
+});
+	 return numeroFormateado;
+}
 
 function sumarCamposSep(){
 	var sep_preferente=Number(document.getElementById('sep_preferente').value);
@@ -61,6 +74,8 @@ function sumarCamposSep(){
 	var sep_articulo_19=Number(document.getElementById('sep_articulo_19').value);
 	var sep_ajustes=Number(document.getElementById('sep_ajustes').value);
 	var txt_monto= sep_preferente+sep_preferencia+sep_concentracion+sep_articulo_19+sep_ajustes;
+
+	txt_monto = formateaValores(txt_monto);
 
 	document.getElementById('txt_monto').value=txt_monto;
 }
