@@ -20,7 +20,7 @@ class Movimiento{
   private $sep_concentracion;
   private $sep_articulo_19;
   private $sep_ajustes;
-  private $sep_total;
+  // private $sep_total;
   private $scvtf_normal;
   private $scvtf_nivelacion;
 
@@ -78,9 +78,15 @@ class Movimiento{
     $this->sep_total = $parametro;
   }
   function setScvtfNormal($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->scvtf_normal = $parametro;
   }
   function setScvtfNivelacion($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->scvtf_nivelacion = $parametro;
   }
 
@@ -102,24 +108,22 @@ class Movimiento{
 
     $consulta = "UPDATE tb_movimientos
                   SET
-                  tipo_movimiento = ".$this->id_movimiento.",
+                  tipo_movimiento = ".$this->tipo_movimiento.",
                   tipo_gasto = ".$this->tipo_gasto.",
-                  colegio = ".$this->colegio."
-                  subvencion = ".$this->subvencion."
-                  cuenta_presupuesto = ".$this->cuenta_presupuesto."
+                  colegio = ".$this->colegio.",
+                  subvencion = ".$this->subvencion.",
+                  cuenta_presupuesto = '".$this->cuenta_presupuesto."',
                   estado = ".$this->estado.",
-                  descripcion = ".$this->descripcion."
-                  fecha_ingreso = ".$this->fecha_ingreso.",
-                  orden_compra = ".$this->orden_compra."
-                  numero_certificado = ".$this->numero_certificado."
-                  monto = ".$this->monto."
-                  sep_preferente = ".$this->sep_preferente."
-                  sep_preferencial = ".$this->sep_preferencial."
-                  sep_concentracion = ".$this->sep_concentracion."
-                  sep_articulo_19 = ".$this->sep_articulo_19."
-                  sep_ajustes = ".$this->sep_ajustes."
-                  sep_total = ".$this->sep_total."
-                  scvtf_normal = ".$this->scvtf_normal."
+                  descripcion = '".$this->descripcion."',
+                  fecha_ingreso = '".$this->fecha_ingreso."',
+                  orden_compra = '".$this->orden_compra."',
+                  monto = ".$this->monto.",
+                  sep_preferente = ".$this->sep_preferente.",
+                  sep_preferencial = ".$this->sep_preferencial.",
+                  sep_concentracion = ".$this->sep_concentracion.",
+                  sep_articulo_19 = ".$this->sep_articulo_19.",
+                  sep_ajustes = ".$this->sep_ajustes.",
+                  scvtf_normal = ".$this->scvtf_normal.",
                   scvtf_nivelacion = ".$this->scvtf_nivelacion."
                   WHERE id_movimiento = ".$this->id_movimiento." ";
 
@@ -153,7 +157,6 @@ class Movimiento{
               `sep_concentracion`,
               `sep_articulo_19`,
               `sep_ajustes`,
-              `sep_total`,
               `scvtf_normal`,
               `scvtf_nivelacion`)
               VALUES
@@ -172,7 +175,6 @@ class Movimiento{
                '".$this->sep_concentracion."',
                '".$this->sep_articulo_19."',
                '".$this->sep_ajustes."',
-               '".$this->sep_total."',
                '".$this->scvtf_normal."',
                '".$this->scvtf_nivelacion."');";
 

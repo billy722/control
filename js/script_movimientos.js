@@ -9,6 +9,9 @@ function mostrarListadoMovimientos(texto_buscar){
 		});
 }
 
+function limpiarFormulario(){
+	 $("#formulario_modal_movimientos")[0].reset();
+}
 
 function registrarModificarMovimiento(){
 
