@@ -9,9 +9,6 @@ function mostrarListadoMovimientos(texto_buscar){
 		});
 }
 
-function limpiarFormulario(){
-	 $("#formulario_modal_movimientos")[0].reset();
-}
 
 function registrarModificarMovimiento(){
 
@@ -56,19 +53,23 @@ $subvencion= $("#select_subvencion").val();
 muestraTotalesColegioSubvencion();
 
 }
-const number = document.querySelector('txt_monto');
 
-function formateaValores(n){
- n = String(n).replace(/\D/g, "");
- return n === '' ? n : Number(n).toLocaleString();
 
-number.addEventListener('keyup', (e) => {
- const element = e.target;
- const value = element.value;
- element.value = formatNumber(value);
-});
-	 return numeroFormateado;
-}
+
+//
+// const number = document.querySelector('.txt_monto');
+//
+// function formateaValores(n){
+//  n = String(n).replace(/\D/g, "");
+//  return n === '' ? n : Number(n).toLocaleString();
+//
+// number.addEventListener('keyup', (e) => {
+//  const element = e.target;
+//  const value = element.value;
+//  element.value = formatNumber(value);
+// });
+// 	 // return numeroFormateado;
+// }
 
 function sumarCamposSep(){
 	var sep_preferente=Number(document.getElementById('sep_preferente').value);
@@ -78,9 +79,10 @@ function sumarCamposSep(){
 	var sep_ajustes=Number(document.getElementById('sep_ajustes').value);
 	var txt_monto= sep_preferente+sep_preferencia+sep_concentracion+sep_articulo_19+sep_ajustes;
 
-	txt_monto = formateaValores(txt_monto);
+	//txt_monto = formateaValores(txt_monto);
 
 	document.getElementById('txt_monto').value=txt_monto;
+
 }
 function sumarCamposScvtf(){
 	var scvtf_normal=Number(document.getElementById('scvtf_normal').value);
@@ -88,6 +90,7 @@ function sumarCamposScvtf(){
 	var txt_monto= scvtf_normal+scvtf_nivelacion;
 
 	document.getElementById('txt_monto').value=txt_monto;
+
 }
 
 function cambiarTipoMovmiento(tipo){
