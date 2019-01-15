@@ -35,20 +35,49 @@ function cambiaSubvencion(){
 
 $subvencion= $("#select_subvencion").val();
 
- if($subvencion==3){
-		//sep
-    sumarCamposSep();
-		$("#contenedor_campos_sep").removeClass("d-none");
- }else{
-	  $("#contenedor_campos_sep").addClass("d-none");
+ switch($subvencion){
+      case '3':
+					$("#txt_monto").attr("readonly",true);
+					//sep
+					sumarCamposSep();
+					$("#contenedor_campos_sep").removeClass("d-none");
+					$("#contenedor_campos_Sc-vtf").addClass("d-none");
+					break;
+      case '5':
+					$("#txt_monto").attr("readonly",true);
+			 	 //scvtf
+			 	  $("#contenedor_campos_Sc-vtf").removeClass("d-none");
+					$("#contenedor_campos_sep").addClass("d-none");
+			    sumarCamposScvtf();
+					break;
+      default:
+					$("#txt_monto").removeAttr("readonly");
+			 	 //scvtf
+			 	  $("#contenedor_campos_Sc-vtf").addClass("d-none");
+					$("#contenedor_campos_sep").addClass("d-none");
+
+					break;
  }
- if($subvencion==5){
-	 //scvtf
-	 $("#contenedor_campos_Sc-vtf").removeClass("d-none");
-   sumarCamposScvtf();
- }else{
-	 $("#contenedor_campos_Sc-vtf").addClass("d-none");
- }
+
+ // if($subvencion==3){
+	//  				$("#txt_monto").attr("readonly",true);
+	//  				//sep
+	//  				sumarCamposSep();
+	//  				$("#contenedor_campos_sep").removeClass("d-none");
+ // }else{
+	//   $("#contenedor_campos_sep").addClass("d-none");
+	// 	$("#txt_monto").attr("readonly",false);
+ //
+ // }
+ // if($subvencion==5){
+	//  $("#txt_monto").attr("readonly",true);
+	//  //scvtf
+	//  $("#contenedor_campos_Sc-vtf").removeClass("d-none");
+ //   sumarCamposScvtf();
+ // }else{
+	//  $("#contenedor_campos_Sc-vtf").addClass("d-none");
+	//  $("#txt_monto").attr("readonly",false);
+ // }
 
 muestraTotalesColegioSubvencion();
 
@@ -71,25 +100,73 @@ muestraTotalesColegioSubvencion();
 // 	 // return numeroFormateado;
 // }
 
+// const number = document.querySelector('.number');
+//
+// function separadorMiles(n) {
+// 	n = String(n).replace(/\D/g, "");
+//   return n === '' ? n : Number(n).toLocaleString();
+// }
+function separadorMiles(num)
+{
+
+	if(!isNaN(num)){
+	num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+	num = num.split('').reverse().join('').replace(/^[\.]/,'');
+	return num;
+}else{
+	return num;
+}
+
+}
+
 function sumarCamposSep(){
-	var sep_preferente=Number(document.getElementById('sep_preferente').value);
-	var sep_preferencia=Number(document.getElementById('sep_preferencia').value);
-	var sep_concentracion=Number(document.getElementById('sep_concentracion').value);
-	var sep_articulo_19=Number(document.getElementById('sep_articulo_19').value);
-	var sep_ajustes=Number(document.getElementById('sep_ajustes').value);
-	var txt_monto= sep_preferente+sep_preferencia+sep_concentracion+sep_articulo_19+sep_ajustes;
 
-	//txt_monto = formateaValores(txt_monto);
+	//quita puntosa los valores
+	var sep_preferente=document.getElementById('sep_preferente').value;
+	var sep_preferencia=document.getElementById('sep_preferencia').value;
+	var sep_concentracion=document.getElementById('sep_concentracion').value;
+	var sep_articulo_19=document.getElementById('sep_articulo_19').value;
+	var sep_ajustes=document.getElementById('sep_ajustes').value;
 
-	document.getElementById('txt_monto').value=txt_monto;
+  //QUITAR PUNTOS
+  var patron_reemplazo = /\./g ;
+
+	var sep_preferente=sep_preferente.replace(patron_reemplazo,'');
+	var sep_preferencia=sep_preferencia.replace(patron_reemplazo,'');
+	var sep_concentracion=sep_concentracion.replace(patron_reemplazo,'');
+	var sep_articulo_19=sep_articulo_19.replace(patron_reemplazo,'');
+	var sep_ajustes=sep_ajustes.replace(patron_reemplazo,'');
+
+	//Suma los campos
+	var txt_monto= (Number(sep_preferente)+Number(sep_preferencia)+Number(sep_concentracion)+Number(sep_articulo_19)+Number(sep_ajustes));
+
+  //formatea los campos con separador de miles
+	// alert(separadorMiles(sep_preferente));
+
+	document.getElementById('sep_preferente').value = separadorMiles(sep_preferente);
+	document.getElementById('sep_preferencia').value = separadorMiles(sep_preferencia);
+	document.getElementById('sep_concentracion').value = separadorMiles(sep_concentracion);
+	document.getElementById('sep_articulo_19').value = separadorMiles(sep_articulo_19);
+	document.getElementById('sep_ajustes').value = separadorMiles(sep_ajustes);
+
+	document.getElementById('txt_monto').value=separadorMiles(txt_monto);
 
 }
 function sumarCamposScvtf(){
-	var scvtf_normal=Number(document.getElementById('scvtf_normal').value);
-	var scvtf_nivelacion=Number(document.getElementById('scvtf_nivelacion').value);
-	var txt_monto= scvtf_normal+scvtf_nivelacion;
 
-	document.getElementById('txt_monto').value=txt_monto;
+	var scvtf_normal=document.getElementById('scvtf_normal').value;
+	var scvtf_nivelacion=document.getElementById('scvtf_nivelacion').value;
+
+	var patron_reemplazo = /\./g ;
+	var scvtf_normal=scvtf_normal.replace(patron_reemplazo,'');
+	var scvtf_nivelacion=scvtf_nivelacion.replace(patron_reemplazo,'');
+
+	var txt_monto= (Number(scvtf_normal)+Number(scvtf_nivelacion));
+
+	document.getElementById('scvtf_normal').value = separadorMiles(scvtf_normal);
+	document.getElementById('scvtf_nivelacion').value = separadorMiles(scvtf_nivelacion);
+
+	document.getElementById('txt_monto').value=separadorMiles(txt_monto);
 
 }
 
@@ -122,7 +199,7 @@ function muestraTotalesColegioSubvencion(){
  }
 }
 
-function limpiarModal(){
+function limpiarFormulario(){
 	 $("#formulario_modal_movimientos")[0].reset();
 	 $("#txt_id_movimiento").val("");
 }
