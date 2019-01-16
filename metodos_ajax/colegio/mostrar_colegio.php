@@ -26,8 +26,27 @@ $listado_colegio = $Colegio->obtenerColegios();
            echo '<tr class="">
                    <td class=""><span id="txt_rbd_'.$contador.'" >'.$filas['rbd_colegio'].'</span></td>
                    <td class=""><span id="txt_nombre_'.$contador.'" >'.$filas['nombre_colegio'].'</span></td>
-                   <td class=""><span id="cmb_estado_'.$contador.'" >'.$filas['estado'].'</span></td>
-                   <td class=""><span id="cmb_estado_'.$contador.'" >'.$filas['tipo_establecimiento'].'</span></td>
+                   <td class=""><span id="txt_estado_'.$contador.'" >';
+             switch($filas['estado']){
+               case '1': echo 'Activo';
+                         break;
+               case '2': echo 'Inactivo';
+                         break;
+               case '3': echo 'Eliminado';
+                         break;
+             }
+
+           echo '</span></td>
+
+                       <td class=""><span id="cmb_estado_'.$contador.'" >';
+                 switch($filas['tipo_establecimiento']){
+                   case '1': echo 'Educacion';
+                             break;
+                   case '2': echo 'Junji VTF';
+                             break;
+                 }
+
+   echo '</span></td>
 
                    <td class="">
                       <button onclick="cargarDatosModificar('.$contador.');" data-toggle="modal" data-target="#modal_colegio" type="button" class="btn btn-block btn-warning" name="button">Editar</button>

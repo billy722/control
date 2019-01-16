@@ -26,14 +26,14 @@ $listado_cuenta = $Cuenta->obtenerCuentas();
                    <td class=""><span id="txt_numero_'.$contador.'" >'.$filas['numero_cuenta'].'</span></td>
                    <td class=""><span id="txt_nombre_'.$contador.'" >'.$filas['nombre_cuenta'].'</span></td>
                    <td class=""><span id="txt_estado_'.$contador.'" >';
-                    switch($filas['estado']){
-                      case '1': echo 'Activo';
-                                break;
-                      case '2': echo 'Inactivo';
-                                break;
-                    }
+             switch($filas['estado']){
+               case '1': echo 'Activo';
+                         break;
+               case '2': echo 'Inactivo';
+                         break;
+             }
 
-                  echo '</span></td>
+           echo '</span></td>
 
                    <td class="">
                       <button onclick="cargarDatosModificar('.$contador.');" data-toggle="modal" data-target="#modal_cuenta" type="button" class="btn btn-block btn-warning" name="button">Editar</button>
