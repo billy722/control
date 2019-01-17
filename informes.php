@@ -88,7 +88,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                              <label for="title" class="col-12 control-label">Colegio</label>
                              <select class="form-control" name="select_colegio" id="select_colegio">
-                               <option value="" selected disabled>Seleccione:</option>
+                               <!-- <option value="" selected disabled>Seleccione:</option> -->
                                <?php
                                    $Colegio = new Colegio();
                                    $listaColegios = $Colegio->obtenerColegios();

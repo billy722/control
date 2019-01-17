@@ -1,6 +1,7 @@
 <?php
 require_once '../../clases/Funciones.php';
 require_once '../../clases/Movimiento.php';
+require_once '../../clases/Conexion.php';
 
 $Funciones = new Funciones();
 
@@ -55,6 +56,7 @@ $_id_movimiento;
 
 if($_REQUEST['txt_id_movimiento']!=""){
 // echo "modificar o";
+
   $_id_movimiento = $Funciones->limpiarNumeroEntero($_REQUEST['txt_id_movimiento']);
   $Movimiento->setIdMovimiento($_id_movimiento);
 
@@ -66,6 +68,29 @@ if($_REQUEST['txt_id_movimiento']!=""){
 
 }else{
   // echo "nuevo o";
+  $numero_certificado=1;
+
+
+  $anio_ingreso=date_create($fecha_ingreso);
+  $anio_ingreso= date_format($anio_ingreso,"Y");
+
+  $conexion = new Conexion();
+  $conexion = $conexion->conectar();
+
+  $consulta_numero ="select m.numero_certificado from tb_movimientos m
+                     where m.numero_certificado = (select max(numero_certificado) from tb_movimientos where year(fecha_ingreso)=".$anio_ingreso.");";
+
+  // echo $consulta_numero;
+  $resultado_numero = $conexion->query($consulta_numero);
+
+  while($filas_numero = $resultado_numero->fetch_array()){
+        $numero_certificado = $filas_numero['numero_certificado'];
+        $numero_certificado++;
+  }
+   // echo "numero de certifixacdo es_ :".$numero_certificado;
+
+  $Movimiento->setNumeroCertificado($numero_certificado);
+
     if($Movimiento->ingresarMovimiento()){
       echo "1";
     }else{

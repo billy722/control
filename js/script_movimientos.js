@@ -18,11 +18,12 @@ function registrarModificarMovimiento(){
 			method:"POST",
       data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
-				 alert(respuesta);
+				 // alert(respuesta);
 				 console.log(respuesta);
 
            if(respuesta==1){
              swal("Guardado","Los datos se han guardado correctamente.","success");
+						 limpiarFormulario();
              mostrarListadoMovimientos("");
            }else if(respuesta==2){
              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
@@ -59,55 +60,19 @@ $subvencion= $("#select_subvencion").val();
 					break;
  }
 
- // if($subvencion==3){
-	//  				$("#txt_monto").attr("readonly",true);
-	//  				//sep
-	//  				sumarCamposSep();
-	//  				$("#contenedor_campos_sep").removeClass("d-none");
- // }else{
-	//   $("#contenedor_campos_sep").addClass("d-none");
-	// 	$("#txt_monto").attr("readonly",false);
- //
- // }
- // if($subvencion==5){
-	//  $("#txt_monto").attr("readonly",true);
-	//  //scvtf
-	//  $("#contenedor_campos_Sc-vtf").removeClass("d-none");
- //   sumarCamposScvtf();
- // }else{
-	//  $("#contenedor_campos_Sc-vtf").addClass("d-none");
-	//  $("#txt_monto").attr("readonly",false);
- // }
 
 muestraTotalesColegioSubvencion();
 
 }
 
 
+function valorCampoMonto(valor){
+	var patron_reemplazo = /\./g ;
+	valor=valor.replace(patron_reemplazo,'');
+ $("#txt_monto").val(separadorMiles(valor));
+}
 
-//
-// const number = document.querySelector('.txt_monto');
-//
-// function formateaValores(n){
-//  n = String(n).replace(/\D/g, "");
-//  return n === '' ? n : Number(n).toLocaleString();
-//
-// number.addEventListener('keyup', (e) => {
-//  const element = e.target;
-//  const value = element.value;
-//  element.value = formatNumber(value);
-// });
-// 	 // return numeroFormateado;
-// }
-
-// const number = document.querySelector('.number');
-//
-// function separadorMiles(n) {
-// 	n = String(n).replace(/\D/g, "");
-//   return n === '' ? n : Number(n).toLocaleString();
-// }
-function separadorMiles(num)
-{
+function separadorMiles(num){
 
 	if(!isNaN(num)){
 	num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
@@ -207,6 +172,7 @@ function limpiarFormulario(){
 function cargarInformacionModificarMovimientos(id){
 
 
+	 var txt_numero_certificado = $("#columna_numero_certificado_"+id).html();
 	 var txt_fecha_ingreso = $("#columna_fecha_ingreso_"+id).html();
 	 var select_tipo_movimiento = $("#columna_id_tipo_movimiento_"+id).html();
 	 var select_colegio = $("#columna_rbdcolegio_"+id).html();
@@ -237,6 +203,7 @@ function cargarInformacionModificarMovimientos(id){
 	 $("#txt_id_movimiento").val(id);
 
 
+	 $("#txt_numero_certificado").val(txt_numero_certificado);
 	 $("#txt_fecha_ingreso").val(txt_fecha_ingreso);
 	 $("#select_tipo_movimiento").val(select_tipo_movimiento);
 	 $("#select_colegio").val(select_colegio);

@@ -25,7 +25,7 @@ require_once '../../clases/Movimiento.php';
        $texto_buscar = $Funciones->limpiarTexto($_REQUEST['texto_buscar']);
 
        $Movimiento = new Movimiento();
-       $listadoMovimiento = $Movimiento->mostrarListadoMovimientos($texto_buscar," where id_estado=1 or id_estado=2");
+       $listadoMovimiento = $Movimiento->mostrarListadoMovimientos($texto_buscar," where id_estado=1 or id_estado=2 ");
 
          while($filas = $listadoMovimiento->fetch_array()){
 
@@ -41,7 +41,9 @@ require_once '../../clases/Movimiento.php';
                        <td>
                              <button onclick="eliminarMovimientos('.$filas['id_movimiento'].')"  class="col-12 btn btn-danger "> <i class="fa fa-trash-alt"></i> </button>
                        </td>
-                       <td><span id="columna_id_movimiento_'.$filas['id_movimiento'].'" >'.$filas['id_movimiento'].'</span></td>
+                       <td><span id="columna_numero_certificado_'.$filas['id_movimiento'].'" >'.$filas['numero_certificado'].'</span></td>
+                         <span class="d-none" id="columna_id_movimiento_'.$filas['id_movimiento'].'" >'.$filas['id_movimiento'].'</span>
+
                        <td><span id="columna_fecha_ingreso_'.$filas['id_movimiento'].'" >'.$fecha_ingreso.'</span></td>
 
                        <td><span id="columna_tipo_movimiento_'.$filas['id_movimiento'].'" >'.$filas['descripcion_tipo_movimiento'].'</span></td>

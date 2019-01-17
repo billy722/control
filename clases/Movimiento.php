@@ -4,6 +4,7 @@ require_once 'Conexion.php';
 class Movimiento{
 
   private $id_movimiento;
+  private $numero_certificado;
   private $tipo_movimiento;
   private $tipo_gasto;
   private $colegio;
@@ -27,6 +28,9 @@ class Movimiento{
 
   function setIdMovimiento($parametro){
     $this->id_movimiento = $parametro;
+  }
+  function setNumeroCertificado($parametro){
+    $this->numero_certificado = $parametro;
   }
   function setTipoMovimiento($parametro){
     $this->tipo_movimiento = $parametro;
@@ -142,7 +146,8 @@ class Movimiento{
 
 
     $consulta ="insert INTO tb_movimientos
-              (`tipo_movimiento`,
+              (`numero_certificado`,
+              `tipo_movimiento`,
               `tipo_gasto`,
               `colegio`,
               `subvencion`,
@@ -160,7 +165,8 @@ class Movimiento{
               `scvtf_normal`,
               `scvtf_nivelacion`)
               VALUES
-              ('".$this->tipo_movimiento."',
+              (".$this->numero_certificado.",
+               '".$this->tipo_movimiento."',
                ".$this->tipo_gasto.",
                '".$this->colegio."',
                '".$this->subvencion."',
@@ -191,7 +197,7 @@ class Movimiento{
       $conexion = $conexion->conectar();
 
       if($texto_buscar=="" || $texto_buscar==" "){
-        $consulta= "select * from vista_movimientos ".$condiciones." order by id_movimiento asc";
+        $consulta= "select * from vista_movimientos ".$condiciones." order by fecha_ingreso asc";
       }else{
         $consulta= "select * from vista_movimientos
                     where id_movimiento like '%".$texto_buscar."%'

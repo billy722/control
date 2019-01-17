@@ -86,8 +86,9 @@ $usuario= $usuario->obtenerUsuarioActual();
                     <div class="row">
 
                       <div class="form-group col-2" >
-                             <label for="title" class="col-12 control-label">N° Registro</label>
-                             <input class="form-control" type="text" readonly name="txt_id_movimiento" id="txt_id_movimiento">
+                             <label for="title" class="col-12 control-label">N Registro</label>
+                             <input class="form-control" type="text" readonly name="txt_numero_certificado" id="txt_numero_certificado">
+                             <input class="form-control" type="hidden" readonly name="txt_id_movimiento" id="txt_id_movimiento">
                       </div>
 
                       <div class="form-group col-4" >
@@ -133,7 +134,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                           <label for="title" class="col-12 control-label">Colegio</label>
                           <select required onchange="muestraTotalesColegioSubvencion()" class="form-control" name="select_colegio" id="select_colegio">
-                            <option value="0"  selected disabled>Seleccione:</option>
+                            <!-- <option value="0"  selected disabled>Seleccione:</option> -->
                             <?php
                                 $Colegio = new Colegio();
                                 $listaColegios = $Colegio->obtenerColegios();
@@ -200,7 +201,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                        <div class="form-group col-md-6" >
                            <label for="title" class="col-12 control-label">Monto</label>
-                           <input type="text" class="form-control"  value="<?php echo $filas['monto'];?>" id="txt_monto" name="txt_monto" placeholder="Ingrese Monto">
+                           <input type="text" class="form-control" onkeyup="valorCampoMonto(this.value);" value="<?php echo $filas['monto'];?>" id="txt_monto" name="txt_monto" placeholder="Ingrese Monto">
                        </div>
                     </div>
                   </div>

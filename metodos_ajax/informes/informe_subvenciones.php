@@ -45,10 +45,14 @@ $total = array("total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nive
 
 
 
-if($tipo_informe==2){
+//TABLA DE INGRESOS
 
     $Conexion = new Conexion();
     $Conexion = $Conexion->conectar();
+
+    //pone en colegio en 0 cuando el tipo de informe es tipo resumen
+    if($tipo_informe==1){ $colegio = "0"; }
+
 
 if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",1,".$subvencion.",".$colegio.")")){
 
@@ -736,7 +740,10 @@ $total_ingresos= 0;
     }
 
 
-    //GASTOS
+    //TABLA DE GASTOS
+
+if($tipo_informe==2){
+
     $total_gastos = 0;
 
     $Conexion = new Conexion();
@@ -798,6 +805,8 @@ $total_ingresos= 0;
 }else if($tipo_informe==1){
 
   echo "el tipo de informe es RESUMEN";
+
+
 
 }
 
