@@ -34,32 +34,44 @@ function registrarModificarMovimiento(){
 
 function cambiaSubvencion(){
 
+// alert("cambia subvencion");
+
 $subvencion= $("#select_subvencion").val();
+$tipo_movimiento= $("#select_tipo_movimiento").val();
 
- switch($subvencion){
-      case '3':
-					$("#txt_monto").attr("readonly",true);
-					//sep
-					sumarCamposSep();
-					$("#contenedor_campos_sep").removeClass("d-none");
-					$("#contenedor_campos_Sc-vtf").addClass("d-none");
-					break;
-      case '5':
-					$("#txt_monto").attr("readonly",true);
-			 	 //scvtf
-			 	  $("#contenedor_campos_Sc-vtf").removeClass("d-none");
-					$("#contenedor_campos_sep").addClass("d-none");
-			    sumarCamposScvtf();
-					break;
-      default:
-					$("#txt_monto").removeAttr("readonly");
-			 	 //scvtf
-			 	  $("#contenedor_campos_Sc-vtf").addClass("d-none");
-					$("#contenedor_campos_sep").addClass("d-none");
+if($tipo_movimiento==1){//ENTRA CUANDO ES INGRESO
 
-					break;
- }
+			 switch($subvencion){
+			      case '3':
+								$("#txt_monto").attr("readonly",true);
+								//sep
+								sumarCamposSep();
+								$("#contenedor_campos_sep").removeClass("d-none");
+								$("#contenedor_campos_Sc-vtf").addClass("d-none");
+								break;
+			      case '5':
+								$("#txt_monto").attr("readonly",true);
+						 	 //scvtf
+						 	  $("#contenedor_campos_Sc-vtf").removeClass("d-none");
+								$("#contenedor_campos_sep").addClass("d-none");
+						    sumarCamposScvtf();
+								break;
+			      default:
+								$("#txt_monto").removeAttr("readonly");
+						 	 //scvtf
+						 	  $("#contenedor_campos_Sc-vtf").addClass("d-none");
+								$("#contenedor_campos_sep").addClass("d-none");
 
+								break;
+			 }
+
+}else{//ENTRA CUANDO ES GASTO
+
+		$("#txt_monto").removeAttr("readonly");
+	 //scvtf
+		$("#contenedor_campos_Sc-vtf").addClass("d-none");
+		$("#contenedor_campos_sep").addClass("d-none");
+}
 
 muestraTotalesColegioSubvencion();
 
@@ -142,6 +154,7 @@ function cambiarTipoMovmiento(tipo){
  }else{
 	  $("#contenedor_tipo_gasto").addClass("d-none");
  }
+ cambiaSubvencion();
 
 }
 
