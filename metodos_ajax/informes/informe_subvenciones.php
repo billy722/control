@@ -342,7 +342,7 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
      echo '
      <script>
      function generar_informe_descargable(){
-       window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'&select_tipo_informe='.$tipo_informe.'", "Diseño Web", "width=1500, height=1500")
+       window.open("./metodos_ajax/informes/informe_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'&select_tipo_informe='.$tipo_informe.'", "Diseño Web", "width=1500, height=1500")
      }
      </script>
 
