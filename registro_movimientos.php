@@ -117,7 +117,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                           <label for="title" class="col-12 control-label">Tipo gasto</label>
                           <select class="form-control" name="select_tipo_gasto" id="select_tipo_gasto">
-                            <option value="NULL">Seleccione</option>
+                            <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $TipoGasto = new TipoGasto();
                                 $listaTiposGasto = $TipoGasto->obtenerTiposGasto();

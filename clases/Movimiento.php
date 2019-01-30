@@ -99,7 +99,10 @@ class Movimiento{
     $conexion = new Conexion();
     $conexion = $conexion->conectar();
 
-      if($conexion->query("update tb_movimientos set estado=".$this->estado." where id_movimiento=".$this->id_movimiento)){
+    $consulta = "update tb_movimientos set estado=".$this->estado.", numero_certificado=NULL where id_movimiento=".$this->id_movimiento;
+    // echo $consulta;
+
+      if($conexion->query($consulta)){
          return true;
       }else{
          return false;

@@ -10,7 +10,13 @@ $fecha_ingreso = date_create($fecha_ingreso);
 $fecha_ingreso = date_format($fecha_ingreso, 'Y-m-d');
 
 $tipo_movimiento = $Funciones->limpiarNumeroEntero($_REQUEST['select_tipo_movimiento']);
-$tipo_gasto = $Funciones->limpiarTexto($_REQUEST['select_tipo_gasto']);
+
+if(isset($_REQUEST['select_tipo_gasto'])){
+  $tipo_gasto = $Funciones->limpiarTexto($_REQUEST['select_tipo_gasto']);
+}else{
+  $tipo_gasto="NULL";
+}
+
 $colegio = $Funciones->limpiarNumeroEntero($_REQUEST['select_colegio']);
 $subvencion = $Funciones->limpiarNumeroEntero($_REQUEST['select_subvencion']);
 $cuenta = $Funciones->limpiarNumeroEntero($_REQUEST['select_cuenta']);

@@ -4,24 +4,10 @@ require_once '../../clases/Movimiento.php';
 require_once '../../clases/Subvencion.php';
 require_once '../../clases/Colegio.php';
 
-
 header('Content-type: application/vnd.ms-excel; charset=UTF-8');
 header('Content-Disposition: attachment;filename=excelClientes.xls');
 header('Pragma: no-cache');
 header('Expires: 0');
-
-/*
-<h4 align="center">LISTA DE CLIENTES</h4>
-<table width="80%" border="1" align="center">
-  <tr bgcolor="#5970B2" align="center" class="encabezadoTabla">
-    <td width="5%" bgcolor="#3399CC">Identificación</td>
-    <td width="15%" bgcolor="#3399CC">Nombres</td>
-    <td width="15%" bgcolor="#3399CC">Apellidos</td>
-    <td width="10%" bgcolor="#3399CC">Genero</td>
-    <td width="15%" bgcolor="#3399CC">Correo</td>
-  </tr>
-*/
-
 
 $anio = $_REQUEST['txt_anio'];
 $subvencion = $_REQUEST['select_subvencion'];
@@ -69,10 +55,10 @@ $total = array("total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nive
     $Conexion = $Conexion->conectar();
 
     //pone en colegio en 0 cuando el tipo de informe es tipo resumen
-    if($tipo_informe==1){ $colegio = "0"; }
+    // if($tipo_informe==1){ $colegio = "0"; }
 
 
-if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",1,".$subvencion.",".$colegio.")")){
+if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$tipo_informe.",".$anio.",1,".$subvencion.",".$colegio.")")){
 
       while($filas= $resultado_consulta->fetch_array()){
 
@@ -360,17 +346,17 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
      echo '
      <script>
      function generar_informe_descargable(){
-       window.open("./metodos_ajax/informes/archivo_subvenciones_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'&select_tipo_informe='.$tipo_informe.'", "Diseño Web", "width=1500, height=1500")
+       window.open("./metodos_ajax/informes/informe_descargable.php?txt_anio='.$anio.'&select_subvencion='.$subvencion.'&select_colegio='.$colegio.'&select_tipo_informe='.$tipo_informe.'", "Diseño Web", "width=400, height=200")
      }
      </script>
 
      ';
 
-      echo '
-         <div class="container">
-             <button onclick="generar_informe_descargable()" class="btn btn-danger">DESCARGAR INFORME</button>
-         </div>
-      ';
+      // echo '
+      //    <div class="container">
+      //        <button onclick="generar_informe_descargable()" class="btn btn-danger">DESCARGAR INFORME</button>
+      //    </div>
+      // ';
 
 
      $Subvencion1 = new Subvencion();
@@ -378,23 +364,37 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
      $Subvencion1 = $Subvencion1->consultarUnaSubvencion();
      $Subvencion1 = $Subvencion1->fetch_array();
 
-     $Colegio1 = new Colegio();
-     $Colegio1->setColegio($colegio);
-     $Colegio1 = $Colegio1->consultarUnColegio();
-     $Colegio1 = $Colegio1->fetch_array();
+     if($tipo_informe==1){//si es resumen
 
-      echo '
-        <table class="table table-bordered">
-          <tr >
-            <td><center><strong>SUBVENCION '.$Subvencion1['subvencion'].' '.$anio.' '.$Colegio1['nombre_colegio'].'</strong></center></td>
-          </tr>
-        </table>
-      ';
+         echo '
+         <table class="table table-bordered">
+         <tr>
+         <td><center><strong>INFORME RESUMEN SUBVENCION '.$Subvencion1['subvencion'].' '.$anio.' </strong></center></td>
+         </tr>
+         </table>
+         ';
+
+     }else if($tipo_informe==2){
+
+         $Colegio1 = new Colegio();
+         $Colegio1->setColegio($colegio);
+         $Colegio1 = $Colegio1->consultarUnColegio();
+         $Colegio1 = $Colegio1->fetch_array();
+
+         echo '
+         <table class="table table-bordered">
+         <tr>
+         <td><center><strong>SUBVENCION '.$Subvencion1['subvencion'].' '.$anio.' '.$Colegio1['nombre_colegio'].'</strong></center></td>
+         </tr>
+         </table>
+         ';
+     }
+
 
       echo '
         <table class="table table-bordered table_striped">
 
-        <thead bgcolor="#5970B2" align="center">
+        <thead>
           <th>MES</th>';
 
               //cuando subvencion es sc-vtf
@@ -419,9 +419,14 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",
        //CALCULA SALDO ANIO ANTERIOR
 
        $Movimiento_totales = new Movimiento();
-       $Movimiento_totales->setColegio($colegio);
        $Movimiento_totales->setSubvencion($subvencion);
        $anio_anterior = ($anio-1);
+
+       if($tipo_informe==1){//si es resumen, pone colegio en 0
+         $Movimiento_totales->setColegio("0");
+       }else if($tipo_informe==2){
+         $Movimiento_totales->setColegio($colegio);
+       }
 
        $resultado = $Movimiento_totales->mostrarTotalesColegio($anio_anterior);
        $filas = $resultado->fetch_array();
@@ -758,6 +763,8 @@ $total_ingresos= 0;
     }
 
 
+echo "<br />";
+
     //TABLA DE GASTOS
 
 if($tipo_informe==2){
@@ -767,7 +774,7 @@ if($tipo_informe==2){
     $Conexion = new Conexion();
     $Conexion = $Conexion->conectar();
 
-    if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$anio.",2,".$subvencion.",".$colegio.")")){
+    if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$tipo_informe.",".$anio.",2,".$subvencion.",".$colegio.")")){
 
     echo '
       <table class="table table-bordered ">
@@ -822,9 +829,102 @@ if($tipo_informe==2){
 
 }else if($tipo_informe==1){
 
-  echo "el tipo de informe es RESUMEN";
+  // echo "el tipo de informe es RESUMEN";
 
 
+  $Conexion = new Conexion();
+  $Conexion = $Conexion->conectar();
+
+  $SaldoArrastre = 0;
+  $Ingresos = 0;
+  $GastoSueldos = 0;
+  $GastoBienes = 0;
+  $TotalGastos = 0;
+  $SaldoActual = 0;
+
+  echo '
+    <table class="table table-bordered ">
+     <thead>
+         <th>Establecimiento</th>
+         <th>Saldo Arrastre</th>
+         <th>Ingresos</th>
+         <th>Gasto Sueldos</th>
+         <th>Gasto Bienes y servicios</th>
+         <th>Total Gastos</th>
+         <th>Saldo Actual</th>
+     </thead>
+     <tbody>
+  ';
+
+  $condiciones="";
+  if($subvencion==5){
+      $condiciones = " where tipo_establecimiento = 2";
+  }else{
+      $condiciones = " where tipo_establecimiento = 1";
+  }
+
+  $resultado_consulta = $Conexion->query("select * from tb_colegios ".$condiciones);
+
+  while($filas_colegio= $resultado_consulta->fetch_array()){
+
+      echo '
+      <tr>
+          <td>'.$filas_colegio['nombre_colegio'].'</td>';
+          $Conexion2 = new Conexion();
+          $Conexion2 = $Conexion2->conectar();
+
+          $resultados_por_colegio = $Conexion2->query("call procedimiento_informe(".$tipo_informe.",".$anio.",0,".$subvencion.",'".$filas_colegio['rbd_colegio']."')");
+
+           if($filas_resumenes = $resultados_por_colegio->fetch_array()){
+
+             echo '<td>'.number_format($filas_resumenes['saldo_arrastre'],0,",",".").'</td>';
+             echo '<td>'.number_format($filas_resumenes['total_ingresos'],0,",",".").'</td>';
+             echo '<td>'.number_format($filas_resumenes['gastos_sueldos'],0,",",".").'</td>';
+             echo '<td>'.number_format($filas_resumenes['gastos_bienes'],0,",",".").'</td>';
+             echo '<td>'.number_format($filas_resumenes['total_gastos'],0,",",".").'</td>';
+             echo '<td>'.number_format($filas_resumenes['saldo_actual'],0,",",".").'</td>';
+
+             $SaldoArrastre += $filas_resumenes['saldo_arrastre'];
+             $Ingresos += $filas_resumenes['total_ingresos'];
+             $GastoSueldos += $filas_resumenes['gastos_sueldos'];
+             $GastoBienes += $filas_resumenes['gastos_bienes'];
+             $TotalGastos += $filas_resumenes['total_gastos'];
+             $SaldoActual += $filas_resumenes['saldo_actual'];
+          }
+
+      echo '
+      </tr>
+      ';
+
+  }
+
+  echo '<tr>
+           <td>Totales</td>
+           <td>'.number_format($SaldoArrastre,0,",",".").'</td>
+           <td>'.number_format($Ingresos,0,",",".").'</td>
+           <td>'.number_format($GastoSueldos,0,",",".").'</td>
+           <td>'.number_format($GastoBienes,0,",",".").'</td>
+           <td>'.number_format($TotalGastos,0,",",".").'</td>
+           <td>'.number_format($SaldoActual,0,",",".").'</td>
+        </tr>';
+
+
+
+  echo '
+     </tbody>
+   </table>';
+
+
+
+   //TABLA DE SALDO
+       echo '
+         <table class="table table-bordered">
+           <tr>
+             <td colspan="4"><center><strong>SALDO</strong></center></td>
+             <td colspan="1"><center><strong>'.number_format($SaldoActual,0,",",".").'</strong></center></td>
+           </tr>
+         </table>
+       ';
 
 }
 

@@ -19,7 +19,7 @@ function registrarModificarMovimiento(){
       data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
 				 // alert(respuesta);
-				 console.log(respuesta);
+				 // console.log(respuesta);
 
            if(respuesta==1){
              swal("Guardado","Los datos se han guardado correctamente.","success");
@@ -151,8 +151,10 @@ function cambiarTipoMovmiento(tipo){
 
  if(tipo==2){
 	  $("#contenedor_tipo_gasto").removeClass("d-none");
+	  $("#select_tipo_gasto").attr("required",true);
  }else{
 	  $("#contenedor_tipo_gasto").addClass("d-none");
+		$("#select_tipo_gasto").removeAttr("required");
  }
  cambiaSubvencion();
 
@@ -188,6 +190,7 @@ function cargarInformacionModificarMovimientos(id){
 	 var txt_numero_certificado = $("#columna_numero_certificado_"+id).html();
 	 var txt_fecha_ingreso = $("#columna_fecha_ingreso_"+id).html();
 	 var select_tipo_movimiento = $("#columna_id_tipo_movimiento_"+id).html();
+	 var select_tipo_gasto = $("#columna_id_tipo_gasto_"+id).html();
 	 var select_colegio = $("#columna_rbdcolegio_"+id).html();
 	 var select_subvencion = $("#columna_id_subvencion_"+id).html();
 	 var select_cuenta = $("#columna_id_numero_cuenta_"+id).html();
@@ -201,6 +204,15 @@ function cargarInformacionModificarMovimientos(id){
 	 var sep_articulo_19 = $("#columna_sep_articulo_19_"+id).html();
 	 var sep_ajustes = $("#columna_sep_ajustes_"+id).html();
 	 var sep_total = $("#sep_total"+id).html();
+
+	 if(select_tipo_movimiento==2){
+		 $("#contenedor_tipo_gasto").removeClass("d-none");
+		 $("#select_tipo_gasto").val(select_tipo_gasto);
+	 }else{
+		 $("#contenedor_tipo_gasto").addClass("d-none");
+		 $("#select_tipo_gasto").val("");
+	 }
+
 
 	 if(select_subvencion==3){
 		 $("#contenedor_campos_sep").removeClass("d-none");
@@ -260,7 +272,7 @@ function eliminarMovimientos(id){
 				url:"./metodos_ajax/movimientos/eliminar_movimiento.php?id="+id,
 				method:"POST",
 				success:function(respuesta){
-					 alert(respuesta);
+					 // alert(respuesta);
 
 						 if(respuesta==1){
 							 swal("Guardado","Los datos se han guardado correctamente.","success");
