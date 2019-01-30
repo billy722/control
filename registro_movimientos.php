@@ -23,7 +23,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 </style>
-   <title>Registro Movimientos</title>
+   <title>Control Gastos</title>
    <?php cargarHead(); ?>
 
   <script src="./js/script_movimientos.js"></script>
@@ -61,10 +61,6 @@ $usuario= $usuario->obtenerUsuarioActual();
 <?php cargarMenuPrincipal(); ?>
 
 <br>
-
-
-
-
 
 <!-- MODAL INGRESAR CORRESPONDENCIA-->
 <div class="container-fluid">

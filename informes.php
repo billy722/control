@@ -17,7 +17,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 </style>
-   <title>Informes</title>
+   <title>Control Gastos</title>
    <?php cargarHead(); ?>
 
   <script src="./js/scripts_informes.js"></script>

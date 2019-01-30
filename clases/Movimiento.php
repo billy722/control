@@ -200,7 +200,7 @@ class Movimiento{
       $conexion = $conexion->conectar();
 
       if($texto_buscar=="" || $texto_buscar==" "){
-        $consulta= "select * from vista_movimientos ".$condiciones." order by fecha_ingreso asc";
+        $consulta= "select * from vista_movimientos ".$condiciones." order by numero_certificado asc";
       }else{
         $consulta= "select * from vista_movimientos
                     where id_movimiento like '%".$texto_buscar."%'
