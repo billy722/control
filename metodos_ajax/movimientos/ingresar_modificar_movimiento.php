@@ -10,7 +10,13 @@ $fecha_ingreso = date_create($fecha_ingreso);
 $fecha_ingreso = date_format($fecha_ingreso, 'Y-m-d');
 
 $tipo_movimiento = $Funciones->limpiarNumeroEntero($_REQUEST['select_tipo_movimiento']);
-$tipo_gasto = $Funciones->limpiarTexto($_REQUEST['select_tipo_gasto']);
+
+if(isset($_REQUEST['select_tipo_gasto'])){
+  $tipo_gasto = $Funciones->limpiarTexto($_REQUEST['select_tipo_gasto']);
+}else{
+  $tipo_gasto="NULL";
+}
+
 $colegio = $Funciones->limpiarNumeroEntero($_REQUEST['select_colegio']);
 $subvencion = $Funciones->limpiarNumeroEntero($_REQUEST['select_subvencion']);
 $cuenta = $Funciones->limpiarNumeroEntero($_REQUEST['select_cuenta']);
@@ -92,7 +98,59 @@ if($_REQUEST['txt_id_movimiento']!=""){
   $Movimiento->setNumeroCertificado($numero_certificado);
 
     if($Movimiento->ingresarMovimiento()){
-      echo "1";
+
+             if($subvencion==3){//si es subvencion SEP, agrega un gasto del 10% para la administracion central
+
+               $MovimientoGastoSep = new Movimiento();
+               $MovimientoGastoSep->setTipoMovimiento(2);
+               $MovimientoGastoSep->setTipoGasto(1);
+               $MovimientoGastoSep->setColegio($colegio);
+               $MovimientoGastoSep->setSubvencion($subvencion);
+               $MovimientoGastoSep->setCuentaPresupuesto($cuenta);
+               $MovimientoGastoSep->setEstado($estado);
+               $MovimientoGastoSep->setDescripcion("DESCUENTO 10% ADMINISTRACION CENTRAL");
+               $MovimientoGastoSep->setFechaIngreso($fecha_ingreso);
+               $MovimientoGastoSep->setOrdenCompra($orden_compra);
+               $MovimientoGastoSep->setMonto((($monto*10)/100));
+               $MovimientoGastoSep->setSepPreferente("0");
+               $MovimientoGastoSep->setSepPreferencial("0");
+               $MovimientoGastoSep->setSepConcentracion("0");
+               $MovimientoGastoSep->setSepArticulo19("0");
+               $MovimientoGastoSep->setSepAjustes("0");;
+               $MovimientoGastoSep->setScvtfNormal("0");
+               $MovimientoGastoSep->setScvtfNivelacion("0");
+
+               $numero_certificado=1;
+               $anio_ingreso=date_create($fecha_ingreso);
+               $anio_ingreso= date_format($anio_ingreso,"Y");
+
+               $conexion_2 = new Conexion();
+               $conexion_2 = $conexion_2->conectar();
+
+               $consulta_numero ="select m.numero_certificado from tb_movimientos m
+                                  where m.numero_certificado = (select max(numero_certificado) from tb_movimientos where year(fecha_ingreso)=".$anio_ingreso.");";
+
+               // echo $consulta_numero;
+               $resultado_numero = $conexion->query($consulta_numero);
+
+               while($filas_numero = $resultado_numero->fetch_array()){
+                     $numero_certificado = $filas_numero['numero_certificado'];
+                     $numero_certificado++;
+               }
+
+
+               $MovimientoGastoSep->setNumeroCertificado($numero_certificado);
+
+                if($MovimientoGastoSep->ingresarMovimiento()){
+                   echo "3";
+                }else{
+                  echo "2";
+                }
+
+             }else{
+               echo "1";
+             }
+
     }else{
       echo "2";
     }

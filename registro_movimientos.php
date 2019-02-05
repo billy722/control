@@ -23,7 +23,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 </style>
-   <title>Registro Movimientos</title>
+   <title>Control Gastos</title>
    <?php cargarHead(); ?>
 
   <script src="./js/script_movimientos.js"></script>
@@ -61,10 +61,6 @@ $usuario= $usuario->obtenerUsuarioActual();
 <?php cargarMenuPrincipal(); ?>
 
 <br>
-
-
-
-
 
 <!-- MODAL INGRESAR CORRESPONDENCIA-->
 <div class="container-fluid">
@@ -117,7 +113,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                           <label for="title" class="col-12 control-label">Tipo gasto</label>
                           <select class="form-control" name="select_tipo_gasto" id="select_tipo_gasto">
-                            <option value="NULL">Seleccione</option>
+                            <option value="" selected disabled>Seleccione:</option>
                             <?php
                                 $TipoGasto = new TipoGasto();
                                 $listaTiposGasto = $TipoGasto->obtenerTiposGasto();

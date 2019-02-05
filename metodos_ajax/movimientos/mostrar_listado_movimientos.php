@@ -16,6 +16,7 @@ require_once '../../clases/Movimiento.php';
         <th>Colegio</th>
         <th>Subvencion</th>
         <th>Cuenta</th>
+        <th>Monto</th>
         <th>Orden compra</th>
         <th>Estado</th>
      </thead>
@@ -61,6 +62,8 @@ require_once '../../clases/Movimiento.php';
                        <td><span id="columna_numero_cuenta_'.$filas['id_movimiento'].'" >'.$filas['numero_cuenta'].': '.$filas['nombre_cuenta'].'</span></td>
                             <span class="d-none" id="columna_id_numero_cuenta_'.$filas['id_movimiento'].'" >'.$filas['numero_cuenta'].'</span>
 
+                       <td><span class="" id="columna_monto_'.$filas['id_movimiento'].'" >'.number_format($filas['monto'],0,",",".").'</span></td>
+
                        <td><span id="columna_orden_compra_'.$filas['id_movimiento'].'" >'.$filas['orden_compra'].'</span></td>
                             <span class="d-none" id="columna_id_orden_compra_'.$filas['id_movimiento'].'" >'.$filas['orden_compra'].'</span>
 
@@ -73,7 +76,8 @@ require_once '../../clases/Movimiento.php';
                             <span class="d-none" id="columna_sep_articulo_19_'.$filas['id_movimiento'].'" >'.$filas['sep_articulo_19'].'</span>
                             <span class="d-none" id="columna_sep_ajustes_'.$filas['id_movimiento'].'" >'.$filas['sep_ajustes'].'</span>
 
-                            <span class="d-none" id="columna_monto_'.$filas['id_movimiento'].'" >'.$filas['monto'].'</span>
+
+                            <span class="d-none" id="columna_id_tipo_gasto_'.$filas['id_movimiento'].'" >'.$filas['tipo_gasto'].'</span>
 
                     </tr>';
          }

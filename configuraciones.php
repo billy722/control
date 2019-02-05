@@ -15,7 +15,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 </style>
-   <title>Agenda DAEM</title>
+   <title>Control Gastos</title>
    <?php cargarHead(); ?>
 
   <script src="./js/script_usuarios.js"></script>

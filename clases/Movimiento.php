@@ -99,7 +99,10 @@ class Movimiento{
     $conexion = new Conexion();
     $conexion = $conexion->conectar();
 
-      if($conexion->query("update tb_movimientos set estado=".$this->estado." where id_movimiento=".$this->id_movimiento)){
+    $consulta = "update tb_movimientos set estado=".$this->estado.", numero_certificado=NULL where id_movimiento=".$this->id_movimiento;
+    // echo $consulta;
+
+      if($conexion->query($consulta)){
          return true;
       }else{
          return false;
@@ -197,7 +200,7 @@ class Movimiento{
       $conexion = $conexion->conectar();
 
       if($texto_buscar=="" || $texto_buscar==" "){
-        $consulta= "select * from vista_movimientos ".$condiciones." order by fecha_ingreso asc";
+        $consulta= "select * from vista_movimientos ".$condiciones." order by numero_certificado asc";
       }else{
         $consulta= "select * from vista_movimientos
                     where id_movimiento like '%".$texto_buscar."%'

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../Clases/Movimiento.php';
+require_once '../../clases/Movimiento.php';
 
 $colegio = $_REQUEST['colegio'];
 $subvencion = $_REQUEST['subvencion'];
