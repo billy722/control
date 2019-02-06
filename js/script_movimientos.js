@@ -37,8 +37,8 @@ function registrarModificarMovimiento(){
 			method:"POST",
       data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
-				 // alert(respuesta);
-				 // console.log(respuesta);
+				 alert(respuesta);
+				 console.log(respuesta);
 
            if(respuesta==1){
              swal("Guardado","Los datos se han guardado correctamente.","success");

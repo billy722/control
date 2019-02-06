@@ -64,21 +64,39 @@ class Movimiento{
   }
 
   function setSepPreferente($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->sep_preferente = $parametro;
   }
   function setSepPreferencial($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->sep_preferencial = $parametro;
   }
   function setSepConcentracion($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->sep_concentracion = $parametro;
   }
   function setSepArticulo19($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->sep_articulo_19 = $parametro;
   }
   function setSepAjustes($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->sep_ajustes = $parametro;
   }
   function setSepTotal($parametro){
+    if($parametro==""){
+       $parametro=0;
+    }
     $this->sep_total = $parametro;
   }
   function setScvtfNormal($parametro){
