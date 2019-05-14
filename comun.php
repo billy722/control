@@ -214,7 +214,7 @@ function cargarMenuConfiguraciones(){
 //
 //
 //
-//  
+//
 // }
 
 function cargarMenuPrincipal(){
@@ -268,7 +268,7 @@ function cargarMenuPrincipal(){
      $usuario= new Usuario();
      $usuario= $usuario->obtenerUsuarioActual();
 
-     if($usuario['tipo_usuario']==1 || $usuario['tipo_usuario']==2){
+     if($usuario['tipo_usuario']==1 || $usuario['tipo_usuario']==2 || $usuario['tipo_usuario']==3){
 
             //UN LINK
             echo '<li class="nav-item">';
@@ -280,7 +280,7 @@ function cargarMenuPrincipal(){
             echo '</li>';
 
       }
-      if($usuario['tipo_usuario']==1){
+      if($usuario['tipo_usuario']==1 || $usuario['tipo_usuario']==2 || $usuario['tipo_usuario']==4){
 
              //UN LINK
              echo '<li class="nav-item">';
