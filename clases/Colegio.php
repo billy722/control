@@ -25,7 +25,7 @@ class Colegio{
     $Conexion = new Conexion();
     $Conexion = $Conexion->conectar();
 
-    $resultado_consulta = $Conexion->query("select * from tb_colegios");
+    $resultado_consulta = $Conexion->query("select * from tb_colegios where estado<>3");
     return $resultado_consulta;
  }
 
