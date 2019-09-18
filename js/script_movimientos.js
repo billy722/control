@@ -5,6 +5,7 @@ function mostrarListadoMovimientos(texto_buscar){
 			method:"POST",
 			success:function(respuesta){
 				 $("#contenedor_registro_movimientos").html(respuesta);
+				 $("#boton_mostrar_ocultar_registros").addClass("d-none");
 			}
 		});
 }
@@ -201,6 +202,11 @@ function cargarInformacionModificarMovimientos(id){
 	 var select_subvencion = $("#columna_id_subvencion_"+id).html();
 	 var select_cuenta = $("#columna_id_numero_cuenta_"+id).html();
 	 var select_estado = $("#columna_estado_mov_"+id).html();
+
+	 var txt_ord = $("#columna_ord_"+id).html();
+	 var txt_numero_decreto = $("#columna_numero_decreto_"+id).html();
+	 var sub_numero_registro = $("#columna_sub_numero_registro_"+id).html();
+
 	 var txt_descripcion = $("#columna_descripcion_"+id).html();
 	 var txt_orden_compra = $("#columna_id_orden_compra_"+id).html();
 	 var txt_monto = $("#columna_monto_"+id).html();
@@ -241,6 +247,11 @@ function cargarInformacionModificarMovimientos(id){
 	 $("#select_subvencion").val(select_subvencion);
 	 $("#select_cuenta").val(select_cuenta);
 	 $("#select_estado").val(select_estado);
+
+	 $("#txt_ord").val(txt_ord);
+	 $("#txt_numero_decreto").val(txt_numero_decreto);
+	 $("#txt_sub_numero_registro").val(sub_numero_registro);
+
 	 $("#txt_descripcion").val(txt_descripcion);
 	 $("#txt_orden_compra").val(txt_orden_compra);
 	 $("#txt_monto").val(txt_monto);

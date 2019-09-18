@@ -22,6 +22,9 @@ $subvencion = $Funciones->limpiarNumeroEntero($_REQUEST['select_subvencion']);
 $cuenta = $Funciones->limpiarNumeroEntero($_REQUEST['select_cuenta']);
 $estado = $Funciones->limpiarNumeroEntero($_REQUEST['select_estado']);
 
+$ord = $Funciones->limpiarNumeroEntero($_REQUEST['txt_ord']);
+$numero_decreto = $Funciones->limpiarNumeroEntero($_REQUEST['txt_numero_decreto']);
+
 $descripcion = $Funciones->limpiarTexto($_REQUEST['txt_descripcion']);
 $orden_compra = $Funciones->limpiarTexto($_REQUEST['txt_orden_compra']);
 $monto = $Funciones->limpiarNumeroEntero($_REQUEST['txt_monto']);
@@ -44,6 +47,10 @@ $Movimiento->setColegio($colegio);
 $Movimiento->setSubvencion($subvencion);
 $Movimiento->setCuentaPresupuesto($cuenta);
 $Movimiento->setEstado($estado);
+
+$Movimiento->setOrd($ord);
+$Movimiento->setNumeroDecreto($numero_decreto);
+
 $Movimiento->setDescripcion($descripcion);
 $Movimiento->setFechaIngreso($fecha_ingreso);
 $Movimiento->setOrdenCompra($orden_compra);

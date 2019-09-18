@@ -31,7 +31,6 @@ function cargarHead(){
 
   <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script> -->
   <script src="./js/fontawesome-all.min.js"></script>
-
   <script src="./js/validaciones.js"></script>
 
   <!-- CONFIGURA CALENDARIO DATEPICKER -->
@@ -222,12 +221,11 @@ function cargarMenuPrincipal(){
 <style>
 
 #contenedor_logo_menu{
-  height:40px;
-  width: 40px;
-  background:white;
-  margin-top: -10px;
-  margin-bottom: -10px;
-  margin-left: -10px;
+  height:50px;
+  width: 50px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  margin-left: -5px;
 }
 #logo_menu{
   background-image: url("./img/logo_daem.png");
@@ -235,6 +233,8 @@ function cargarMenuPrincipal(){
   width:100%;
   background-size: cover;
   background-position: center;
+  border-radius: 5px;
+
 }
 
 .nav-link{
@@ -248,7 +248,8 @@ function cargarMenuPrincipal(){
 }
 </style>
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark " style="background-image: url('img/fondo.jpg');">
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark " style="background-image: url('img/fondo.jpg');"> -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark " style="background: black;">
   <a class="navbar-brand" href="#">
     <div id="contenedor_logo_menu">
       <div id="logo_menu"></div>
@@ -273,7 +274,7 @@ function cargarMenuPrincipal(){
             //UN LINK
             echo '<li class="nav-item">';
                   if($url=="registro_movimientos.php"){
-                    echo '<a class="nav-link active" href="./registro_movimientos.php">Registro Movimientos</span></a>';
+                    echo '<a class="nav-link active" href="./registro_movimientos.php">REGISTRO</span></a>';
                   }else{
                     echo '<a class="nav-link" href="./registro_movimientos.php">Registro Movimientos</span></a>';
                   }
@@ -287,7 +288,7 @@ function cargarMenuPrincipal(){
                    if($url=="informes.php"){
                      echo '<a class="nav-link active" href="./informes.php">Informes</span></a>';
                    }else{
-                     echo '<a class="nav-link" href="./informes.php">Informes</span></a>';
+                     echo '<a class="nav-link" href="./informes.php">INFORMES</span></a>';
                    }
              echo '</li>';
        }
@@ -298,7 +299,7 @@ function cargarMenuPrincipal(){
                    if($url=="configuraciones.php" || $url=="usuarios.php" ){
                      echo '<a class="nav-link active" href="./configuraciones.php">Configuraciones</span></a>';
                    }else{
-                     echo '<a class="nav-link" href="./configuraciones.php">Configuraciones</span></a>';
+                     echo '<a class="nav-link" href="./configuraciones.php">CONFIGURACIONES</span></a>';
                    }
              echo '</li>';
        }

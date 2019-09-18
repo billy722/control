@@ -11,6 +11,10 @@ class Movimiento{
   private $subvencion;
   private $cuenta_presupuesto;
   private $estado;
+
+  private $ord;
+  private $numero_decreto;
+
   private $descripcion;
   private $fecha_ingreso;
   private $orden_compra;
@@ -47,9 +51,18 @@ class Movimiento{
   function setCuentaPresupuesto($parametro){
     $this->cuenta_presupuesto = $parametro;
   }
+
   function setEstado($parametro){
     $this->estado = $parametro;
   }
+  function setOrd($parametro){
+    $this->ord = $parametro;
+  }
+  function setNumeroDecreto($parametro){
+    $this->numero_decreto = $parametro;
+  }
+
+
   function setDescripcion($parametro){
     $this->descripcion = $parametro;
   }
@@ -121,6 +134,8 @@ class Movimiento{
                   subvencion = ".$this->subvencion.",
                   cuenta_presupuesto = '".$this->cuenta_presupuesto."',
                   estado = ".$this->estado.",
+                  ord = ".$this->ord.",
+                  numero_decreto = ".$this->numero_decreto.",
                   descripcion = '".$this->descripcion."',
                   fecha_ingreso = '".$this->fecha_ingreso."',
                   orden_compra = '".$this->orden_compra."',
@@ -156,6 +171,8 @@ class Movimiento{
               `subvencion`,
               `cuenta_presupuesto`,
               `estado`,
+              `ord`,
+              `numero_decreto`,
               `descripcion`,
               `fecha_ingreso`,
               `orden_compra`,
@@ -175,6 +192,8 @@ class Movimiento{
                '".$this->subvencion."',
                '".$this->cuenta_presupuesto."',
                '".$this->estado."',
+               '".$this->ord."',
+               '".$this->numero_decreto."',
                '".$this->descripcion."',
                '".$this->fecha_ingreso."',
                '".$this->orden_compra."',
@@ -211,6 +230,8 @@ class Movimiento{
                     or numero_cuenta like '%".$texto_buscar."%'
                     or nombre_cuenta like '%".$texto_buscar."%'
                     or descripcion_estado like '%".$texto_buscar."%'
+                    or ord like '%".$texto_buscar."%'
+                    or numero_decreto like '%".$texto_buscar."%'
                     or descripcion_tipo_movimiento like '%".$texto_buscar."%'";
       }
       $resultado= $conexion->query($consulta);
