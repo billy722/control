@@ -9,6 +9,7 @@ $fecha_ingreso = $Funciones->limpiarTexto($_REQUEST['txt_fecha_ingreso']);
 $fecha_ingreso = date_create($fecha_ingreso);
 $fecha_ingreso = date_format($fecha_ingreso, 'Y-m-d');
 
+$sub_numero_registro = $Funciones->limpiarNumeroEntero($_REQUEST['txt_sub_numero_registro']);
 $tipo_movimiento = $Funciones->limpiarNumeroEntero($_REQUEST['select_tipo_movimiento']);
 
 if(isset($_REQUEST['select_tipo_gasto'])){
@@ -41,6 +42,8 @@ $scvtf_nivelacion = $Funciones->limpiarNumeroEntero($_REQUEST['scvtf_nivelacion'
 
 
 $Movimiento = new Movimiento();
+$Movimiento->setSubNumeroRegistro($sub_numero_registro);
+
 $Movimiento->setTipoMovimiento($tipo_movimiento);
 $Movimiento->setTipoGasto($tipo_gasto);
 $Movimiento->setColegio($colegio);
@@ -106,7 +109,7 @@ if($_REQUEST['txt_id_movimiento']!=""){
 
     if($Movimiento->ingresarMovimiento()){
 
-             if($subvencion==3){//si es subvencion SEP, agrega un gasto del 10% para la administracion central
+             if($subvencion==3 and $tipo_movimiento==1){//si es subvencion SEP, agrega un gasto del 10% para la administracion central
 
                $MovimientoGastoSep = new Movimiento();
                $MovimientoGastoSep->setTipoMovimiento(2);

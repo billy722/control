@@ -2,6 +2,7 @@ listarCuenta();
 
 function listarCuenta(){
 
+	contenedorCargando("#contenedor_listado_cuenta");
 
 		$.ajax({
 			url:"./metodos_ajax/cuentas/mostrar_cuenta.php",

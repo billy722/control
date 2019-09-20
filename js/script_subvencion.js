@@ -2,6 +2,7 @@ listarSubvencion();
 
 function listarSubvencion(){
 
+	contenedorCargando("#contenedor_listado_subvencion");
 
 		$.ajax({
 			url:"./metodos_ajax/subvencion/mostrar_subvencion.php",

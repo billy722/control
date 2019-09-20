@@ -8,14 +8,15 @@ $listado_usuarios = $Usuario->listarUsuariosActivosInactivos();
 
 
     echo '
-    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+    <table class="table table-dark table-sm table-striped table-bordered table-hover">
        <thead>
            <!-- <th>Run</th> -->
            <th>Nombre</th>
            <th>Estado</th>
            <th>Tipo Usuario</th>
            <th>Correo</th>
-           <th>Opciones</th>
+           <th></th>
+           <th></th>
        </thead>
        <tbody>';
 
@@ -41,6 +42,8 @@ $listado_usuarios = $Usuario->listarUsuariosActivosInactivos();
                    <span class="d-none" id="txt_privilegio_'.$contador.'" >'.$filas['tipo_usuario'].'</span>
                    <td class="">
                       <button onclick="cargarDatosModificar('.$contador.');" data-toggle="modal" data-target="#modal_usuario" type="button" class="btn btn-block btn-warning" name="button">Editar</button>
+                   </td>
+                   <td class="">
                       <button onclick="eliminarUsuario('.$filas['rut'].')" type="button" class="btn btn-block btn-danger" name="button">Eliminar</button>
                    </td>
                  </tr>';

@@ -2,7 +2,7 @@ listarUsuarios();
 
 function listarUsuarios(){
 
-
+contenedorCargando("#contenedor_listado_usuarios");
 		$.ajax({
 			url:"./metodos_ajax/usuarios/mostrar_usuarios.php",
 			method:"POST",

@@ -9,7 +9,7 @@ $listado_cuenta = $Cuenta->obtenerCuentas();
 
 
     echo '
-    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+    <table class="table table-dark table-sm table-striped table-bordered table-hover">
        <thead>
            <th>Numero</th>
            <th>Nombre</th>

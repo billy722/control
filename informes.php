@@ -33,12 +33,13 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 <div class="container-fluid">
+  <br>
   <div class="row">
 
 
        <div class="col-12 col-md-12">
 
-              <div id='contenedor_informe_subvencion' style="" class=" card col-12 ">
+              <div id='contenedor_informe_subvencion' style="" class="card bg-dark text-white">
 
                 <div class="card-header ">
                     INFORMES POR SUBVENCIÓN
@@ -46,7 +47,7 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                    <form action="javascript:generarInformeSubvencion()" id="formulario_informe_subvencion" >
 
-                       <div class="row">
+                       <div class="row col-12">
 
                          <div class="form-group col-md-2" >
                              <label for="title" class="col-12 control-label">Año</label>
@@ -104,14 +105,16 @@ $usuario= $usuario->obtenerUsuarioActual();
                        </div>
 
                        <div class="form-group">
-                            <button class="btn btn-primary btn-block">GENERAR INFORME</button>
+                            <button id="btn_generar_informe" class="btn btn-primary btn-block">GENERAR INFORME</button>
                        </div>
 
                    </form>
 
               </div>
 
-
+<div class="">
+  <hr>
+</div>
               <div id='' style="" class=" card col-12">
                 <div id="contenedor_resultado_informe"></div>
               </div>

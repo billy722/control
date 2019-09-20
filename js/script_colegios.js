@@ -2,6 +2,7 @@ listarColegio();
 
 function listarColegio(){
 
+	contenedorCargando("#contenedor_listado_colegios");
 
 		$.ajax({
 			url:"./metodos_ajax/colegio/mostrar_colegio.php",

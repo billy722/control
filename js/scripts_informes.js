@@ -15,6 +15,9 @@ function cambiarTipoInforme(tipo_informe){
 
 function generarInformeSubvencion(){
 
+  contenedorCargando("#contenedor_resultado_informe");
+  botonCargando("#btn_generar_informe",1);
+
   $.ajax({
        url:"./metodos_ajax/informes/informe_subvenciones.php",
        method:"post",
@@ -22,6 +25,7 @@ function generarInformeSubvencion(){
        success: function(respuesta){
             // alert(respuesta);
             $("#contenedor_resultado_informe").html(respuesta);
+            botonCargando("#btn_generar_informe",2);
        }
   });
 

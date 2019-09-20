@@ -9,12 +9,11 @@ $listado_subvencion = $Subvencion->obtenerSubvencion();
 
 
     echo '
-    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+    <table class="table table-sm table-striped table-dark table-bordered table-hover">
        <thead>
            <th>Id</th>
            <th>Subvencion</th>
-           <th></th>
-           <th></th>
+
        </thead>
        <tbody>';
 
@@ -26,12 +25,14 @@ $listado_subvencion = $Subvencion->obtenerSubvencion();
                    <td class=""><span id="txt_id_subvencion_'.$contador.'" >'.$filas['id_subvencion'].'</span></td>
                    <td class=""><span id="txt_subvencion_'.$contador.'" >'.$filas['subvencion'].'</span></td>
 
+                <!--
                    <td class="">
                       <button onclick="cargarDatosModificar('.$contador.');" data-toggle="modal" data-target="#modal_subvencion" type="button" class="btn btn-block btn-warning" name="button">Editar</button>
                    </td>
                    <td class="">
                       <button onclick="eliminarSubvencion('.$filas['id_subvencion'].')" type="button" class="btn btn-block btn-danger" name="button">Eliminar</button>
                    </td>
+                -->
                  </tr>';
 
             $contador++;

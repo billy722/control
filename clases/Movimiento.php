@@ -4,6 +4,8 @@ require_once 'Conexion.php';
 class Movimiento{
 
   private $id_movimiento;
+  private $sub_numero_registro;
+
   private $numero_certificado;
   private $tipo_movimiento;
   private $tipo_gasto;
@@ -33,6 +35,10 @@ class Movimiento{
   function setIdMovimiento($parametro){
     $this->id_movimiento = $parametro;
   }
+  function setSubNumeroRegistro($parametro){
+    $this->sub_numero_registro = $parametro;
+  }
+
   function setNumeroCertificado($parametro){
     $this->numero_certificado = $parametro;
   }
@@ -165,6 +171,7 @@ class Movimiento{
 
     $consulta ="insert INTO tb_movimientos
               (`numero_certificado`,
+              `sub_numero_registro`,
               `tipo_movimiento`,
               `tipo_gasto`,
               `colegio`,
@@ -186,6 +193,7 @@ class Movimiento{
               `scvtf_nivelacion`)
               VALUES
               (".$this->numero_certificado.",
+               '".$this->sub_numero_registro."',
                '".$this->tipo_movimiento."',
                ".$this->tipo_gasto.",
                '".$this->colegio."',

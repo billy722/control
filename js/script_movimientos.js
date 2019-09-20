@@ -1,5 +1,10 @@
 function mostrarListadoMovimientos(texto_buscar){
 
+	$('html,body').animate({
+		scrollTop: $("#contenedor_registro_movimientos").offset().top
+	}, 1200);
+	contenedorCargando("#contenedor_registro_movimientos");
+
 		$.ajax({
 			url:"./metodos_ajax/movimientos/mostrar_listado_movimientos.php?texto_buscar="+texto_buscar,
 			method:"POST",
@@ -8,11 +13,13 @@ function mostrarListadoMovimientos(texto_buscar){
 				 $("#boton_mostrar_ocultar_registros").addClass("d-none");
 			}
 		});
+
 }
 
 
 function registrarModificarMovimiento(){
 
+ botonCargando("#btn_guardar_formulario",1);
 
 		$.ajax({
 			url:"./metodos_ajax/movimientos/ingresar_modificar_movimiento.php",
@@ -26,6 +33,8 @@ function registrarModificarMovimiento(){
              swal("Guardado","Los datos se han guardado correctamente.","success");
 						 limpiarFormulario();
              mostrarListadoMovimientos("");
+						 botonCargando("#btn_guardar_formulario",2);
+
 
            }else if(respuesta==3){//
 						 swal("Guardado","Se registró, gasto del 10% correspondiente a administracion central","success");
@@ -171,6 +180,9 @@ function muestraTotalesColegioSubvencion(){
 	// Ingresos y Gastos
  colegio = $("#select_colegio").val();
  subvencion = $("#select_subvencion").val();
+
+ $("#card_informacion_resumen").removeClass("d-none");
+ contenedorCargando("#contenedor_informacion_resumen");
 
  if(subvencion!=null){
 

@@ -150,6 +150,21 @@ $usuario= $usuario->obtenerUsuarioActual();
                                      </div>
 
                                      <div class="form-group col-md-12" >
+                                         <label for="title" class="col-12 control-label form-control-sm">Cuenta Presupuesto</label>
+                                         <select required class="form-control form-control-sm" name="select_cuenta" id="select_cuenta">
+                                           <option value="" selected disabled>Seleccione:</option>
+                                           <?php
+                                               $Cuenta = new Cuenta();
+                                               $listaCuentas = $Cuenta->obtenerCuentas();
+
+                                               while($filas = $listaCuentas->fetch_array()){
+                                                  echo '<option value="'.$filas['numero_cuenta'].'">'.$filas['numero_cuenta'].': '.$filas['nombre_cuenta'].'</option>';
+                                               }
+                                            ?>
+                                         </select>
+                                     </div>
+
+                                     <div class="form-group col-md-12" >
 
                                          <label for="title" class="col-12 control-label form-control-sm">COLEGIO</label>
                                          <select required onchange="muestraTotalesColegioSubvencion()" class="form-control form-control-sm" name="select_colegio" id="select_colegio">
@@ -183,20 +198,33 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                                        </div>
 
-                                       <div class="form-group col-md-12" >
-                                           <label for="title" class="col-12 control-label form-control-sm">Cuenta Presupuesto</label>
-                                           <select required class="form-control form-control-sm" name="select_cuenta" id="select_cuenta">
-                                             <option value="" selected disabled>Seleccione:</option>
-                                             <?php
-                                                 $Cuenta = new Cuenta();
-                                                 $listaCuentas = $Cuenta->obtenerCuentas();
 
-                                                 while($filas = $listaCuentas->fetch_array()){
-                                                    echo '<option value="'.$filas['numero_cuenta'].'">'.$filas['numero_cuenta'].': '.$filas['nombre_cuenta'].'</option>';
-                                                 }
-                                              ?>
-                                           </select>
-                                       </div>
+                                       <div class="col-12">
+                                           <div id="card_informacion_resumen" class="card  border-danger mb-12 d-none" style="background:black;">
+                                             <div class="card-body ">
+
+                                                    <!-- <label class="card-title">Resumen Saldo</label> -->
+
+                                                     <div id="contenedor_informacion_resumen">
+                                                         <!-- <table class="table table-bordered table-striped table-sm bg-dark">
+                                                           <tbody>
+                                                             <tr>
+                                                               <td><label for="">Ingresos: </label></td>
+                                                               <td>Seleccione subvencion</td>
+                                                             </tr>
+                                                             <tr>
+                                                               <td><label for="">Gastos: </label></td>
+                                                               <td>Seleccione subvencion</td>
+                                                             </tr>
+                                                           </tbody>
+                                                         </table> -->
+
+                                                     </div>
+
+                                               </div>
+                                             </div>
+                                         </div>
+
 
                                   </div>
 
@@ -327,12 +355,12 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                                            <div class="form-group col-12" >
                                                <label for="title" class="col-12 control-label form-control-sm">DESCRIPCIÓN</label>
-                                               <textarea value="<?php echo $filas['descripcion_tipo_movimiento'];?>" name="txt_descripcion" id="txt_descripcion" class="form-control form-control-sm " rows="3"></textarea>
+                                               <textarea  name="txt_descripcion" id="txt_descripcion" class="form-control form-control-sm " rows="3"></textarea>
                                            </div>
 
                                            <div class="col-12">
                                              <!-- <label for="title" class="col-12 control-label">&nbsp;</label> -->
-                                             <button class="btn btn-info btn-block" type="submit" name="button">GUARDAR</button>
+                                             <button class="btn btn-info btn-block" id="btn_guardar_formulario" type="submit" name="button">GUARDAR</button>
                                            </div>
 
                                       </div>
@@ -349,33 +377,6 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                       </div>
 
-                      <!-- <div class="col-4">
-                          <div class="card bg-light mb-12 " >
-                            <div class="card-header">
-                               <h5 class="card-title">Información</h5>
-                            </div>
-                            <div class="card-body bg-white">
-
-                                    <div id="contenedor_informacion_resumen">
-
-                                        <table class="table table-bordered table-striped">
-                                          <tbody>
-                                            <tr>
-                                              <td><label for="">Total Ingresos: </label></td>
-                                              <td>Seleccione subvencion</td>
-                                            </tr>
-                                            <tr>
-                                              <td><label for="">Total Gastos: </label></td>
-                                              <td>Seleccione subvencion</td>
-                                            </tr>
-                                          </tbody>
-                                        </table>
-
-                                    </div>
-
-                              </div>
-                            </div>
-                        </div> -->
 
 
                   </div>
@@ -419,9 +420,9 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 </div>
 
-<div class="">
-  <hr>
-</div>
+<br>
+<br>
+<br>
 
 <div class="container-fluid">
   <div class="col-12">

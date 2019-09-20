@@ -29,11 +29,12 @@ $usuario= $usuario->obtenerUsuarioActual();
 
 
 <div class="container-fluid">
+  <br>
   <div class="row">
 
       <div class="col-12 col-md-3">
 
-          <div class="card text-dark">
+          <div class="card bg-dark text-white">
             <div class="card-header ">
                 OPCIONES
             </div>
