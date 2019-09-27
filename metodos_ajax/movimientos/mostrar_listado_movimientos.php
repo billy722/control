@@ -8,7 +8,7 @@ require_once '../../clases/Movimiento.php';
   <table class="table table-dark table-sm table-bordered  table-hover" style="background:black; font-size:13px;">
      <thead class="thead-dark">
         <th>NºReg</th>
-        <th>Nº</th>
+        <th>Correl.</th>
         <th>Fecha</th>
         <th>Tipo</th>
         <th>Descripcion</th>

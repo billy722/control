@@ -1,3 +1,8 @@
+
+$(document).ready(function(){
+	cargarUltimoNumeroRegistro();
+});
+
 function mostrarListadoMovimientos(texto_buscar){
 
 	$('html,body').animate({
@@ -15,6 +20,22 @@ function mostrarListadoMovimientos(texto_buscar){
 		});
 
 }
+function cargarUltimoNumeroRegistro(){
+
+	$("#txt_numero_certificado").val("...");
+	$("#txt_sub_numero_registro").val("...");
+
+		$.ajax({
+			url:"./metodos_ajax/movimientos/obtenerUltimoNumeroRegistro.php",
+			method:"POST",
+			dataType:"JSON",
+			success:function(respuesta){
+				$("#txt_numero_certificado").val(respuesta.nuevo_id_registro);
+				$("#txt_sub_numero_registro").val(1);
+			}
+		});
+
+}
 
 
 function registrarModificarMovimiento(){
@@ -26,7 +47,7 @@ function registrarModificarMovimiento(){
 			method:"POST",
       data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
-				 // alert(respuesta);
+				 alert(respuesta);
 				 // console.log(respuesta);
 
            if(respuesta==1){
@@ -42,6 +63,8 @@ function registrarModificarMovimiento(){
 						 mostrarListadoMovimientos("");
 
            }else if(respuesta==2){
+             swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
+           }else{
              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
            }
 			}
@@ -172,7 +195,7 @@ function cambiarTipoMovmiento(tipo){
 	  $("#contenedor_tipo_gasto").addClass("d-none");
 		$("#select_tipo_gasto").removeAttr("required");
  }
- cambiaSubvencion();
+ // cambiaSubvencion();
 
 }
 

@@ -128,6 +128,20 @@ class Movimiento{
       }
   }
 
+  function obtenerUltimoNumeroRegistro(){
+    $conexion = new Conexion();
+    $conexion = $conexion->conectar();
+
+    $consulta = "select max(id_movimiento)+1 as nuevo_id_registro from tb_movimientos";
+
+    $resultado= $conexion->query($consulta);
+    if($resultado){
+       return $resultado;
+    }else{
+      return false;
+    }
+  }
+
   function modificarMovimiento(){
     $conexion = new Conexion();
     $conexion = $conexion->conectar();
