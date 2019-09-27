@@ -102,12 +102,12 @@ $usuario= $usuario->obtenerUsuarioActual();
 
                                     <div class="form-group col-md-6" >
                                             <label for="title" class="col-12 control-label form-control-sm">NºREGISTRO</label>
-                                            <input class="form-control form-control-sm" type="text" readonly name="txt_numero_certificado" id="txt_numero_certificado">
+                                            <input class="form-control form-control-sm" type="text"  name="txt_numero_certificado" id="txt_numero_certificado">
                                             <input class="form-control form-control-sm" type="hidden" readonly name="txt_id_movimiento" id="txt_id_movimiento">
                                     </div>
                                     <div class="form-group col-md-6" >
                                             <label for="title" class="col-12 control-label form-control-sm">CORRELATIVO</label>
-                                            <input type="text" class="form-control form-control-sm" readonly name="txt_sub_numero_registro" id="txt_sub_numero_registro">
+                                            <input type="text" class="form-control form-control-sm"  name="txt_sub_numero_registro" id="txt_sub_numero_registro">
                                     </div>
 
                                      <div class="form-group col-md-6" >
@@ -440,6 +440,7 @@ $usuario= $usuario->obtenerUsuarioActual();
               <div class="row table-responsive" id="contenedor_registro_movimientos"></div>
 
               <button id="boton_mostrar_ocultar_registros" onclick="mostrarListadoMovimientos('')" class="btn btn-info btn-block">Mostrar Registro de Movimientos</button>
+              <button id="boton_mostrar_mas_registros" onclick="mostrarMasRegistros()" class="d-none btn btn-warning btn-block">Mostrar más</button>
 
           </div>
         </div>

@@ -25,9 +25,10 @@ require_once '../../clases/Movimiento.php';
 
        $Funciones = new Funciones();
        $texto_buscar = $Funciones->limpiarTexto($_REQUEST['texto_buscar']);
+       $cantidad_registros = $Funciones->limpiarNumeroEntero($_REQUEST['cantidad_registros']);
 
        $Movimiento = new Movimiento();
-       $listadoMovimiento = $Movimiento->mostrarListadoMovimientos($texto_buscar," where id_estado=1 or id_estado=2 ");
+       $listadoMovimiento = $Movimiento->mostrarListadoMovimientos($texto_buscar," where id_estado=1 or id_estado=2 ",$cantidad_registros);
 
          while($filas = $listadoMovimiento->fetch_array()){
 

@@ -150,6 +150,8 @@ if($_REQUEST['txt_id_movimiento']!=""){
 
 
                $MovimientoGastoSep->setNumeroCertificado($numero_certificado);
+               $MovimientoGastoSep->setSubNumeroRegistro(1);
+
 
                 if($MovimientoGastoSep->ingresarMovimiento()){
                    echo "3";

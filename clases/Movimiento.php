@@ -236,12 +236,14 @@ class Movimiento{
     }
   }
 
-  function mostrarListadoMovimientos($texto_buscar,$condiciones){
+  function mostrarListadoMovimientos($texto_buscar,$condiciones,$mostrarListadoMovimientos){
       $conexion = new Conexion();
       $conexion = $conexion->conectar();
 
+      $mostrarListadoMovimientos = ($mostrarListadoMovimientos*20);
+
       if($texto_buscar=="" || $texto_buscar==" "){
-        $consulta= "select * from vista_movimientos ".$condiciones." order by numero_certificado asc";
+        $consulta= "select * from vista_movimientos ".$condiciones." order by numero_certificado asc limit ".$mostrarListadoMovimientos;
       }else{
         $consulta= "select * from vista_movimientos
                     where id_movimiento like '%".$texto_buscar."%'
@@ -254,7 +256,8 @@ class Movimiento{
                     or descripcion_estado like '%".$texto_buscar."%'
                     or ord like '%".$texto_buscar."%'
                     or numero_decreto like '%".$texto_buscar."%'
-                    or descripcion_tipo_movimiento like '%".$texto_buscar."%'";
+                    or descripcion_tipo_movimiento like '%".$texto_buscar."%'
+                    limit ".$mostrarListadoMovimientos;
       }
       $resultado= $conexion->query($consulta);
       if($resultado){

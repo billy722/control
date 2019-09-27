@@ -1,7 +1,13 @@
+var cantidad_registros = 1;
 
 $(document).ready(function(){
 	cargarUltimoNumeroRegistro();
 });
+
+function mostrarMasRegistros(){
+  cantidad_registros++;
+	mostrarListadoMovimientos('');
+}
 
 function mostrarListadoMovimientos(texto_buscar){
 
@@ -11,11 +17,12 @@ function mostrarListadoMovimientos(texto_buscar){
 	contenedorCargando("#contenedor_registro_movimientos");
 
 		$.ajax({
-			url:"./metodos_ajax/movimientos/mostrar_listado_movimientos.php?texto_buscar="+texto_buscar,
+			url:"./metodos_ajax/movimientos/mostrar_listado_movimientos.php?texto_buscar="+texto_buscar+"&cantidad_registros="+cantidad_registros,
 			method:"POST",
 			success:function(respuesta){
 				 $("#contenedor_registro_movimientos").html(respuesta);
 				 $("#boton_mostrar_ocultar_registros").addClass("d-none");
+				 $("#boton_mostrar_mas_registros").removeClass("d-none");
 			}
 		});
 
@@ -30,7 +37,12 @@ function cargarUltimoNumeroRegistro(){
 			method:"POST",
 			dataType:"JSON",
 			success:function(respuesta){
-				$("#txt_numero_certificado").val(respuesta.nuevo_id_registro);
+				// alert(respuesta.nuevo_id_registro);
+				if(respuesta.nuevo_id_registro==null){
+					$("#txt_numero_certificado").val(1);
+				}else{
+					$("#txt_numero_certificado").val(respuesta.nuevo_id_registro);
+				}
 				$("#txt_sub_numero_registro").val(1);
 			}
 		});
@@ -47,15 +59,13 @@ function registrarModificarMovimiento(){
 			method:"POST",
       data: $("#formulario_modal_movimientos").serialize(),
 			success:function(respuesta){
-				 alert(respuesta);
+				 // alert(respuesta);
 				 // console.log(respuesta);
 
            if(respuesta==1){
              swal("Guardado","Los datos se han guardado correctamente.","success");
 						 limpiarFormulario();
              mostrarListadoMovimientos("");
-						 botonCargando("#btn_guardar_formulario",2);
-
 
            }else if(respuesta==3){//
 						 swal("Guardado","Se registró, gasto del 10% correspondiente a administracion central","success");
@@ -67,6 +77,8 @@ function registrarModificarMovimiento(){
            }else{
              swal("Ocurrió un error","Recargue la página e intente nuevamente.","error");
            }
+					 botonCargando("#btn_guardar_formulario",2);
+
 			}
 		});
 }
