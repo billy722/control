@@ -431,7 +431,7 @@ $usuario= $usuario->obtenerUsuarioActual();
           <div class="card-header " style="background:black; color:white;">
              <div class="row">
                <h5 class="card-title col-12 col-md-2">Listado Movimientos</h5>
-               <input type="text" class="class-12 col-md-10 border-info form-control" style="font-size:20px;" onkeyup="mostrarListadoMovimientos(this.value)" name="txt_buscar_correspondencia" value="" placeholder="Ingrese Numero Certificado, Subvencion, RBD, Estado, etc.">
+               <input type="text" class="class-12 col-md-10 border-info form-control form-control-sm" style="font-size:20px;" onkeyup="mostrarListadoMovimientos(this.value)" name="txt_buscar_correspondencia" value="" placeholder="Ingrese Numero Certificado, Subvencion, RBD, Estado, etc.">
 
              </div>
           </div>

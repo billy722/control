@@ -8,3 +8,29 @@ Stack trace:
 #0 /home/daemmulc/public_html/control/usuarios.php(9): Usuario->obtenerUsuarioActual()
 #1 {main}
   thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124
+[24-Oct-2019 10:15:58 CST6CDT] PHP Fatal error:  require_once(): Failed opening required 'clases/Funciones.php' (include_path='.:/usr/local/php71/pear') in /home/daemmulc/public_html/control/index.php on line 174
+[07-Jan-2020 10:09:28 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/daemmulc/public_html/control/clases/Usuario.php:124
+Stack trace:
+#0 /home/daemmulc/public_html/control/registro_movimientos.php(15): Usuario->obtenerUsuarioActual()
+#1 {main}
+  thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124
+[07-Jan-2020 10:09:30 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/daemmulc/public_html/control/clases/Usuario.php:124
+Stack trace:
+#0 /home/daemmulc/public_html/control/registro_movimientos.php(15): Usuario->obtenerUsuarioActual()
+#1 {main}
+  thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124
+[07-Jan-2020 14:13:42 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/daemmulc/public_html/control/clases/Usuario.php:124
+Stack trace:
+#0 /home/daemmulc/public_html/control/colegios.php(11): Usuario->obtenerUsuarioActual()
+#1 {main}
+  thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124
+[14-Jan-2020 08:44:10 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/daemmulc/public_html/control/clases/Usuario.php:124
+Stack trace:
+#0 /home/daemmulc/public_html/control/registro_movimientos.php(15): Usuario->obtenerUsuarioActual()
+#1 {main}
+  thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124
+[05-Feb-2020 13:06:22 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/daemmulc/public_html/control/clases/Usuario.php:124
+Stack trace:
+#0 /home/daemmulc/public_html/control/registro_movimientos.php(15): Usuario->obtenerUsuarioActual()
+#1 {main}
+  thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124

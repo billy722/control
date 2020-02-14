@@ -1,0 +1,1 @@
+[30-Jan-2019 15:39:01 CST6CDT] PHP Fatal error:  require_once(): Failed opening required '../../Clases/Movimiento.php' (include_path='.:/usr/local/php71/pear') in /home/daemmulc/public_html/control/metodos_ajax/movimientos/mostrar_totales_colegios.php on line 3

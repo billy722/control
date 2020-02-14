@@ -1,0 +1,10 @@
+[08-Apr-2019 08:40:19 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/daemmulc/public_html/control/clases/Usuario.php:124
+Stack trace:
+#0 /home/daemmulc/public_html/control/informes.php(9): Usuario->obtenerUsuarioActual()
+#1 {main}
+  thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124
+[03-Jul-2019 12:51:22 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/daemmulc/public_html/control/clases/Usuario.php:124
+Stack trace:
+#0 /home/daemmulc/public_html/control/usuarios.php(9): Usuario->obtenerUsuarioActual()
+#1 {main}
+  thrown in /home/daemmulc/public_html/control/clases/Usuario.php on line 124

@@ -243,7 +243,7 @@ class Movimiento{
       $mostrarListadoMovimientos = ($mostrarListadoMovimientos*20);
 
       if($texto_buscar=="" || $texto_buscar==" "){
-        $consulta= "select * from vista_movimientos ".$condiciones." order by numero_certificado asc limit ".$mostrarListadoMovimientos;
+        $consulta= "select * from vista_movimientos ".$condiciones." order by numero_certificado desc limit ".$mostrarListadoMovimientos;
       }else{
         $consulta= "select * from vista_movimientos
                     where id_movimiento like '%".$texto_buscar."%'

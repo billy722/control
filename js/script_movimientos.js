@@ -9,6 +9,7 @@ function mostrarMasRegistros(){
 	mostrarListadoMovimientos('');
 }
 
+
 function mostrarListadoMovimientos(texto_buscar){
 
 	$('html,body').animate({
@@ -27,6 +28,13 @@ function mostrarListadoMovimientos(texto_buscar){
 		});
 
 }
+
+function imprimirRegistroMovimiento(id){
+	// alert("entra a la funcions");
+	window.open("./metodos_ajax/movimientos/imprimir_movimiento.php?id="+id, "Impimir Boucher" , "width=800,height=600,scrollbars=YES");
+}
+
+
 function cargarUltimoNumeroRegistro(){
 
 	$("#txt_numero_certificado").val("...");
