@@ -78,7 +78,7 @@ require_once '../../clases/Movimiento.php';
 
                             <span class="d-none" id="columna_id_tipo_gasto_'.$filas['id_movimiento'].'" >'.$filas['tipo_gasto'].'</span>
 
-                        <td><button onclick="imprimirRegistroMovimiento('.$filas['id_movimiento'].')" class="col-12 btn btn-info  btn-sm"> <i class="fa fa-print"></i> </button></td>
+                        <td><button onclick="imprimirRegistroMovimiento('.$filas['id_movimiento'].','.$filas['sub_numero_registro'].')" class="col-12 btn btn-info  btn-sm"> <i class="fa fa-print"></i> </button></td>
                         <td><button onclick="cargarInformacionModificarMovimientos('.$filas['id_movimiento'].')" class="col-12 btn btn-warning  btn-sm"> <i class="fa fa-edit"></i> </button></td>
                         <td><button onclick="eliminarMovimientos('.$filas['id_movimiento'].')"  class="col-12 btn btn-danger btn-sm"> <i class="fa fa-trash-alt "></i> </button></td>
 

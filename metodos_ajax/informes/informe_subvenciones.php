@@ -41,7 +41,7 @@ $octubre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0", 
 $noviembre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0", "sep_preferente" => "0", "sep_preferencial" => "0", "sep_concentracion" => "0", "sep_articulo_19" => "0", "sep_ajustes" => "0" );
 $diciembre = array("mes"=> "0", "scvtf_normal" => "0", "scvtf_nivelacion" => "0", "sep_preferente" => "0", "sep_preferencial" => "0", "sep_concentracion" => "0", "sep_articulo_19" => "0", "sep_ajustes" => "0" );
 
-$total = array("total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nivelacion" => "0", "total_sep_preferente" => "0", "total_sep_preferencial" => "0", "total_sep_concentracion" => "0", "total_sep_articulo_19" => "0", "total_sep_ajustes" => "0" );//segundo
+$total = array("total_general"=> "0", "total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nivelacion" => "0", "total_sep_preferente" => "0", "total_sep_preferencial" => "0", "total_sep_concentracion" => "0", "total_sep_articulo_19" => "0", "total_sep_ajustes" => "0" );//segundo
 
 
 
@@ -53,8 +53,11 @@ $total = array("total_mes"=> "0", "total_scvtf_normal" => "0", "total_scvtf_nive
     //pone en colegio en 0 cuando el tipo de informe es tipo resumen
     // if($tipo_informe==1){ $colegio = "0"; }
 
+$consulta_ingresos = "call procedimiento_informe(".$tipo_informe.",".$anio.",1,".$subvencion.",".$colegio.")";
 
-if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$tipo_informe.",".$anio.",1,".$subvencion.",".$colegio.")")){
+if($resultado_consulta = $Conexion->query($consulta_ingresos)){
+echo $consulta_ingresos;
+
 
       while($filas= $resultado_consulta->fetch_array()){
 
@@ -82,6 +85,9 @@ if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$tipo_in
                        $total['total_sep_ajustes'] += $filas['sep_ajustes'];
                        //TOTAL FINAL
                        $total['total_mes'] += $filas['monto'];
+                       // $total['total_general'] += $total['total_mes'];
+
+                       // echo "total mes enero: ". $total['total_mes']."  monto:".$filas['monto']." enero mes: ".$enero['mes'];
                break;
              case '2':
                        $febrero['mes']=number_format($filas['monto'],0,',','.');
@@ -455,7 +461,9 @@ $total_ingresos= 0;
                 //cuando subvencion es sc-vtf
                 echo '<td>'.$enero['scvtf_normal'].'</td>';
                 echo '<td>'.$enero['scvtf_nivelacion'].'</td>';
-                echo '<td>'.($enero['scvtf_normal']+$enero['scvtf_nivelacion']).'</td>';
+                echo '<td>'.$enero['mes'].'</td>';
+
+
               }else{
                 echo '<td>'.$enero['mes'].'</td>';
               }
@@ -738,12 +746,13 @@ $total_ingresos= 0;
 
               }else if($subvencion==5){
                 //cuando subvencion es sc-vtf
-                // echo '<td>'.number_format($total['total_mes'], "0", ",","." ).'</td>';
                 echo '<td>'.number_format($total['total_scvtf_normal'], "0", ",","." ).'</td>';
                 echo '<td>'.number_format($total['total_scvtf_nivelacion'], "0", ",","." ).'</td>';
 
-                $total_ingresos = ($total['total_scvtf_normal']+$total['total_scvtf_nivelacion']);
-                echo '<td>'.number_format($total_ingresos, "0", ",","." ).'</td>';
+                // $total_ingresos = ($total['total_scvtf_normal']+$total['total_scvtf_nivelacion']);
+                // echo '<td>'.number_format($total_ingresos, "0", ",","." ).'</td>';
+                echo '<td>'.number_format($total['total_mes'], "0", ",","." ).'</td>';
+
               }else{
                 $total_ingresos = $total['total_mes'];
                 echo '<td>'.number_format($total_ingresos, "0", ",","." ).'</td>';
@@ -772,43 +781,43 @@ if($tipo_informe==2){
 
     if($resultado_consulta = $Conexion->query("call procedimiento_informe(".$tipo_informe.",".$anio.",2,".$subvencion.",".$colegio.")")){
 
-    echo '
-      <table class="table table-bordered ">
-       <thead>
-           <th>Descripción</th>
-           <th>Ord. compra</th>
-           <th>Fecha</th>
-           <th>Monto</th>
-       </thead>
-       <tbody>
-    ';
-      while($filas= $resultado_consulta->fetch_array()){
+        echo '
+          <table class="table table-bordered ">
+           <thead>
+               <th>Descripción</th>
+               <th>Ord. compra</th>
+               <th>Fecha</th>
+               <th>Monto</th>
+           </thead>
+           <tbody>
+        ';
+          while($filas= $resultado_consulta->fetch_array()){
 
-        $fecha=date_create($filas['fecha_ingreso']);
-        $fecha= date_format($fecha, 'd/m/Y');
+            $fecha=date_create($filas['fecha_ingreso']);
+            $fecha= date_format($fecha, 'd/m/Y');
 
-        $total_gastos += $filas['monto'];
+            $total_gastos += $filas['monto'];
 
-        echo '<tr>
-                 <td>'.$filas['descripcion'].'</td>
-                 <td>'.$filas['orden_compra'].'</td>
-                 <td>'.$fecha.'</td>
-                 <td>'.number_format($filas['monto'],0,',','.').'</td>
-             </tr>';
+            echo '<tr>
+                     <td>'.$filas['descripcion'].'</td>
+                     <td>'.$filas['orden_compra'].'</td>
+                     <td>'.$fecha.'</td>
+                     <td>'.number_format($filas['monto'],0,',','.').'</td>
+                 </tr>';
 
-      }
+          }
 
-    echo '
-            <tr>
-              <td colspan="3"><strong>Total Gastos</strong></td>
-              <td>'.number_format($total_gastos,0,",",".").'</td>
-            </tr>
-       </tbody>
-     </table>';
+        echo '
+                <tr>
+                  <td colspan="3"><strong>Total Gastos</strong></td>
+                  <td>'.number_format($total_gastos,0,",",".").'</td>
+                </tr>
+           </tbody>
+         </table>';
 
 
     }else{
-      echo "ERROR CON EL INFORME DE GASTOS AMIGO";
+      echo "ERROR CON EL INFORME DE GASTOS";
     }
 
 //TABLA DE SALDO
@@ -854,9 +863,9 @@ if($tipo_informe==2){
 
   $condiciones="";
   if($subvencion==5){
-      $condiciones = " where tipo_establecimiento = 2";
+      $condiciones = " where estado=1 and tipo_establecimiento = 2";
   }else{
-      $condiciones = " where tipo_establecimiento = 1";
+      $condiciones = " where estado=1 and tipo_establecimiento = 1";
   }
 
   $resultado_consulta = $Conexion->query("select * from tb_colegios ".$condiciones);

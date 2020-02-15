@@ -1,7 +1,23 @@
 <?php
 require_once '../../clases/Conexion.php';
+require_once '../../clases/Usuario.php';
+$usuario= new Usuario();
+$usuario= $usuario->obtenerUsuarioActual();
 
- ?>
+
+$numero_registro = $_REQUEST['id'];
+$sub_numero = $_REQUEST['sub_id'];
+
+$conexion = new Conexion();
+$conexion = $conexion->conectar();
+
+$consulta = "select * from vista_movimientos where id_movimiento=".$numero_registro." and sub_numero_registro=".$sub_numero;
+// echo $consulta;
+
+$resultado_consulta = $conexion->query($consulta);
+$resultado_consulta = $resultado_consulta->fetch_array();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,10 +38,9 @@ require_once '../../clases/Conexion.php';
           }
 
           #logo{
-              width: 200px;
+              width: 100px;
               height: 100px;
               float:left;
-
            }
           #contenedor_texto{
               width: auto;
@@ -33,12 +48,9 @@ require_once '../../clases/Conexion.php';
               float:left;
            }
           #contenedor_datos_orden{
-              width: 50%;
-              float:left;
+
            }
           #contenedor_clientes{
-              width: 50%;
-              float:left;
            }
           #contenedor_vehiculo{
               width: auto;
@@ -55,6 +67,12 @@ require_once '../../clases/Conexion.php';
            }
            .texto{
              display: block;
+           }
+           .texto_codigo{
+             font-size: 20px;
+           }
+           .texto_parrafo{
+             font-size: 20px;
            }
            .contenedor_tabla{
              display: block;
@@ -82,7 +100,7 @@ require_once '../../clases/Conexion.php';
         }
 
         #logo{
-            width: 200px;
+            width: 100px;
             height: 100px;
             float:left;
 
@@ -94,13 +112,9 @@ require_once '../../clases/Conexion.php';
              float:left;
           }
           #contenedor_datos_orden{
-              width: auto;
-              height: 100px;
-              float:right;
+
            }
            #contenedor_clientes{
-               width: 50%;
-               float:left;
             }
            #contenedor_vehiculo{
                width: 50%;
@@ -113,6 +127,12 @@ require_once '../../clases/Conexion.php';
             }
           .texto{
             display: block;
+          }
+          .texto_codigo{
+            font-size: 20px;
+          }
+          .texto_parrafo{
+            font-size: 20px;
           }
           .contenedor_tabla{
             display: block;
@@ -128,42 +148,108 @@ require_once '../../clases/Conexion.php';
   <img id="logo" src="../../img/logo_daem.png" alt="">
 
   <div id="contenedor_texto">
-    <label class="texto" for=""><strong>José Manuel Infante Poduje</strong></label>
-    <label class="texto" for="">R.U.T: 7.816.171-K</label>
-    <label class="texto" for="">Taller Electromecánico</label>
-    <label class="texto" for="">Nueva Rancagua: N°0125</label>
-    <label class="texto" for="">Fono: 713558 ANGOL</label>
+
   </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
   <div id="contenedor_datos_orden">
-    <label class="texto" for=""><strong>Órden de Trabajo</strong></label>
-    <!-- <label class="texto" for=""><strong>N° <?php //echo $id_orden; ?></strong></label> -->
+    <center>
+      <label class="texto" for=""><strong>CERTIFICADO DISPONIBILIDAD PRESUPUESTARIA</strong></label>
+    </center>
+
+    <br>
+
+    <center>
+      <label class="texto_codigo" for=""><strong>Nº <?php echo $numero_registro." - ".$sub_numero; ?></strong></label>
+    </center>
   </div>
 
 
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<div id="contenedor_clientes">
-
-</div>
-
-<div id="contenedor_vehiculo">
-
+<div id="">
+      <center>
+          <p class="texto_parrafo">En conformidad al presupuesto aprobado para el sector Educación, año 2020,
+            mediante el Decreto Nº 5.636 del 26 de Diciembre de 2019, certifico que a
+            la fecha del presente documento, ésta institución cuenta
+            con el presupuesto para el financiamiento de los bienes y/o servicios indicados
+            en las órdenes de compra que a continuación se detallan.</p>
+      </center>
 </div>
 
 <br>
 <br>
 
-<div id="contenedor_detalle_orden">
+<?php
+
+$fecha_ingreso = date_create($filas['fecha_ingreso']);
+$fecha_ingreso = date_format($fecha_ingreso, 'd-m-Y');
+
+ ?>
+
+<div id="">
+    <table border="1" style="width:100% " >
+      <thead>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Cuenta</th>
+        <th>Descripcion</th>
+        <th>Colegio</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td> <?php echo $fecha_ingreso; ?> </td>
+          <td> <?php echo $resultado_consulta['descripcion_tipo_movimiento']; ?> </td>
+          <td> <?php echo $resultado_consulta['numero_cuenta']; ?> </td>
+          <td> <?php echo $resultado_consulta['descripcion']; ?> </td>
+          <td> <?php echo $resultado_consulta['nombre_colegio']; ?></td>
+        </tr>
+      </tbody>
+    </table>
 </div>
+
+</br>
+</br>
+
+<div id="">
+    <table border="1" style="width:100% " >
+      <thead>
+        <th>Subvencion</th>
+        <th>Orden de compra</th>
+        <th>ORD</th>
+        <th>Nº Decreto</th>
+        <th>Monto</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td> <?php echo $resultado_consulta['subvencion']; ?> </td>
+          <td> <?php echo $resultado_consulta['orden_compra']; ?> </td>
+          <td> <?php echo $resultado_consulta['ord']; ?> </td>
+          <td> <?php echo $resultado_consulta['numero_decreto']; ?> </td>
+          <td> <?php echo '$'.number_format($resultado_consulta['monto'],0,",",".") ?></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+
+
+<br>
+<br>
+
+<center>
+  <p>______________________________</p>
+  <p><?php echo $usuario['nombre']; ?></p>
+</center>
 
 </body>
 <script type="text/javascript" src="../../js/jquery-3.1.0.min.js"></script>

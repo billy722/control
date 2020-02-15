@@ -29,9 +29,9 @@ function mostrarListadoMovimientos(texto_buscar){
 
 }
 
-function imprimirRegistroMovimiento(id){
+function imprimirRegistroMovimiento(id,sub_id){
 	// alert("entra a la funcions");
-	window.open("./metodos_ajax/movimientos/imprimir_movimiento.php?id="+id, "Impimir Boucher" , "width=800,height=600,scrollbars=YES");
+	window.open("./metodos_ajax/movimientos/imprimir_movimiento.php?id="+id+"&sub_id="+sub_id, "Impimir Boucher" , "width=800,height=600,scrollbars=YES");
 }
 
 
